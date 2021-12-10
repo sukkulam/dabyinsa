@@ -12,19 +12,19 @@
 	href="//img.echosting.cafe24.com/calendars/duetds/css/default.css" />
 <link rel="stylesheet" type="text/css"
 	href="//img.echosting.cafe24.com/calendars/duetds/css/themes/ec-date-picker.css" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script type="text/javascript">
-	$(document).ready(function(){
-	    
-		$( "#eBtnInit").click(function () {
-	        $( "#reset_script" ).each( function () {
-	            this.reset();
-	        });
-	    });
-		
-		
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		$("#eBtnInit").click(function() {
+			$("#reset_script").each(function() {
+				this.reset();
+			});
+		});
+
 	});
-	</script>
+</script>
 </head>
 <body>
 	<form name="frm" method="post" action="test" id="reset_script">
@@ -90,10 +90,11 @@
 										<option value="product_tag">상품태그</option>
 										<option value="manufacturer_name">제조사</option>
 										<option value="supplier_name">공급사</option>
-								</select> 
-								<input type="text" id="eOrderProductText" name="order_product_text" class="fText" style="width: 490px;" value="" /> 
-								<input type="hidden" name="order_product_no" id="eOrderProductNo" value="">
-								<input type="hidden" name="find_option" value="product_no"></td>
+								</select> <input type="text" id="eOrderProductText"
+									name="order_product_text" class="fText" style="width: 490px;"
+									value="" /> <input type="hidden" name="order_product_no"
+									id="eOrderProductNo" value=""> <input type="hidden"
+									name="find_option" value="product_no"></td>
 							</tr>
 
 
@@ -118,6 +119,18 @@
 							</tr>
 
 							<tr>
+								<th scope="row">입금/결제상태</th>
+								<td colspan="3"><label class="gLabel"><input type="radio"
+										name="orderStatusPayment" class="fChk" value="all"
+										checked="checked" /> 전체</label> <label class="gLabel"><input
+										type="radio" name="orderStatusPayment" class="fChk" value="F" />
+										입금전</label> <label class="gLabel"><input type="radio"
+										name="orderStatusPayment" class="fChk" value="M" /> 추가입금대기</label> <label
+									class="gLabel"><input type="radio"
+										name="orderStatusPayment" class="fChk" value="TA" /> 입금완료</label> <label
+									class="gLabel"><input type="radio"
+										name="orderStatusPayment" class="fChk" value="P" /> 결제완료</label></td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -143,12 +156,14 @@
 			<div id="layerOrderPath" class="mLayer gSmall"
 				style="opacity: 1; top: 590px; left: 532px; margin-left: 0px; display: none;">
 			</div>
-			<div id="layerCompany" class="mLayer gSmall" style="display: none; opacity: 1;"></div>
-			<div id="layerMethod" class="mLayer gSmall" style="display: none; opacity: 1;"></div>
+			<div id="layerCompany" class="mLayer gSmall"
+				style="display: none; opacity: 1;"></div>
+			<div id="layerMethod" class="mLayer gSmall"
+				style="display: none; opacity: 1;"></div>
 			<!--No delete -->
-			
-			
-			
+
+
+
 			<div class="section" id="QA_inquiry2">
 				<div class="mTitle" style="display: none;">
 					<h2>검색 결과</h2>
