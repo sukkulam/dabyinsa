@@ -225,7 +225,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="adorderlist" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>전체주문목록</p>
                 </a>
@@ -314,7 +314,7 @@
     </div>
     <div class="tab-content">
       <div class="tab-empty">
-        <h2 class="display-4">No tab selected!</h2>
+        <h2 class="display-4">개발중!</h2>
       </div>
       <div class="tab-loading">
         <div>

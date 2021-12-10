@@ -7,9 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("admin")
 public class AdminController {
-	
+
 	@GetMapping("/main")
-	public String admin() {
-		return "admin/admin";
+	public String main() {
+		return "admin/main";
+	}
+
+	@GetMapping("/adorderlist")
+	public String adorderlist() {
+		return "admin/adorderlist";
 	}
 }

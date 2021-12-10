@@ -18,12 +18,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected AuthenticationManager authenticationManager() throws Exception {
 		return super.authenticationManager();
 	}
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-			.authorizeRequests()
-//				.antMatchers("/", "/admin/**", "/common/**", "/guest/**", "/user/**", "/main")
+				.headers()
+				.frameOptions().disable()
+				.and()
+				.csrf().disable()
+				.authorizeRequests()
+				// .antMatchers("/", "/admin/**", "/common/**", "/guest/**", "/user/**",
+				// "/main")
 				.antMatchers("/**")
 				.permitAll()
 				.anyRequest()
