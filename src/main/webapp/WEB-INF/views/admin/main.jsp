@@ -231,15 +231,68 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
+                <a href="pages/charts/inline.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>배송 관리</p>
+                  <p>취소</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/charts/inline.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>취소/교환/반품/환불</p>
+                  <p>교환</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/charts/inline.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>반품</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/charts/inline.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>환불</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                배송 관리
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="adpaymentlist" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>입금전</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="shippedbeginlist" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>배송준비중</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>배송대기</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>배송중</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>배송완료</p>
                 </a>
               </li>
             </ul>

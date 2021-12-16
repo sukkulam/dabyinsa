@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>Insert title here</title>
+<title>배솧 관리</title>
 <link rel="stylesheet" type="text/css"
 	href="//img.echosting.cafe24.com/css/ec/mode/easiest/common.css"
 	media="all" charset="utf-8" />
@@ -18,7 +18,7 @@
 	$(document).ready(function() {
 
 		$("#eBtnInit").click(function() {
-			$("#reset_script").each(function() {
+			$("#ePaymentForm").each(function() {
 				this.reset();
 			});
 		});
@@ -27,19 +27,22 @@
 </script>
 </head>
 <body>
-	<form name="frm" method="post" action="test" id="reset_script">
-		<!-- content -->
-		<div id="content">
+
+	<!-- content -->
+	<div id="content">
+		<form name="frm" id="ePaymentForm" method="post"
+			action="payment_list.php">
+
 			<!-- 참고 : Frame 구분 시 컨텐츠 시작 -->
 			<div class="headingArea">
 				<div class="mTitle">
-					<h1>전체주문목록</h1>
-					<span class="cManual eSmartMode" code="OD.AO"></span>
+					<h1>입금전</h1>
+					<span class="cManual eSmartMode" code="OD.OF.DB"></span>
 				</div>
 				<div class="mBreadcrumb"></div>
 			</div>
-			<div class="optionArea " id="QA_deposit1">
 
+			<div class="optionArea " id="QA_deposit1">
 
 				<div class="mOption">
 					<table border="1" summary="">
@@ -117,23 +120,21 @@
 									class="gLabel"><input type="checkbox"
 										name="orderStatus[]" class="fChk" value="N40"> 배송완료</label></td>
 							</tr>
-
 							<tr>
-								<th scope="row">입금/결제상태</th>
-								<td colspan="3"><label class="gLabel"><input type="radio"
-										name="orderStatusPayment" class="fChk" value="all"
-										checked="checked" /> 전체</label> <label class="gLabel"><input
-										type="radio" name="orderStatusPayment" class="fChk" value="F" />
-										입금전</label> <label class="gLabel"><input type="radio"
-										name="orderStatusPayment" class="fChk" value="M" /> 추가입금대기</label> <label
-									class="gLabel"><input type="radio"
-										name="orderStatusPayment" class="fChk" value="TA" /> 입금완료</label> <label
-									class="gLabel"><input type="radio"
-										name="orderStatusPayment" class="fChk" value="P" /> 결제완료</label></td>
+								<th scope="row">입금상태</th>
+								<td colspan="3" id="depositStatus"><label class="gLabel"><input
+										type="radio" name="orderStatusPayment" class="fChk"
+										value="all" /> 전체</label> <label class="gLabel"><input
+										type="radio" name="orderStatusPayment" class="fChk" value="F"
+										checked="checked" /> 입금전</label> <label class="gLabel"><input
+										type="radio" name="orderStatusPayment" class="fChk" value="A" />
+										입금완료</label></td>
 							</tr>
+
 						</tbody>
 					</table>
 				</div>
+
 
 				<div class="mButton gCenter">
 					<a href="#none" id="search_button" class="btnSearch"><span>검색</span></a>
@@ -162,75 +163,73 @@
 				style="display: none; opacity: 1;"></div>
 			<!--No delete -->
 
-
-
-			<div class="section" id="QA_inquiry2">
+			<div class="section" id="QA_deposit2">
 				<div class="mTitle" style="display: none;">
-					<h2>검색 결과</h2>
-					<div class="cTip" code="OR.SM.AO.110"></div>
+					<h2>
+						검색 결과
+						<div class="cTip" code="OR.SM.DB.110"></div>
+					</h2>
 				</div>
-				<div class="mTab typeTab eTab">
-					<ul>
-						<li class="selected"><a href="#none" id="eOrdNumTab">주문번호별</a></li>
-					</ul>
-				</div>
-				<div id="tabNumber" class="tabCont">
+
+				<div id="tabNumber" class="tabCont" style="display: block;">
 					<div class="mState typeHeader">
 						<div class="gLeft">
 							<p class="total">
-								[ 검색결과 <strong>0</strong>건 ]
+								검색결과 <strong>0</strong>건
 							</p>
+							<div class="cTip eSmartMode" code="OD.OF.DB.80"></div>
 						</div>
-					</div>
-					<div id="searchResultList"
-						class="mBoard typeOrder typeList gScroll gCellSingle">
-						<table border="1" summary="" class="thead">
-							<caption>전체주문 조회 목록</caption>
-							<tbody>
-								<tr>
-									<th scope="col" class="w24"><input type="checkbox"
-										id="allChk" /></th>
-									<th scope="col" class="w50" style="display: none;">No</th>
-									<th scope="col" class="w120" style="">주문일(결제일)</th>
-									<th scope="col" class="w150" style="">주문번호</th>
-									<th scope="col" class="w95" style="">주문자
-										<div class="cTip eSmartMode" code="OD.AO.170"></div>
-									</th>
-									<th scope="col" class="w120" style="">상품명</th>
-									<th scope="col" class="w105" style="display: none;">총
-										상품구매금액</th>
-									<th scope="col" class="w105" style="display: none;">총 주문금액</th>
-									<th scope="col" class="w105" style="">총 실결제금액</th>
-									<th scope="col" class="w60" style="">결제수단</th>
-									<th scope="col" class="w60" style="">결제상태</th>
-									<th scope="col" class="w45" style="">미배송</th>
-									<th scope="col" class="w45" style="">배송중</th>
-									<th scope="col" class="w60" style="">배송완료</th>
-									<th scope="col" class="w45" style="">취소</th>
-									<th scope="col" class="w45" style="">교환</th>
-									<th scope="col" class="w45" style="">반품</th>
-									<th scope="col" class="w35" style="">메모</th>
-								</tr>
-							</tbody>
-						</table>
-						<table border="1" summary="">
-							<caption>전체주문 조회 목록</caption>
-							<tbody class="empty">
-								<tr>
-									<td colspan="15">검색된 주문내역이 없습니다.</td>
-								</tr>
-							</tbody>
-						</table>
 
 					</div>
-					<div class="mCtrl typeFooter"></div>
+					<div class="mCtrl typeHeader">
+						<div class="gLeft">
+							<a href="#none" id="ePaymentOkBtn" class="btnCtrl"><span>입금확인</span></a>
+							<a href="#none" id="ePaymentCancelBtn" class="btnCtrl"><span>주문취소</span></a>
+						</div>
+					</div>
+
+					<div class="mBoard typeOrder gScroll gCellSingle typeList">
+						<table id="searchResultList" border="1" summary="" class="eChkTr">
+							<caption>입금전 관리 목록</caption>
+							<thead>
+								<tr>
+									<th scope="col" style="width: 30px;"><input
+										type="checkbox" id="allChk" /></th>
+									<th scope="col" style="width: 50px; display: none;">No</th>
+									<th scope="col" style="width: 80px;">주문일</th>
+									<th scope="col" style="width: 150px;">주문번호</th>
+									<th scope="col" style="width: 180px;">상품명</th>
+									<th scope="col" style="width: 85px;">주문자
+										<div class="cTip eSmartMode" code="OD.OF.DB.140" />
+									</th>
+									<th scope="col" style="width: 110px;">총 상품구매금액</th>
+									<th scope="col" style="width: 100px;">총 주문금액</th>
+									<th scope="col" style="width: 100px;">총 실결제금액</th>
+									<th scope="col" style="width: 70px;">입금자</th>
+									<th scope="col" style="width: 90px;">입금액</th>
+									<th scope="col" style="width: 80px;">입금은행</th>
+									<th scope="col" style="width: 75px;">처리여부</th>
+									<th scope="col" style="width: 75px;">추가입금</th>
+									<th scope="col" style="width: 45px;">메모</th>
+								</tr>
+							</thead>
+							<tbody class="empty">
+								<tr>
+									<td colspan="14">검색된 주문내역이 없습니다.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="mCtrl typeFooter">
+						<div class="gLeft">
+							<a href="#none" id="ePaymentOkBtn2" class="btnCtrl"><span>입금확인</span></a>
+							<a href="#none" id="ePaymentCancelBtn2" class="btnCtrl"><span>주문취소</span></a>
+						</div>
+					</div>
 					<div class="mPaginate"></div>
 				</div>
 			</div>
-
+		</form>
 		</div>
-		<!-- //content -->
-
-	</form>
 </body>
 </html>

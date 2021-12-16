@@ -15,6 +15,16 @@ public class AdminController {
 
 	@GetMapping("/adorderlist")
 	public String adorderlist() {
-		return "admin/adorderlist";
+		return "admin/order/adorderlist";
+	}
+
+	@GetMapping("/adpaymentlist")
+	public String adpaymentlist(){
+		return "admin/delivery/adpaymentlist";
+	}
+	
+	@GetMapping("/shippedbeginlist")
+	public String shippedbeginlist(){
+		return "admin/delivery/shippedbeginlist";
 	}
 }
