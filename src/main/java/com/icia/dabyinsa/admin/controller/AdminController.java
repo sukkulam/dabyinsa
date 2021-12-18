@@ -13,18 +13,64 @@ public class AdminController {
 		return "admin/main";
 	}
 
+	// 전체주문목록
 	@GetMapping("/adorderlist")
 	public String adorderlist() {
 		return "admin/order/adorderlist";
 	}
 
+	// 입금전
 	@GetMapping("/adpaymentlist")
 	public String adpaymentlist(){
 		return "admin/delivery/adpaymentlist";
 	}
 	
-	@GetMapping("/shippedbeginlist")
-	public String shippedbeginlist(){
-		return "admin/delivery/shippedbeginlist";
+	// 배송준비중
+	@GetMapping("/adshippedbeginlist")
+	public String adshippedbeginlist(){
+		return "admin/delivery/adshippedbeginlist";
+	}
+
+	// 배송대기
+	@GetMapping("/adshippedstandbylist")
+	public String adshippedstandbylist(){
+		return "admin/delivery/adshippedstandbylist";
+	}
+	
+	
+	// 배송중
+	@GetMapping("/adshippedendlist")
+	public String adshippedendlist() {
+		return "admin/delivery/adshippedendlist";
+	}
+	
+	// 배송완료
+	@GetMapping("/adshippedcompletelist")
+	public String adshippedcompletelist() {
+		return "admin/delivery/adshippedcompletelist";
+	}
+	
+	// 취소
+	@GetMapping("/adordercancel")
+	public String adordercancel() {
+		return "admin/order/adordercancel";
+	}
+	
+	// 교환
+	@GetMapping("/adorderchange")
+	public String adorderchange() {
+		return "admin/order/adorderchange";
+	}
+	
+	// 반품
+	@GetMapping("/adorderreturns")
+	public String adorderreturns() {
+		return "admin/order/adorderreturns";
+	}
+	
+	// 환불
+	@GetMapping("/adordercashrefund")
+	public String adordercashrefund() {
+		return "admin/order/adordercashrefund";
 	}
 }

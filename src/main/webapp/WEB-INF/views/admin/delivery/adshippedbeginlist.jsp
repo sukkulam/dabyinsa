@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>배솧 관리(입금전)</title>
+<title>배솧 관리(배송준비중)</title>
 <link rel="stylesheet" type="text/css"
 	href="//img.echosting.cafe24.com/css/ec/mode/easiest/common.css"
 	media="all" charset="utf-8" />
@@ -27,19 +27,17 @@
 </script>
 </head>
 <body>
-
-	<!-- content -->
+	<!-- Content Start -->
 	<div id="content">
-		<form name="frm" id="script_reset" method="post"
-			action="payment_list.php" >
+
+		<form name="frm" method="post" action="shipped_begin_list.php" id="script_reset">
 
 			<!-- 참고 : Frame 구분 시 컨텐츠 시작 -->
 			<div class="headingArea">
 				<div class="mTitle">
-					<h1>입금전</h1>
-					<span class="cManual eSmartMode" code="OD.OF.DB"></span>
+					<h1>배송 준비중</h1>
+					<span class="cManual eSmartMode" code="OD.OF.DD"></span>
 				</div>
-				<div class="mBreadcrumb"></div>
 			</div>
 
 			<div class="optionArea " id="QA_deposit1">
@@ -100,17 +98,6 @@
 									name="find_option" value="product_no"></td>
 							</tr>
 
-							<tr>
-								<th scope="row">입금상태</th>
-								<td colspan="3" id="depositStatus"><label class="gLabel"><input
-										type="radio" name="orderStatusPayment" class="fChk"
-										value="all" /> 전체</label> <label class="gLabel"><input
-										type="radio" name="orderStatusPayment" class="fChk" value="F"
-										checked="checked" /> 입금전</label> <label class="gLabel"><input
-										type="radio" name="orderStatusPayment" class="fChk" value="A" />
-										입금완료</label></td>
-							</tr>
-
 						</tbody>
 					</table>
 				</div>
@@ -130,86 +117,100 @@
 				<input type="hidden" name="main_search" id="main_search" value="">
 			</div>
 
-			<!--No delete -->
-			<div id="ordOption1" class="mLayer gMedium"></div>
-			<div id="ordOption2" class="mLayer gMedium"></div>
-			<div id="ordOption3" class="mLayer gMedium"></div>
-			<div id="layerOrderPath" class="mLayer gSmall"
-				style="opacity: 1; top: 590px; left: 532px; margin-left: 0px; display: none;">
-			</div>
-			<div id="layerCompany" class="mLayer gSmall"
-				style="display: none; opacity: 1;"></div>
-			<div id="layerMethod" class="mLayer gSmall"
-				style="display: none; opacity: 1;"></div>
-			<!--No delete -->
-
-			<div class="section" id="QA_deposit2">
-				<div class="mTitle" style="display: none;">
-					<h2>
-						검색 결과
-						<div class="cTip" code="OR.SM.DB.110"></div>
-					</h2>
+				<!--No delete -->
+				<div id="ordOption1" class="mLayer gMedium"></div>
+				<div id="ordOption2" class="mLayer gMedium"></div>
+				<div id="ordOption3" class="mLayer gMedium"></div>
+				<div id="layerOrderPath" class="mLayer gSmall"
+					style="opacity: 1; top: 590px; left: 532px; margin-left: 0px; display: none;">
 				</div>
+				<div id="layerCompany" class="mLayer gSmall"
+					style="display: none; opacity: 1;"></div>
+				<div id="layerMethod" class="mLayer gSmall"
+					style="display: none; opacity: 1;"></div>
+				<!--No delete -->
 
-				<div id="tabNumber" class="tabCont" style="display: block;">
+				<div class="section" id="QA_prepareNumber2">
+					<div class="mTitle" style="display: none;">
+						<h2>검색 결과</h2>
+						<div class="cTip" code="OR.SM.DD.110"></div>
+						<div class="cTip" code="OR.SM.DD.320"></div>
+					</div>
+					<div class="mTab typeTab">
+						<ul>
+							<li class="selected"><a href="#none" id="QA_orderNumTab">주문번호별</a></li>
+						</ul>
+					</div>
 					<div class="mState typeHeader">
 						<div class="gLeft">
 							<p class="total">
 								[검색결과 <strong>0</strong>건]
 							</p>
-							<div class="cTip eSmartMode" code="OD.OF.DB.80"></div>
 						</div>
-
 					</div>
+
+
 					<div class="mCtrl typeHeader">
 						<div class="gLeft">
-							<a href="#none" id="ePaymentOkBtn" class="btnCtrl"><span>입금확인</span></a>
-							<a href="#none" id="ePaymentCancelBtn" class="btnCtrl"><span>주문취소</span></a>
+							<a href="#eNaverCheckoutOrderStatus" data-status='eShipStartBtn'
+								id="eShipStartBtn" class="btnCtrl"><span>배송중 처리</span></a>
 						</div>
 					</div>
 
-					<div class="mBoard typeOrder gScroll gCellSingle typeList">
-						<table id="searchResultList" border="1" summary="" class="eChkTr">
-							<caption>입금전 관리 목록</caption>
+					<div id="shipedReadyList"
+						class="mBoard typeOrder gScroll gCellSingle typeList">
+						<table border="1" summary="" class="thead">
+							<caption>배송준비중 관리 목록</caption>
 							<thead>
 								<tr>
-									<th scope="col" style="width: 30px;"><input
-										type="checkbox" id="allChk" /></th>
-									<th scope="col" style="width: 50px; display: none;">No</th>
-									<th scope="col" style="width: 80px;">주문일</th>
-									<th scope="col" style="width: 150px;">주문번호</th>
-									<th scope="col" style="width: 180px;">상품명</th>
-									<th scope="col" style="width: 85px;">주문자
-										<div class="cTip eSmartMode" code="OD.OF.DB.140" />
+									<th scope="col" class="w50" style="display: none;">No</th>
+									<th scope="col" class="w85" style="">주문일<br>(결제일)
 									</th>
-									<th scope="col" style="width: 110px;">총 상품구매금액</th>
-									<th scope="col" style="width: 100px;">총 주문금액</th>
-									<th scope="col" style="width: 100px;">총 실결제금액</th>
-									<th scope="col" style="width: 70px;">입금자</th>
-									<th scope="col" style="width: 90px;">입금액</th>
-									<th scope="col" style="width: 80px;">입금은행</th>
-									<th scope="col" style="width: 75px;">처리여부</th>
-									<th scope="col" style="width: 75px;">추가입금</th>
-									<th scope="col" style="width: 45px;">메모</th>
+									<th scope="col" class="w150" style="">주문번호</th>
+									<th scope="col" class="w80" style="">주문자
+										<div class="cTip eSmartMode" code="OD.OF.DD.200" />
+									</th>
+									<th scope="col" class="w60" style="">묶음선택</th>
+									<th scope="col" class="w35"><input type="checkbox"
+										id="allChk" /></th>
+									<th scope="col" class="w140" style="">운송장정보</th>
+									<th scope="col" class="w60"
+										style="display: none; display: none;">배송비</th>
+									<th scope="col" class="w80" style="">공급사</th>
+									<th scope="col" class="w220" style="">상품명/옵션</th>
+									<th scope="col" class="w40" style="">수량</th>
+									<th scope="col" class="w80" style="">판매가</th>
+									<th scope="col" class="w90" style="">상품구매금액</th>
+									<th scope="col" class="w110" style="">총 상품구매금액</th>
+									<th scope="col" class="w100" style="">총 주문금액</th>
+									<th scope="col" class="w100" style="">총 실결제금액</th>
+									<th scope="col" class="w60" style="">결제수단</th>
+									<th scope="col" class="w100" style="display: none;">희망배송일</th>
+									<th scope="col" class="w100" style="display: none;">희망배송시간</th>
+									<th scope="col" class="w40" style="">메모</th>
 								</tr>
 							</thead>
 							<tbody class="empty">
 								<tr>
-									<td colspan="14">검색된 주문내역이 없습니다.</td>
+									<td colspan="16">검색된 주문내역이 없습니다.</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 					<div class="mCtrl typeFooter">
 						<div class="gLeft">
-							<a href="#none" id="ePaymentOkBtn2" class="btnCtrl"><span>입금확인</span></a>
-							<a href="#none" id="ePaymentCancelBtn2" class="btnCtrl"><span>주문취소</span></a>
+							<a href="#eNaverCheckoutOrderStatus" data-status='eShipStartBtn'
+								id="eShipStartBtn" class="btnCtrl"><span>배송중 처리</span></a>
 						</div>
 					</div>
-					<div class="mPaginate"></div>
+					<div class="mPaginate">1</div>
 				</div>
-			</div>
+
+				<!-- //참고 -->
 		</form>
-		</div>
+		<form name="frm_sms" id="eSmsSendForm"></form>
+	</div>
+	<!-- Content End -->
+
 </body>
 </html>

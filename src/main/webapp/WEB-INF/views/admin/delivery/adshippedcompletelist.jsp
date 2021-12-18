@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>전체주문목록</title>
+<title>배솧 관리(완료)</title>
 <link rel="stylesheet" type="text/css"
 	href="//img.echosting.cafe24.com/css/ec/mode/easiest/common.css"
 	media="all" charset="utf-8" />
@@ -18,7 +18,7 @@
 	$(document).ready(function() {
 
 		$("#eBtnInit").click(function() {
-			$("#reset_script").each(function() {
+			$("#script_reset").each(function() {
 				this.reset();
 			});
 		});
@@ -27,19 +27,20 @@
 </script>
 </head>
 <body>
-	<form name="frm" method="post" action="#" id="reset_script">
+	<form name="frm" method="post"
+		action="shipped_complete_list_ord_num.php" id="script_reset">
+
 		<!-- content -->
 		<div id="content">
 			<!-- 참고 : Frame 구분 시 컨텐츠 시작 -->
 			<div class="headingArea">
 				<div class="mTitle">
-					<h1>전체주문목록</h1>
-					<span class="cManual eSmartMode" code="OD.AO"></span>
+					<h1>배송완료</h1>
+					<span class="cManual eSmartMode" code="OD.OF.DC"></span>
 				</div>
-				<div class="mBreadcrumb"></div>
 			</div>
-			<div class="optionArea " id="QA_deposit1">
 
+			<div class="optionArea " id="QA_deposit1">
 
 				<div class="mOption">
 					<table border="1" summary="">
@@ -97,40 +98,6 @@
 									name="find_option" value="product_no"></td>
 							</tr>
 
-
-
-							<tr>
-								<th scope="row">주문상태</th>
-								<td colspan=3 id="orderStatusCheck"><label class="gLabel"><input
-										type="checkbox" name="orderStatus[]" class="fChk" value="all"
-										checked='checked'> 전체</label> <label class="gLabel"
-									style="display: none;"><input type="checkbox"
-										name="orderStatus[]" class="fChk" value="N10"> 상품준비중</label> <label
-									class="gLabel"><input type="checkbox"
-										name="orderStatus[]" class="fChk" value="N20"> 배송준비중</label> <label
-									class="gLabel"><input type="checkbox"
-										name="orderStatus[]" class="fChk" value="N22"> 배송보류</label> <label
-									class="gLabel"><input type="checkbox"
-										name="orderStatus[]" class="fChk" value="N21"> 배송대기</label> <label
-									class="gLabel"><input type="checkbox"
-										name="orderStatus[]" class="fChk" value="N30"> 배송중</label> <label
-									class="gLabel"><input type="checkbox"
-										name="orderStatus[]" class="fChk" value="N40"> 배송완료</label></td>
-							</tr>
-
-							<tr>
-								<th scope="row">입금/결제상태</th>
-								<td colspan="3"><label class="gLabel"><input type="radio"
-										name="orderStatusPayment" class="fChk" value="all"
-										checked="checked" /> 전체</label> <label class="gLabel"><input
-										type="radio" name="orderStatusPayment" class="fChk" value="F" />
-										입금전</label> <label class="gLabel"><input type="radio"
-										name="orderStatusPayment" class="fChk" value="M" /> 추가입금대기</label> <label
-									class="gLabel"><input type="radio"
-										name="orderStatusPayment" class="fChk" value="TA" /> 입금완료</label> <label
-									class="gLabel"><input type="radio"
-										name="orderStatusPayment" class="fChk" value="P" /> 결제완료</label></td>
-							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -162,69 +129,63 @@
 				style="display: none; opacity: 1;"></div>
 			<!--No delete -->
 
-
-
-			<div class="section" id="QA_inquiry2">
+			<div class="section" id="QA_complete2">
 				<div class="mTitle" style="display: none;">
 					<h2>검색 결과</h2>
-					<div class="cTip" code="OR.SM.AO.110"></div>
+					<div class="cTip" code="OR.SM.DC.110"></div>
 				</div>
 				<div class="mTab typeTab eTab">
 					<ul>
 						<li class="selected"><a href="#none" id="eOrdNumTab">주문번호별</a></li>
 					</ul>
 				</div>
-				<div id="tabNumber" class="tabCont">
+				<div id="tabNumber" class="tabCont" style="display: block;">
 					<div class="mState typeHeader">
 						<div class="gLeft">
 							<p class="total">
-								[ 검색결과 <strong>0</strong>건 ]
+								[검색결과 <strong>0</strong>건]
 							</p>
 						</div>
 					</div>
-					<div id="searchResultList"
-						class="mBoard typeOrder typeList gScroll gCellSingle">
-						<table border="1" summary="" class="thead">
-							<caption>전체주문 조회 목록</caption>
-							<tbody>
+
+					<div class="mBoard typeOrder gScroll gCellSingle typeList">
+						<table id="searchResultList" border="1" summary=""
+							class="eChkBody">
+							<caption>배송완료 조회 목록</caption>
+							<thead>
 								<tr>
-									<th scope="col" class="w24"><input type="checkbox"
-										id="allChk" /></th>
-									<th scope="col" class="w50" style="display: none;">No</th>
-									<th scope="col" class="w120" style="">주문일(결제일)</th>
-									<th scope="col" class="w150" style="">주문번호</th>
-									<th scope="col" class="w95" style="">주문자
-										<div class="cTip eSmartMode" code="OD.AO.170"></div>
+									<th scope="col" style="width: 50px; display: none;">No</th>
+									<th scope="col" style="width: 150px;">주문일/주문번호</th>
+									<th scope="col" style="width: 85px;">주문자
+										<div class="cTip eSmartMode" code="OD.OF.DC.110" />
 									</th>
-									<th scope="col" class="w120" style="">상품명</th>
-									<th scope="col" class="w105" style="display: none;">총
+									<th scope="col" style="width: 24px;"><input
+										type="checkbox" id="allChk" /></th>
+									<th scope="col" style="width: 160px;">배송일/배송번호</th>
+									<th scope="col" style="width: 110px;">운송장정보<br>(송장번호입력일)
+									</th>
+									<th scope="col" style="width: 105px;">공급사</th>
+									<th scope="col" style="width: 240px;">상품명/옵션</th>
+									<th scope="col" class="w40" style="">수량</th>
+									<th scope="col" style="width: 105px; display: none;">총
 										상품구매금액</th>
-									<th scope="col" class="w105" style="display: none;">총 주문금액</th>
-									<th scope="col" class="w105" style="">총 실결제금액</th>
-									<th scope="col" class="w60" style="">결제수단</th>
-									<th scope="col" class="w60" style="">결제상태</th>
-									<th scope="col" class="w45" style="">미배송</th>
-									<th scope="col" class="w45" style="">배송중</th>
-									<th scope="col" class="w60" style="">배송완료</th>
-									<th scope="col" class="w45" style="">취소</th>
-									<th scope="col" class="w45" style="">교환</th>
-									<th scope="col" class="w45" style="">반품</th>
-									<th scope="col" class="w35" style="">메모</th>
+									<th scope="col" style="width: 100px; display: none;">총
+										주문금액</th>
+									<th scope="col" style="width: 100px;">총 실결제금액</th>
+									<th scope="col" style="width: 45px;">메모</th>
 								</tr>
-							</tbody>
-						</table>
-						<table border="1" summary="">
-							<caption>전체주문 조회 목록</caption>
+							</thead>
 							<tbody class="empty">
 								<tr>
-									<td colspan="15">검색된 주문내역이 없습니다.</td>
+									<td colspan="10">검색된 주문내역이 없습니다.</td>
 								</tr>
 							</tbody>
 						</table>
-
 					</div>
-					<div class="mCtrl typeFooter"></div>
-					<div class="mPaginate"></div>
+					<div class="mCtrl typeFooter">
+						<div class="gLeft"></div>
+					</div>
+					<div class="mPaginate">1</div>
 				</div>
 			</div>
 
@@ -232,5 +193,6 @@
 		<!-- //content -->
 
 	</form>
+
 </body>
 </html>
