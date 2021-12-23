@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.icia.dabyinsa.admin.dao.OrderSearchDao">
+
+	<select id="getOList" resultType="com.icia.dabyinsa.admin.dto.OrderListDto">
+		SELECT * FROM ORDER_LIST
+		<include refid="search"></include>
+	</select>
+	
+	<sql id="search">
+		<choose>
+			<when test="searchOption == 'all'">
+			WHERE OCODE LIKE '%'||#{keyword}||'%' 
+			AND PRODNAME LIKE '%'||#{keyword2}||'%'
+			</when>
+			<otherwise>
+			WHERE ${searchOption} LIKE '%'||#{keyword}||'%'
+			AND ${searchOption2} LIKE '%'||#{keyword2}||'%'
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<select id="getOListCount" resultType="Integer">
+		SELECT COUNT(*) FROM ORDER_LIST
+		<include refid="search"></include>
+	</select>
+</mapper>

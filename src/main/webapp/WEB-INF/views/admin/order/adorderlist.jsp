@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,12 +23,14 @@
 				this.reset();
 			});
 		});
+		
+		
 
 	});
 </script>
 </head>
 <body>
-	<form name="frm" method="post" action="#" id="reset_script">
+	<form name="frm" method="get" action="adorderlist" id="reset_script">
 		<!-- content -->
 		<div id="content">
 			<!-- 참고 : Frame 구분 시 컨텐츠 시작 -->
@@ -59,9 +62,9 @@
 								<td colspan="3">
 									<div id="mainSearch">
 										<div>
-											<select class="fSelect" name=MSK[] style="width: 163px;">
+											<select class="fSelect" name="searchOption" style="width: 163px;">
 												<option value="choice">-검색항목선택-</option>
-												<option value="order_id" selected>주문번호</option>
+												<option value="ocode" selected>주문번호</option>
 												<option value="ord_item_code">품목별 주문번호</option>
 												<option value="invoice_no">운송장번호</option>
 												<option value="line1">-----------------</option>
@@ -71,7 +74,7 @@
 												<option value="o_email">주문서 이메일</option>
 												<option value="o_phone2">주문자 휴대전화</option>
 												<option value="o_phone1">주문자 일반전화</option>
-											</select> <input type="text" class="fText sBaseSearchBox" name=MSV[]
+											</select> <input type="text" class="fText sBaseSearchBox" name="keyword"
 												id="sBaseSearchBox" style="width: 400px;" />
 										</div>
 									</div>
@@ -82,61 +85,25 @@
 									<div class="cTip" code="OR.SM.AO.50"></div>
 								</th>
 								<td colspan="3"><select class="fSelect"
-									id="eProductSearchType" name="product_search_type"
+									id="eProductSearchType" name="searchOption2"
 									style="width: 110px;">
-										<option value="product_name" selected="selected">상품명</option>
+										<option value="prodname" selected="selected">상품명</option>
 										<option value="product_code">상품코드</option>
 										<option value="item_code">품목코드</option>
 										<option value="product_tag">상품태그</option>
 										<option value="manufacturer_name">제조사</option>
 										<option value="supplier_name">공급사</option>
 								</select> <input type="text" id="eOrderProductText"
-									name="order_product_text" class="fText" style="width: 490px;"
-									value="" /> <input type="hidden" name="order_product_no"
-									id="eOrderProductNo" value=""> <input type="hidden"
-									name="find_option" value="product_no"></td>
+									name="keyword2" class="fText" style="width: 490px;"
+									value="" /></td>
 							</tr>
 
-
-
-							<tr>
-								<th scope="row">주문상태</th>
-								<td colspan=3 id="orderStatusCheck"><label class="gLabel"><input
-										type="checkbox" name="orderStatus[]" class="fChk" value="all"
-										checked='checked'> 전체</label> <label class="gLabel"
-									style="display: none;"><input type="checkbox"
-										name="orderStatus[]" class="fChk" value="N10"> 상품준비중</label> <label
-									class="gLabel"><input type="checkbox"
-										name="orderStatus[]" class="fChk" value="N20"> 배송준비중</label> <label
-									class="gLabel"><input type="checkbox"
-										name="orderStatus[]" class="fChk" value="N22"> 배송보류</label> <label
-									class="gLabel"><input type="checkbox"
-										name="orderStatus[]" class="fChk" value="N21"> 배송대기</label> <label
-									class="gLabel"><input type="checkbox"
-										name="orderStatus[]" class="fChk" value="N30"> 배송중</label> <label
-									class="gLabel"><input type="checkbox"
-										name="orderStatus[]" class="fChk" value="N40"> 배송완료</label></td>
-							</tr>
-
-							<tr>
-								<th scope="row">입금/결제상태</th>
-								<td colspan="3"><label class="gLabel"><input type="radio"
-										name="orderStatusPayment" class="fChk" value="all"
-										checked="checked" /> 전체</label> <label class="gLabel"><input
-										type="radio" name="orderStatusPayment" class="fChk" value="F" />
-										입금전</label> <label class="gLabel"><input type="radio"
-										name="orderStatusPayment" class="fChk" value="M" /> 추가입금대기</label> <label
-									class="gLabel"><input type="radio"
-										name="orderStatusPayment" class="fChk" value="TA" /> 입금완료</label> <label
-									class="gLabel"><input type="radio"
-										name="orderStatusPayment" class="fChk" value="P" /> 결제완료</label></td>
-							</tr>
 						</tbody>
 					</table>
 				</div>
 
 				<div class="mButton gCenter">
-					<a href="#none" id="search_button" class="btnSearch"><span>검색</span></a>
+					<input type="submit" id="search_button" class="btnSearch" value="검색"/>
 					<a href="#none" id="eBtnInit" class="btnSearch reset"><span>초기화</span></a>
 					<div id="ordProgress" class="mLoading">
 						<p>처리중입니다. 잠시만 기다려 주세요.</p>
@@ -146,7 +113,7 @@
 					</div>
 				</div>
 
-				<input type="hidden" name="main_search" id="main_search" value="">
+				
 			</div>
 
 			<!--No delete -->
@@ -178,7 +145,7 @@
 					<div class="mState typeHeader">
 						<div class="gLeft">
 							<p class="total">
-								[ 검색결과 <strong>0</strong>건 ]
+								[ 검색결과 <strong>${map.count}</strong>건 ]
 							</p>
 						</div>
 					</div>
@@ -186,7 +153,7 @@
 						class="mBoard typeOrder typeList gScroll gCellSingle">
 						<table border="1" summary="" class="thead">
 							<caption>전체주문 조회 목록</caption>
-							<tbody>
+							<thead>
 								<tr>
 									<th scope="col" class="w24"><input type="checkbox"
 										id="allChk" /></th>
@@ -197,10 +164,7 @@
 										<div class="cTip eSmartMode" code="OD.AO.170"></div>
 									</th>
 									<th scope="col" class="w120" style="">상품명</th>
-									<th scope="col" class="w105" style="display: none;">총
-										상품구매금액</th>
-									<th scope="col" class="w105" style="display: none;">총 주문금액</th>
-									<th scope="col" class="w105" style="">총 실결제금액</th>
+									<th scope="col" class="w105" style="">총 결제금액</th>
 									<th scope="col" class="w60" style="">결제수단</th>
 									<th scope="col" class="w60" style="">결제상태</th>
 									<th scope="col" class="w45" style="">미배송</th>
@@ -209,17 +173,110 @@
 									<th scope="col" class="w45" style="">취소</th>
 									<th scope="col" class="w45" style="">교환</th>
 									<th scope="col" class="w45" style="">반품</th>
-									<th scope="col" class="w35" style="">메모</th>
 								</tr>
-							</tbody>
-						</table>
-						<table border="1" summary="">
-							<caption>전체주문 조회 목록</caption>
-							<tbody class="empty">
-								<tr>
-									<td colspan="15">검색된 주문내역이 없습니다.</td>
-								</tr>
-							</tbody>
+							</thead>
+							<c:forEach items="${map.oList}" var="oList">
+								<c:choose>
+									<c:when test="${oList != null}">
+										<tbody>
+											<tr>
+												<td scope="col" class="w24"><input type="checkbox"
+													id="allChk" /></td>
+												<td scope="col" class="w50" style="display: none;">No</td>
+												<td scope="col" class="w120" style="">${oList.odate}</td>
+												<td scope="col" class="w150" style="">${oList.ocode}</td>
+												<td scope="col" class="w95" style="">${oList.mid}
+													<div class="cTip eSmartMode" code="OD.AO.170"></div>
+												</td>
+												<td scope="col" class="w120" style="">${oList.prodname}</td>
+												<td scope="col" class="w105" style="">${oList.oitotalprice}</td>
+
+												<c:choose>
+													<c:when test="${oList.ppay == 0}">
+														<td scope="col" class="w60" style="">무통장입금</td>
+													</c:when>
+													<c:otherwise>
+														<td scope="col" class="w60" style="">카드결제</td>
+													</c:otherwise>
+												</c:choose>
+
+												<c:choose>
+													<c:when test="${oList.pstatus == 0}">
+														<td scope="col" class="w60" style="">입금전</td>
+													</c:when>
+													<c:otherwise>
+														<td scope="col" class="w60" style="">입금후</td>
+													</c:otherwise>
+												</c:choose>
+
+												<c:choose>
+													<c:when test="${oList.dstatus == 1}">
+														<td scope="col" class="w45" style="">미배송</td>
+														<td scope="col" class="w45" style="">-</td>
+														<td scope="col" class="w60" style="">-</td>
+														<td scope="col" class="w45" style="">-</td>
+														<td scope="col" class="w45" style="">-</td>
+														<td scope="col" class="w45" style="">-</td>
+													</c:when>
+
+													<c:when test="${oList.dstatus == 2}">
+														<td scope="col" class="w45" style="">-</td>
+														<td scope="col" class="w45" style="">배송중</td>
+														<td scope="col" class="w60" style="">-</td>
+														<td scope="col" class="w45" style="">-</td>
+														<td scope="col" class="w45" style="">-</td>
+														<td scope="col" class="w45" style="">-</td>
+													</c:when>
+
+													<c:when test="${oList.dstatus == 3}">
+														<td scope="col" class="w45" style="">-</td>
+														<td scope="col" class="w45" style="">-</td>
+														<td scope="col" class="w60" style="">배송완료</td>
+														<td scope="col" class="w45" style="">-</td>
+														<td scope="col" class="w45" style="">-</td>
+														<td scope="col" class="w45" style="">-</td>
+													</c:when>
+
+													<c:when test="${oList.dstatus == 4}">
+														<td scope="col" class="w45" style="">-</td>
+														<td scope="col" class="w45" style="">-</td>
+														<td scope="col" class="w60" style="">-</td>
+														<td scope="col" class="w45" style="">취소</td>
+														<td scope="col" class="w45" style="">-</td>
+														<td scope="col" class="w45" style="">-</td>
+													</c:when>
+
+													<c:when test="${oList.dstatus == 5}">
+														<td scope="col" class="w45" style="">-</td>
+														<td scope="col" class="w45" style="">-</td>
+														<td scope="col" class="w60" style="">-</td>
+														<td scope="col" class="w45" style="">-</td>
+														<td scope="col" class="w45" style="">교환</td>
+														<td scope="col" class="w45" style="">-</td>
+													</c:when>
+
+													<c:otherwise>
+														<td scope="col" class="w45" style="">-</td>
+														<td scope="col" class="w45" style="">-</td>
+														<td scope="col" class="w60" style="">-</td>
+														<td scope="col" class="w45" style="">-</td>
+														<td scope="col" class="w45" style="">-</td>
+														<td scope="col" class="w45" style="">반품</td>
+													</c:otherwise>
+												</c:choose>
+											</tr>
+										</tbody>
+									</c:when>
+									<c:otherwise>
+										<tbody class="empty">
+											<tr>
+												<td colspan="15">검색된 주문내역이 없습니다.</td>
+											</tr>
+										</tbody>
+									</c:otherwise>
+								</c:choose>
+
+							</c:forEach>
 						</table>
 
 					</div>

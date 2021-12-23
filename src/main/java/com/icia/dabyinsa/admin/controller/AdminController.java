@@ -1,13 +1,29 @@
 package com.icia.dabyinsa.admin.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.icia.dabyinsa.admin.dto.OrderListDto;
+import com.icia.dabyinsa.admin.service.AdminService;
+
+import lombok.extern.java.Log;
 
 @Controller
 @RequestMapping("admin")
+@Log
 public class AdminController {
-
+	
+	@Autowired
+	private AdminService as;
+	
 	@GetMapping("/main")
 	public String main() {
 		return "admin/main";
@@ -15,7 +31,27 @@ public class AdminController {
 
 	// 전체주문목록
 	@GetMapping("/adorderlist")
-	public String adorderlist() {
+	public String adorderlist(Model model, 
+			@RequestParam(defaultValue = "") String keyword,
+			@RequestParam(defaultValue = "") String keyword2,
+			@RequestParam(defaultValue = "all") String searchOption,
+			@RequestParam(defaultValue = "") String searchOption2) {
+		log.info("keyword : " + keyword);
+		log.info("keyword2 : " + keyword2);
+		log.info("searchOption : " + searchOption);
+		log.info("searchOption2 : " + searchOption2);
+		List<OrderListDto> oList = as.getOrderList(keyword, keyword2, searchOption, searchOption2);
+		int count = as.getOrderListCount(keyword, keyword2, searchOption, searchOption2);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchOption", searchOption);
+		map.put("searchOption2", searchOption2);
+		map.put("oList", oList);
+		map.put("count", count);
+		map.put("keyword", keyword);
+		map.put("keywor2", keyword2);
+		
+		model.addAttribute("map", map);
 		return "admin/order/adorderlist";
 	}
 

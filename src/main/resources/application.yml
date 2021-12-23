@@ -14,9 +14,11 @@ spring:
       suffix: .jsp
       
   datasource:
-    driver-class-name: oracle.jdbc.driver.OracleDriver
-    url: jdbc:oracle:thin:@127.0.0.1:1521:XE
+    #driver-class-name: oracle.jdbc.driver.OracleDriver
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    #url: jdbc:oracle:thin:@127.0.0.1:1521:XE
     #url: jdbc:oracle:thin:@192.168.0.235:1521:XE
+    url: jdbc:log4jdbc:oracle:thin:@127.0.0.1:1521:XE
     username: icia
     password: 1234
 
@@ -27,6 +29,4 @@ spring:
 mybatis:
   mapper-locations:
   - mappers/*.xml
-  configuration:
-    map-underscore-to-camel-case: true
 
