@@ -3,16 +3,14 @@ package com.icia.dabyinsa.admin.dto;
 import lombok.Data;
 
 @Data
-public class OrderListDto {
+public class OrderCancelDto {
 	
-	String odate;
+	String acceptdate;
 	String ocode;
 	String mid;
 	String prodname;
-	int ppay;
-	int pstatus;
-	int dstatus;
-	int oitotalprice;
+	int oiamount;
 	int procstatus;
-
+	String memocontent;
+	int ppay;
 }

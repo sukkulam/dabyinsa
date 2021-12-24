@@ -24,8 +24,6 @@
 			});
 		});
 		
-		
-
 	});
 </script>
 </head>
@@ -156,7 +154,7 @@
 							<thead>
 								<tr>
 									<th scope="col" class="w24"><input type="checkbox"
-										id="allChk" /></th>
+										id="allChk" style="display: none;"/></th>
 									<th scope="col" class="w50" style="display: none;">No</th>
 									<th scope="col" class="w120" style="">주문일(결제일)</th>
 									<th scope="col" class="w150" style="">주문번호</th>
@@ -170,9 +168,6 @@
 									<th scope="col" class="w45" style="">미배송</th>
 									<th scope="col" class="w45" style="">배송중</th>
 									<th scope="col" class="w60" style="">배송완료</th>
-									<th scope="col" class="w45" style="">취소</th>
-									<th scope="col" class="w45" style="">교환</th>
-									<th scope="col" class="w45" style="">반품</th>
 								</tr>
 							</thead>
 							<c:forEach items="${map.oList}" var="oList">
@@ -181,7 +176,7 @@
 										<tbody>
 											<tr>
 												<td scope="col" class="w24"><input type="checkbox"
-													id="allChk" /></td>
+													id="allChk" style="display: none;"/></td>
 												<td scope="col" class="w50" style="display: none;">No</td>
 												<td scope="col" class="w120" style="">${oList.odate}</td>
 												<td scope="col" class="w150" style="">${oList.ocode}</td>
@@ -214,55 +209,21 @@
 														<td scope="col" class="w45" style="">미배송</td>
 														<td scope="col" class="w45" style="">-</td>
 														<td scope="col" class="w60" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
 													</c:when>
 
 													<c:when test="${oList.dstatus == 2}">
 														<td scope="col" class="w45" style="">-</td>
 														<td scope="col" class="w45" style="">배송중</td>
 														<td scope="col" class="w60" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
 													</c:when>
 
 													<c:when test="${oList.dstatus == 3}">
 														<td scope="col" class="w45" style="">-</td>
 														<td scope="col" class="w45" style="">-</td>
 														<td scope="col" class="w60" style="">배송완료</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
 													</c:when>
 
-													<c:when test="${oList.dstatus == 4}">
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w60" style="">-</td>
-														<td scope="col" class="w45" style="">취소</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
-													</c:when>
-
-													<c:when test="${oList.dstatus == 5}">
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w60" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">교환</td>
-														<td scope="col" class="w45" style="">-</td>
-													</c:when>
-
-													<c:otherwise>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w60" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">반품</td>
-													</c:otherwise>
+													
 												</c:choose>
 											</tr>
 										</tbody>

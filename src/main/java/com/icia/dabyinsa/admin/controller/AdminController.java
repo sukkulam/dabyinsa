@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.icia.dabyinsa.admin.dto.OrderCancelDto;
 import com.icia.dabyinsa.admin.dto.OrderListDto;
 import com.icia.dabyinsa.admin.service.AdminService;
 
@@ -36,10 +37,6 @@ public class AdminController {
 			@RequestParam(defaultValue = "") String keyword2,
 			@RequestParam(defaultValue = "all") String searchOption,
 			@RequestParam(defaultValue = "") String searchOption2) {
-		log.info("keyword : " + keyword);
-		log.info("keyword2 : " + keyword2);
-		log.info("searchOption : " + searchOption);
-		log.info("searchOption2 : " + searchOption2);
 		List<OrderListDto> oList = as.getOrderList(keyword, keyword2, searchOption, searchOption2);
 		int count = as.getOrderListCount(keyword, keyword2, searchOption, searchOption2);
 		
@@ -53,6 +50,29 @@ public class AdminController {
 		
 		model.addAttribute("map", map);
 		return "admin/order/adorderlist";
+	}
+	
+	// 취소
+	@GetMapping("/adordercancel")
+	public String adordercancel(Model model,
+			@RequestParam(defaultValue = "") String keyword,
+			@RequestParam(defaultValue = "") String keyword2,
+			@RequestParam(defaultValue = "all") String searchOption,
+			@RequestParam(defaultValue = "") String searchOption2) {
+		log.info("keyword : "+keyword);
+		List<OrderCancelDto> ocList = as.getOrderCList(keyword, keyword2, searchOption, searchOption2);
+		int count = as.getOrderCListCount(keyword, keyword2, searchOption, searchOption2);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchOption", searchOption);
+		map.put("searchOption2", searchOption2);
+		map.put("ocList", ocList);
+		map.put("count", count);
+		map.put("keyword", keyword);
+		map.put("keywor2", keyword2);
+		
+		model.addAttribute("map", map);
+		return "admin/order/adordercancel";
 	}
 
 	// 입금전
@@ -84,12 +104,6 @@ public class AdminController {
 	@GetMapping("/adshippedcompletelist")
 	public String adshippedcompletelist() {
 		return "admin/delivery/adshippedcompletelist";
-	}
-	
-	// 취소
-	@GetMapping("/adordercancel")
-	public String adordercancel() {
-		return "admin/order/adordercancel";
 	}
 	
 	// 교환

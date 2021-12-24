@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.icia.dabyinsa.admin.dao.OrderSearchDao;
+import com.icia.dabyinsa.admin.dto.OrderCancelDto;
 import com.icia.dabyinsa.admin.dto.OrderListDto;
 
 @Service
@@ -23,5 +24,15 @@ public class AdminService {
 	public int getOrderListCount(String keyword, String keyword2, String searchOption, String searchOption2) {
 		
 		return osDao.getOListCount(keyword, keyword2, searchOption, searchOption2);
+	}
+	
+	public List<OrderCancelDto> getOrderCList(String keyword, String keyword2, String searchOption, String searchOption2) {
+		
+		return osDao.getOCList(keyword, keyword2, searchOption, searchOption2);
+	}
+	
+	public int getOrderCListCount(String keyword, String keyword2, String searchOption, String searchOption2) {
+		
+		return osDao.getOCListCount(keyword, keyword2, searchOption, searchOption2);
 	}
 }
