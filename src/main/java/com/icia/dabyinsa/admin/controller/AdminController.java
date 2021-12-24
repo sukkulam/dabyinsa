@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.icia.dabyinsa.admin.dto.OrderCancelDto;
 import com.icia.dabyinsa.admin.dto.OrderChangeDto;
 import com.icia.dabyinsa.admin.dto.OrderListDto;
+import com.icia.dabyinsa.admin.dto.OrderRefundDto;
 import com.icia.dabyinsa.admin.service.AdminService;
 
 import lombok.extern.java.Log;
@@ -97,6 +98,34 @@ public class AdminController {
 		return "admin/order/adorderchange";
 	}
 	
+	// 환불
+	@GetMapping("/adordercashrefund")
+	public String adordercashrefund(Model model,
+			@RequestParam(defaultValue = "") String keyword,
+			@RequestParam(defaultValue = "") String keyword2,
+			@RequestParam(defaultValue = "all") String searchOption,
+			@RequestParam(defaultValue = "") String searchOption2) {
+		List<OrderRefundDto> orList = as.getOrderRList(keyword, keyword2, searchOption, searchOption2);
+		int count = as.getOrderRListCount(keyword, keyword2, searchOption, searchOption2);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchOption", searchOption);
+		map.put("searchOption2", searchOption2);
+		map.put("orList", orList);
+		map.put("count", count);
+		map.put("keyword", keyword);
+		map.put("keywor2", keyword2);
+		
+		model.addAttribute("map", map);
+		return "admin/order/adordercashrefund";
+	}
+	
+	// 반품
+	@GetMapping("/adorderreturns")
+	public String adorderreturns() {
+		return "admin/order/adorderreturns";
+	}
+	
 	// 입금전
 	@GetMapping("/adpaymentlist")
 	public String adpaymentlist(){
@@ -128,15 +157,4 @@ public class AdminController {
 		return "admin/delivery/adshippedcompletelist";
 	}
 	
-	// 반품
-	@GetMapping("/adorderreturns")
-	public String adorderreturns() {
-		return "admin/order/adorderreturns";
-	}
-	
-	// 환불
-	@GetMapping("/adordercashrefund")
-	public String adordercashrefund() {
-		return "admin/order/adordercashrefund";
-	}
 }

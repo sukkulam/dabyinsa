@@ -9,6 +9,7 @@ import com.icia.dabyinsa.admin.dao.OrderSearchDao;
 import com.icia.dabyinsa.admin.dto.OrderCancelDto;
 import com.icia.dabyinsa.admin.dto.OrderChangeDto;
 import com.icia.dabyinsa.admin.dto.OrderListDto;
+import com.icia.dabyinsa.admin.dto.OrderRefundDto;
 
 @Service
 public class AdminService {
@@ -47,5 +48,16 @@ public class AdminService {
 	public int getOrderCGListCount(String keyword, String keyword2, String searchOption, String searchOption2) {
 		
 		return osDao.getOCGListCount(keyword, keyword2, searchOption, searchOption2);
+	}
+	
+	// 환불
+	public List<OrderRefundDto> getOrderRList(String keyword, String keyword2, String searchOption, String searchOption2) {
+		
+		return osDao.getORList(keyword, keyword2, searchOption, searchOption2);
+	}
+	
+	public int getOrderRListCount(String keyword, String keyword2, String searchOption, String searchOption2) {
+		
+		return osDao.getORListCount(keyword, keyword2, searchOption, searchOption2);
 	}
 }

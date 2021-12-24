@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.icia.dabyinsa.admin.dto.OrderCancelDto;
 import com.icia.dabyinsa.admin.dto.OrderChangeDto;
 import com.icia.dabyinsa.admin.dto.OrderListDto;
+import com.icia.dabyinsa.admin.dto.OrderRefundDto;
 
 @Mapper
 public interface OrderSearchDao {
@@ -23,4 +24,8 @@ public interface OrderSearchDao {
 	// 교환
 	List<OrderChangeDto> getOCGList(String keyword, String keyword2, String searchOption, String searchOption2);
 	int getOCGListCount(String keyword, String keyword2, String searchOption, String searchOption2);
+	
+	// 환불
+	List<OrderRefundDto> getORList(String keyword, String keyword2, String searchOption, String searchOption2);
+	int getORListCount(String keyword, String keyword2, String searchOption, String searchOption2);
 }

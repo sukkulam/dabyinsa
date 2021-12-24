@@ -45,7 +45,7 @@
 	
 	
 	<!-- 교환 -->
-	<select id="getOCGList" resultType="com.icia.dabyinsa.admin.dto.OrderCancelDto">
+	<select id="getOCGList" resultType="com.icia.dabyinsa.admin.dto.OrderChangeDto">
 		SELECT * FROM ORDER_CHANGE
 		<include refid="search"></include>
 	</select>
@@ -56,5 +56,14 @@
 	</select>
 	
 	
+	<!-- 환불 -->
+	<select id="getORList" resultType="com.icia.dabyinsa.admin.dto.OrderRefundDto">
+		SELECT * FROM ORDER_REFUND
+		<include refid="search"></include>
+	</select>
 	
+	<select id="getORListCount" resultType="Integer">
+		SELECT COUNT(*) FROM ORDER_REFUND
+		<include refid="search"></include>
+	</select>
 </mapper>
