@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +29,7 @@
 </head>
 <body>
 
-	<form name="frm" action="order_change.php" method='post' id="script_reset">
+	<form name="frm" action="adorderchange" method='get' id="script_reset">
 		<!-- content -->
 		<div id="content">
 			<!-- 참고 : Frame 구분 시 컨텐츠 시작 -->
@@ -46,7 +47,7 @@
 						<caption>주문 검색</caption>
 						<colgroup>
 							<col style="width: 170px;" />
-							<col style="width: auto;" />
+							<col style="width: 600px;" />
 							<col style="width: 170px;" />
 							<col style="width: auto;" />
 						</colgroup>
@@ -54,14 +55,15 @@
 
 							<tr>
 								<th scope="row">검색어
-									<div class="cTip" code="OR.SM.CE.CM.40"></div>
+									<div class="cTip" code="OR.SM.AO.40"></div>
 								</th>
 								<td colspan="3">
 									<div id="mainSearch">
 										<div>
-											<select class="fSelect" name=MSK[] style="width: 163px;">
+											<select class="fSelect" name="searchOption"
+												style="width: 163px;">
 												<option value="choice">-검색항목선택-</option>
-												<option value="order_id" selected>주문번호</option>
+												<option value="ocode" selected>주문번호</option>
 												<option value="ord_item_code">품목별 주문번호</option>
 												<option value="invoice_no">운송장번호</option>
 												<option value="line1">-----------------</option>
@@ -71,8 +73,8 @@
 												<option value="o_email">주문서 이메일</option>
 												<option value="o_phone2">주문자 휴대전화</option>
 												<option value="o_phone1">주문자 일반전화</option>
-											</select> <input type="text" class="fText sBaseSearchBox" name=MSV[]
-												id="sBaseSearchBox" style="width: 400px;" />
+											</select> <input type="text" class="fText sBaseSearchBox"
+												name="keyword" id="sBaseSearchBox" style="width: 400px;" />
 										</div>
 									</div>
 								</td>
@@ -82,28 +84,26 @@
 									<div class="cTip" code="OR.SM.AO.50"></div>
 								</th>
 								<td colspan="3"><select class="fSelect"
-									id="eProductSearchType" name="product_search_type"
+									id="eProductSearchType" name="searchOption2"
 									style="width: 110px;">
-										<option value="product_name" selected="selected">상품명</option>
+										<option value="prodname" selected="selected">상품명</option>
 										<option value="product_code">상품코드</option>
 										<option value="item_code">품목코드</option>
 										<option value="product_tag">상품태그</option>
 										<option value="manufacturer_name">제조사</option>
 										<option value="supplier_name">공급사</option>
-								</select> <input type="text" id="eOrderProductText"
-									name="order_product_text" class="fText" style="width: 490px;"
-									value="" /> <input type="hidden" name="order_product_no"
-									id="eOrderProductNo" value=""> <input type="hidden"
-									name="find_option" value="product_no"></td>
+								</select> <input type="text" id="eOrderProductText" name="keyword2"
+									class="fText" style="width: 490px;" value="" /></td>
 							</tr>
 
 						</tbody>
 					</table>
 				</div>
-				
+
 				<div class="mButton gCenter">
-					<a href="#none" id="search_button" class="btnSearch"><span>검색</span></a>
-					<a href="#none" id="eBtnInit" class="btnSearch reset"><span>초기화</span></a>
+					<input type="submit" id="search_button" class="btnSearch"
+						value="검색" /> <a href="#none" id="eBtnInit"
+						class="btnSearch reset"><span>초기화</span></a>
 					<div id="ordProgress" class="mLoading">
 						<p>처리중입니다. 잠시만 기다려 주세요.</p>
 						<img
@@ -157,21 +157,51 @@
 								</th>
 								<th scope="col" style="width: 220px;">상품명/옵션</th>
 								<th scope="col" class="w40" style="">수량</th>
-								<th scope="col" style="width: 90px;">주문상태</th>
 								<th scope="col" style="width: 70px;">교환처리</th>
 								<th scope="col" style="width: 35px;">메모</th>
 							</tr>
 						</thead>
-						<tbody class="empty">
-							<tr>
-								<td colspan="8">검색된 주문내역이 없습니다.</td>
-							</tr>
+						<c:forEach items="${map.ocgList}" var="ocgList">
+							<c:choose>
+								<c:when test="${ocgList != null}">
+									<tbody>
+										<tr>
+											<td scope="col" style="width: 24px; display: none;"><input
+												type="checkbox" id="allChk" /></td>
+											<td scope="col" style="width: 50px; display: none;">No</td>
+											<td scope="col" style="width: 120px;">${ocgList.acceptdate}
+											</td>
+											<td scope="col" style="width: 140px;">${ocgList.ocode}</td>
+											<td scope="col" style="width: 95px;">${ocgList.mid}
+												<div class="cTip eSmartMode" code="OD.OW.EM.140"></div>
+											</td>
+											<td scope="col" style="width: 220px;">${ocgList.prodname}</td>
+											<td scope="col" class="w40" style="">${ocgList.oiamount}</td>
+											<c:choose>
+												<c:when test="${ocgList.procstatus == 1}">
+													<td scope="col" style="width: 70px;">처리전</td>
+												</c:when>
+												<c:otherwise>
+													<td scope="col" style="width: 70px;">처리완료</td>
+												</c:otherwise>
+											</c:choose>
+											<td scope="col" style="width: 35px;">${ocgList.memocontent}</td>
+										</tr>
+									</tbody>
+								</c:when>
+								<c:otherwise>
+									<tbody class="empty">
+										<tr>
+											<td colspan="8">검색된 주문내역이 없습니다.</td>
+										</tr>
 
-						</tbody>
+									</tbody>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
 					</table>
 				</div>
-				<div class="mCtrl typeFooter">
-				</div>
+				<div class="mCtrl typeFooter"></div>
 				<div class="mPaginate">1</div>
 			</div>
 		</div>

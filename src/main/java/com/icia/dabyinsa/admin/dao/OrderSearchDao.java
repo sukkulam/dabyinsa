@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.icia.dabyinsa.admin.dto.OrderCancelDto;
+import com.icia.dabyinsa.admin.dto.OrderChangeDto;
 import com.icia.dabyinsa.admin.dto.OrderListDto;
 
 @Mapper
@@ -18,4 +19,8 @@ public interface OrderSearchDao {
 	// 취소
 	List<OrderCancelDto> getOCList(String keyword, String keyword2, String searchOption, String searchOption2);
 	int getOCListCount(String keyword, String keyword2, String searchOption, String searchOption2);
+	
+	// 교환
+	List<OrderChangeDto> getOCGList(String keyword, String keyword2, String searchOption, String searchOption2);
+	int getOCGListCount(String keyword, String keyword2, String searchOption, String searchOption2);
 }

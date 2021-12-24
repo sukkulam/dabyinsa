@@ -4,13 +4,6 @@
 
 <mapper namespace="com.icia.dabyinsa.admin.dao.OrderSearchDao">
 	
-	<!-- 전체 주문 목록 -->
-	
-	<select id="getOList" resultType="com.icia.dabyinsa.admin.dto.OrderListDto">
-		SELECT * FROM ORDER_LIST
-		<include refid="search"></include>
-	</select>
-	
 	<sql id="search">
 		<choose>
 			<when test="searchOption == 'all'">
@@ -24,6 +17,13 @@
 		</choose>
 	</sql>
 	
+	<!-- 전체 주문 목록 -->
+	<select id="getOList" resultType="com.icia.dabyinsa.admin.dto.OrderListDto">
+		SELECT * FROM ORDER_LIST
+		<include refid="search"></include>
+	</select>
+	
+	
 	<select id="getOListCount" resultType="Integer">
 		SELECT COUNT(*) FROM ORDER_LIST
 		<include refid="search"></include>
@@ -31,9 +31,7 @@
 	
 	
 	
-	
 	<!-- 취소 -->
-	
 	<select id="getOCList" resultType="com.icia.dabyinsa.admin.dto.OrderCancelDto">
 		SELECT * FROM ORDER_CANCEL
 		<include refid="search"></include>
@@ -43,4 +41,20 @@
 		SELECT COUNT(*) FROM ORDER_CANCEL
 		<include refid="search"></include>
 	</select>
+	
+	
+	
+	<!-- 교환 -->
+	<select id="getOCGList" resultType="com.icia.dabyinsa.admin.dto.OrderCancelDto">
+		SELECT * FROM ORDER_CHANGE
+		<include refid="search"></include>
+	</select>
+	
+	<select id="getOCGListCount" resultType="Integer">
+		SELECT COUNT(*) FROM ORDER_CHANGE
+		<include refid="search"></include>
+	</select>
+	
+	
+	
 </mapper>

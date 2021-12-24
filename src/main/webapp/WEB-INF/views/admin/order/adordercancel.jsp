@@ -157,10 +157,11 @@
 								<th scope="col" style="width: 95px;">주문자
 									<div class="cTip eSmartMode" code="OD.OW.CM.150"></div>
 								</th>
-								<th scope="col" style="width: 220px;">상품명/옵션</th>
+								<th scope="col" style="width: 170px;">상품명/옵션</th>
 								<th scope="col" class="w40" style="">수량</th>
 								<th scope="col" class="w60" style="">결제수단</th>
 								<th scope="col" style="width: 65px;">취소처리</th>
+								<th scope="col" style="width: 35px;">메모</th>
 							</tr>
 						</thead>
 						<c:forEach items="${map.ocList}" var="ocList">
@@ -176,7 +177,7 @@
 											<td scope="col" style="width: 95px;">${ocList.mid}
 												<div class="cTip eSmartMode" code="OD.OW.CM.150"></div>
 											</td>
-											<td scope="col" style="width: 220px;">${ocList.prodname}</td>
+											<td scope="col" style="width: 170px;">${ocList.prodname}</td>
 											<td scope="col" class="w40" style="">${ocList.oiamount}</td>
 											<c:choose>
 													<c:when test="${ocList.ppay == 0}">
@@ -194,6 +195,7 @@
 													<td scope="col" style="width: 65px;">처리완료</td>
 												</c:otherwise>
 											</c:choose>
+											<td scope="col" style="width: 35px;">${ocList.memocontent}</th>
 										</tr>
 									</tbody>
 								</c:when>
