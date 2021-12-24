@@ -1,0 +1,42 @@
+/* == 푸터 - 기본 설정 == */
+footer {
+	padding-top: 50px;
+	background: #f8f8f8;
+	color: #333;
+}
+
+#footer a,
+#footer span,
+#footer li {
+	color: #333;
+}
+
+footer .sns {
+	margin: 0 0 25px;
+	font-size: 14px;
+}
+
+footer .info {
+	margin-bottom: 30px;
+}
+
+
+
+
+footer .footerLogo {
+	font-size: 40px;
+	font-weight: 700;
+}
+
+
+.socialNetwork a {
+	margin-right: 10px;
+	font-size: 20px;
+}
+
+
+footer .nino-copyright {
+	text-align: center;
+	border-top: 1px solid #e5e5e5;
+	padding: 20px 0;
+}

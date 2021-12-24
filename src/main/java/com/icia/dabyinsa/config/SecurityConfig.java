@@ -1,22 +1,40 @@
 package com.icia.dabyinsa.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import com.icia.dabyinsa.config.auth.PrincipalDetailService;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
+	
+	@Autowired
+	private PrincipalDetailService principalDetailService;
+	
 	@Bean
 	@Override
 	protected AuthenticationManager authenticationManager() throws Exception {
 		return super.authenticationManager();
+	}
+	
+	@Bean // IoC가 됨. (비밀번호 해쉬)
+	public BCryptPasswordEncoder encordPWD() {
+		return new BCryptPasswordEncoder();
+	}
+	
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(principalDetailService).passwordEncoder(encordPWD());
 	}
 
 	@Override
@@ -32,6 +50,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/**")
 				.permitAll()
 				.anyRequest()
-				.authenticated();
+				.authenticated()
+				.and()
+				.formLogin()
+				.loginPage("/loginForm")
+				.loginProcessingUrl("/loginProc")
+				.defaultSuccessUrl("/")
+				.failureForwardUrl("/loginForm")
+				.usernameParameter("m_id")
+				.passwordParameter("m_pass");
 	}
 }
