@@ -1,9 +1,9 @@
-package com.icia.dabyinsa.admin.dto;
+package com.icia.dabyinsa.admin.dto.order;
 
 import lombok.Data;
 
 @Data
-public class OrderCancelDto {
+public class OrderChangeDto {
 	
 	String acceptdate;
 	String ocode;
@@ -12,5 +12,4 @@ public class OrderCancelDto {
 	int oiamount;
 	int procstatus;
 	String memocontent;
-	int ppay;
 }

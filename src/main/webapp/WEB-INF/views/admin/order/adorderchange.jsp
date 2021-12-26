@@ -139,7 +139,7 @@
 				<div class="mCtrl typeSetting setting">
 					<div class="gLeft"></div>
 				</div>
-				<div class="mBoard typeOrder gScroll gCellSingle typeList">
+				<div class="mBoard typeOrder gScroll gCellSingle typeList" style="text-align: center;">
 					<table id="searchResultList" border="1" summary=""
 						class="eChkBody tablesorter">
 						<caption>교환 관리 목록</caption>

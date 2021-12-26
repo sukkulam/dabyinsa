@@ -143,7 +143,7 @@
 					</div>
 				</div>
 
-				<div class="mBoard typeOrder gScroll gCellSingle typeList">
+				<div class="mBoard typeOrder gScroll gCellSingle typeList" style="text-align: center;">
 					<table id="searchResultList" border="1" summary="" class="eChkBody">
 						<caption>취소 관리 목록</caption>
 						<thead>

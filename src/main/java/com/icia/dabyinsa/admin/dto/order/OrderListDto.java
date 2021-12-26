@@ -1,4 +1,4 @@
-package com.icia.dabyinsa.admin.dto;
+package com.icia.dabyinsa.admin.dto.order;
 
 import lombok.Data;
 

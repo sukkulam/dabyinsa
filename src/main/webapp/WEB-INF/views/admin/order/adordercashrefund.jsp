@@ -140,14 +140,14 @@
 				</div>
 				<div class="mCtrl typeHeader">
 					<div class="gLeft">
-						<a class="btnCtrl" id="eRefundComplete"><span>환불완료</span></a>
+						<button class="btnCtrl" id="eRefundComplete"><span>환불완료</span></button>
 					</div>
 				</div>
 				<div class="mCtrl typeSetting setting">
 					<div class="gLeft"></div>
 					<div class="gSetting"></div>
 				</div>
-				<div class="mBoard typeOrder gScroll gCellSingle typeList">
+				<div class="mBoard typeOrder gScroll gCellSingle typeList" style="text-align: center;">
 					<table id="searchResultList" border="1" summary="" class="eChkBody">
 						<caption>환불 관리 목록</caption>
 						<thead>
@@ -227,6 +227,21 @@
 		<!-- //content -->
 
 	</form>
-
+<script>
+	$('#eRefundComplete').on('click', function(){
+		var chk = [];
+		
+		$('#allChk:checked').each(function(){
+			chk.push($(this).val());
+		});
+		console.log(chk);
+		$.ajax({
+			
+		
+		});
+		
+	});
+	
+</script>
 </body>
 </html>

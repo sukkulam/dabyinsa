@@ -11,9 +11,9 @@
 
 	<insert id="memberInsert" 
 		parameterType="com.icia.dabyinsa.user.dto.MemberDto">
-		INSERT INTO MEMBER(m_id, m_pass, m_name, m_phone, m_email, m_role)
+		INSERT INTO MEMBER(m_id, m_pass, m_name, m_phone, m_email, m_role, m_grade)
 		VALUES (#{m_id},#{m_pass},#{m_name},#{m_phone},
-				#{m_email}, 'ROLE_USER')
+				#{m_email}, 'ROLE_USER', 1)
 	</insert>
        
     <select id="idCheck" parameterType="String"
