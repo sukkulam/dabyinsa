@@ -191,9 +191,9 @@
 												<c:when test="${ortList.procstatus == 2}">
 													<td scope="col" style="width: 100px;">처리전</td>
 												</c:when>
-												<c:otherwise>
+												<c:when test="${ortList.procstatus == 6}">
 													<td scope="col" style="width: 100px;">처리완료</td>
-												</c:otherwise>
+												</c:when>
 											</c:choose>
 											<td scope="col" style="width: 40px;">${ortList.memocontent}</td>
 										</tr>
@@ -225,4 +225,5 @@
 	</form>
 
 </body>
+<script src="js/button.js"></script>
 </html>

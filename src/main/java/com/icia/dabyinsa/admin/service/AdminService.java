@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.icia.dabyinsa.admin.dao.ButtonDao;
 import com.icia.dabyinsa.admin.dao.OrderSearchDao;
 import com.icia.dabyinsa.admin.dto.delivery.PaymentListDto;
 import com.icia.dabyinsa.admin.dto.delivery.ShippedBeginListDto;
@@ -22,6 +23,8 @@ public class AdminService {
 
 	@Autowired
 	private OrderSearchDao osDao;
+	@Autowired
+	private ButtonDao bDao;
 
 	// 전체 주문 목록
 	public List<OrderListDto> getOrderList(String keyword, String keyword2, String searchOption, String searchOption2) {
@@ -140,6 +143,10 @@ public class AdminService {
 	public int getSCListCount(String keyword, String keyword2, String searchOption, String searchOption2) {
 
 		return osDao.getSCListCount(keyword, keyword2, searchOption, searchOption2);
+	}
+	
+	public void returnsBtn(String ocode) {
+		bDao.setReturns(ocode);
 	}
 	
 }
