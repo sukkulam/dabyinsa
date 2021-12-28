@@ -4,8 +4,12 @@
 
 <mapper namespace="com.icia.dabyinsa.admin.dao.ButtonDao">
 
+	<!-- 반품 버튼 -->
 	<update id="setReturns" parameterType="String">
 	UPDATE O SET PROC_STATUS = 6 WHERE O_CODE = #{ocode}
 	</update>
-
+	
+	<update id="setRefund" parameterType="String">
+	UPDATE O SET PROC_STATUS = 7 WHERE O_CODE = #{ocode}
+	</update>
 </mapper>

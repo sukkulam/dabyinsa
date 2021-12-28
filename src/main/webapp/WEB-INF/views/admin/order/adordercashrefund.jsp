@@ -197,9 +197,9 @@
 												<c:when test="${orList.procstatus == 3}">
 													<td scope="col" style="width: 65px;">처리전</td>
 												</c:when>
-												<c:otherwise>
+												<c:when test="${orList.procstatus == 7}">
 													<td scope="col" style="width: 65px;">처리완료</td>
-												</c:otherwise>
+												</c:when>
 											</c:choose>
 											<td scope="col" style="width: 40px;">${orList.memocontent}</td>
 										</tr>
@@ -218,7 +218,7 @@
 				</div>
 				<div class="mCtrl typeFooter">
 					<div class="gLeft">
-						<a class="btnCtrl" id="eRefundComplete2"><span>환불완료</span></a>
+						<a class="btnCtrl" id="eRefundComplete"><span>환불완료</span></a>
 					</div>
 				</div>
 				<div class="mPaginate">1</div>
@@ -244,4 +244,5 @@
 	
 </script>
 </body>
+<script src="js/button.js"></script>
 </html>

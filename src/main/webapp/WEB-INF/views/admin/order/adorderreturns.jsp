@@ -139,8 +139,8 @@
 				</div>
 				<div class="mCtrl typeHeader">
 					<div class="gLeft">
-						<a href="#layerCollectionInfo" class="btnCtrl"
-							id="eReturnCompleteBtn"><span>수거완료</span></a>
+						<button class="btnCtrl" type="button"
+							id="eReturnCompleteBtn"><span>수거완료</span></button>
 					</div>
 				</div>
 				<div class="mCtrl typeSetting setting">
@@ -212,8 +212,8 @@
 				</div>
 				<div class="mCtrl typeFooter">
 					<div class="gLeft">
-						<a href="#layerCollectionInfo" class="btnCtrl"
-							id="eReturnCompleteBtn2"><span>수거완료</span></a>
+						<button class="btnCtrl" type="button"
+							id="eReturnCompleteBtn"><span>수거완료</span></button>
 					</div>
 				</div>
 				<div class="mPaginate">1</div>
