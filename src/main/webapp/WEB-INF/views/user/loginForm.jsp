@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -7,6 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="user/css/user.css" rel="stylesheet" type="text/css">
+    <script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>답인사 | 로그인</title>
     <script type="text/javascript"> 
         $(function() {
@@ -24,6 +27,7 @@
 			onclick="history.go(-1);return false;" class="btnBack"><Strong>BACK</Strong></a>
 		</span>
     <form class="login-box" action="/loginProc" method="post">
+    <sec:csrfInput />
         <h3 class="login-logo">로그인</h3>
         
         <div>

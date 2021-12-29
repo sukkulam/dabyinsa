@@ -27,3 +27,17 @@ $(function() {
         	    
 
         	});
+        	
+        	
+        	
+        	$(document).ready(function(){
+	$("#info-agree").click(function(){
+		$("#info-agree-content").toggle();
+	});
+	$("#store-agree").click(function(){
+		$("#store-agree-content").toggle();
+	});
+	$("#sns-agree").click(function(){
+		$("#sns-agree-content").toggle();
+	});
+});

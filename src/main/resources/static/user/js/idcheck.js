@@ -46,7 +46,7 @@ function check(){
 	}
 	
 	//form 태그의 내용을 전부 가져오기
-	var frm = document.joinFrm;
+	var frm = document.join-box;
 	console.log(frm);
 	
 	//submit 버튼을 제외한 나머지 input 태그의 개수
@@ -55,7 +55,7 @@ function check(){
 	//input 태그 중 value가 ""인 요소가 있는지 확인(입력 안된 요소)
 	for(var i = 0; i < length; i++){
 		if(frm[i].value == "" || frm[i].value == null){
-			alert(frm[i].title + " 입력!");
+			alert(frm[i].joinInfo + " 입력!");
 			frm[i].focus();
 			return false;
 		}

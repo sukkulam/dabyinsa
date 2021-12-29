@@ -17,5 +17,12 @@ public interface MemberDao {
 	
 	public int payment(int number);
 	
+	public void memberUpdate(String id, String phone);
+	
+	public void emailUpdate(String id, String email);
+	
+	public void passUpdate(MemberDto member);
+	
+	public void memberDelete(String id);
 
 }

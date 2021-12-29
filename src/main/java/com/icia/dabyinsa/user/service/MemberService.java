@@ -90,6 +90,119 @@ public class MemberService {
 		
 	}
 	
+	//회원 전화번호 수정
+	@Transactional
+	public String memberUpdate(String id, String phone,
+			RedirectAttributes rttr) {
+		String view = null;
+		String msg = null;
+
+		try {
+			mDao.memberUpdate(id, phone);
+			msg = "수정 성공";
+			view = "redirect:infoUpdatePage";
+			
+		} catch (Exception e) {
+			
+			msg = "수정 실패";
+			view = "redirect:infoUpdatePage";
+		}
+		
+		rttr.addFlashAttribute("msg", msg);
+		
+		
+		
+		return view;
+		
+		
+	}
+	
+	//회원 이메일 수정
+	@Transactional
+	public String emailUpdate(String id, String email,
+			RedirectAttributes rttr) {
+		String view = null;
+		String msg = null;
+
+		try {
+			mDao.emailUpdate(id, email);
+			msg = "수정 성공";
+			view = "redirect:infoUpdatePage";
+			
+		} catch (Exception e) {
+			
+			msg = "수정 실패";
+			view = "redirect:infoUpdatePage";
+		}
+		
+		rttr.addFlashAttribute("msg", msg);
+		
+		
+		
+		return view;
+		
+		
+	}
+	
+	//회원 비밀번호 수정
+	@Transactional
+	public String passUpdate(String pass, MemberDto member,
+			RedirectAttributes rttr) {
+		String view = null;
+		String msg = null;
+		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
+		//String updatePassword = member.getM_pass();// 비밀번호 원문
+		System.out.println(pass);
+		String encPassword = encoder.encode(pass); // 해쉬 값
+		member.setM_pass(encPassword);
+		System.out.println("encpw : "+encPassword);
+
+		try {
+			mDao.passUpdate(member);
+			msg = "수정 성공";
+			view = "redirect:infoUpdatePage";
+			
+		} catch (Exception e) {
+			
+			msg = "수정 실패";
+			view = "redirect:infoUpdatePage";
+		}
+		
+		rttr.addFlashAttribute("msg", msg);
+		
+		
+		
+		return view;
+		
+		
+	}
+	@Transactional
+	public String memberDelete(RedirectAttributes rttr, String id) {
+		String view = null;
+		String msg = null;
+		
+		try {
+			mDao.memberDelete(id);
+			
+			session.invalidate();
+			view = "redirect:/";
+			msg = "탈퇴 성공";
+			
+			
+		} catch (Exception e) {
+			
+			view = "redirect:index";
+			msg = "탈퇴 실패";
+
+		}
+		
+		return view;
+	}
+	
+	
+	
 
 	
 		
