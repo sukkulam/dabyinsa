@@ -35,6 +35,13 @@
 	color: gray;
 }
 
+button {
+	border: 0px;
+	background-color: #D5D5D5;
+	
+	
+}
+
 
 </style>
 <script type="text/javascript">
@@ -70,32 +77,24 @@ $(document).ready(function(){
 			<p class="desc password">
 				<strong>************</strong>
 			</p>
-			<button type="button" class="btn btn_modify outlinegrey small"
+			<button type="button" class="change-btn"
 				id="change-btn">변경</button>
 		</div>
-		<form>
+		<form action="passUpdate" method="post">
 			<div class="modify" style=" display: none;">
 				<h5 class="title">비밀번호 변경</h5>
 				<div class="input_box">
-					<h6 class="input_title">현재 비밀번호</h6>
-					<div class="input_item">
-						<input type="password" placeholder="영문, 숫자 조합 8-16자"
-							autocomplete="off" class="input_txt">
-					</div>
-
-				</div>
-				<div class="input_box">
 					<h6 class="input_title">새 비밀번호</h6>
 					<div  class="input_item">
-						<input type="password" placeholder="영문, 숫자 조합 8-16자"
-							autocomplete="off" class="input_txt">
+						<input type="password" placeholder="영문, 숫자 조합 8-16자" name="pass"
+							autocomplete="off" class="input_txt" style="text-align: center;">
 					</div>
 					<br>
 				</div>
 				<div class="modify_btn_box">
-					<button type="button" class="btn outlinegrey medium" slot="button"
+					<button type="button" class="cancle-btn" slot="button"
 						id="cancle-btn">취소</button>
-					<button type="button" class="save-btn"
+					<button type="submit" class="save-btn"
 						slot="button">저장</button>
 				</div>
 			</div>
@@ -120,18 +119,19 @@ $(document).ready(function(){
 				id="change-btn-phone">변경</button>
 		</div>
 
-		<form>
+		<form action="memberUpdate" method="post">
 			<div class="modify-phone" style="display: none;">
 				<div class="input_box">
 					<h6 class="input_title">휴대폰번호 변경</h6>
 					<div class="input_item">
 						<input type="text" autocomplete="off" class="input_txt"
-							placeholder="예)01012341234">
+							placeholder="예)01012341234" name="phone"
+							style="text-align: center;">
 
 						<div class="phone_btn_box">
 							<button type="button" id="cancle-btn"
-								class="btn outlinegrey medium">취소</button>
-							<button type="button" id="change-btn"
+								class="cancle-btn">취소</button>
+							<button type="submit" id="change-btn"
 								class="password-change-btn">변경</button>
 						</div>
 
@@ -147,26 +147,26 @@ $(document).ready(function(){
 			<p class="desc email">
 				<strong>${mDto.m_email }</strong>
 			</p>
-			<button type="button" class="btn btn_modify outlinegrey small"
+			<button type="button" class="change-btn"
 				id="change-btn-email">변경</button>
 		</div>
 
 
 
-		<form>
+		<form action="emailUpdate" method="post">
 			<div class="modify-email" style="display: none;">
 				<div class="input_box">
 					<h6 class="input_title">이메일 주소 변경</h6>
 					<div class="input_item">
-						<input type="email" autocomplete="off" class="input_txt"
-							placeholder="예)dabyinsa@dabyinsa.com">
+						<input type="email" autocomplete="off" class="input_txt" name="email"
+							placeholder="예)dabyinsa@dabyinsa.com" style="text-align: center;">
 					</div>
 					<p class="input_error"></p>
 				</div>
 				<div class="modify_btn_box">
-					<button type="button" id="" class="btn outlinegrey medium"
+					<button type="button" id="" class="email-cancle-btn"
 						>취소</button>
-					<button type="button" class="email-change-btn"
+					<button type="submit" class="email-change-btn"
 						>변경</button>
 				</div>
 			</div>
@@ -174,7 +174,7 @@ $(document).ready(function(){
 
 
 		<div class="user-delete">
-			<a href="#">회원탈퇴</a>
+			<a href="memberDelete">회원탈퇴</a>
 		</div>
 	</div>
 

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.icia.dabyinsa.user.dao.MemberDao;
@@ -21,13 +22,14 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService mServ;
+	
+	ModelAndView mv;
 
 	@Autowired
 	MemberDao mDao;
 	
 	@GetMapping("/loginForm")
 	public String loginForm() {
-		
 		return "user/loginForm";
 	}
 	
@@ -70,6 +72,51 @@ public class MemberController {
 		
 		return "user/infoUpdatePage";
 	}
+	
+	@PostMapping("memberUpdate")
+	public String memberUpdate(String id, String phone,
+				RedirectAttributes rttr, Model model, Principal p) {
+		
+		id = p.getName();
+		System.out.println("id : " + id);
+		System.out.println("phone : " + phone);
+		String view = mServ.memberUpdate(id, phone, rttr);
+		
+		
+		
+		return view;
+	}
+	
+	@PostMapping("emailUpdate")
+	public String emailUpdate(String id, String email,
+				RedirectAttributes rttr, Model model, Principal p) {
+		
+		id = p.getName();
+		System.out.println("id : " + id);
+		System.out.println("email : " + email);
+		String view = mServ.emailUpdate(id, email, rttr);
+		
+		
+		
+		return view;
+	}
+	
+	@PostMapping("passUpdate")
+	public String passUpdate(String pass,
+				RedirectAttributes rttr, Model model, Principal p) {
+		
+		String id = p.getName();
+		MemberDto member = mServ.login(id);
+		System.out.println("id : " + id);
+		System.out.println("pass : " + pass);
+		String view = mServ.passUpdate(pass, member, rttr);
+		
+		
+		
+		return view;
+	}
+	
+	
 	
 	
 	@GetMapping("myPage")
@@ -115,6 +162,17 @@ public class MemberController {
 		String res = mServ.idCheck(mid);
 		
 		return res;
+	}
+	
+	@GetMapping("memberDelete")
+	public String memberDelete(RedirectAttributes rttr,
+			String id, Principal p) {
+		id = p.getName();
+		
+		String view = mServ.memberDelete(rttr, id);
+		
+		
+		return view;
 	}
 	
 	
