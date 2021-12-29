@@ -113,7 +113,7 @@ let index = {
 			alert("성공");
 			location.reload();
 		}).fail(function(error) {
-			alert("실패");
+			alert(error);
 		});
 	}
 	

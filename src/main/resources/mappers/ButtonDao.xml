@@ -23,7 +23,4 @@
 	<delete id="setPCancle" parameterType="String">
 	DELETE FROM O WHERE O_CODE = #{ocode}
 	</delete>
-	<delete id="setPCancle2" parameterType="String">
-	DELETE FROM A WHERE O_CODE = #{ocode}
-	</delete>
 </mapper>

@@ -2,7 +2,6 @@ package com.icia.dabyinsa.admin.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.icia.dabyinsa.admin.dao.ButtonDao;
 
@@ -29,7 +28,6 @@ public class ButtonService {
 	
 	// 주문취소 버튼
 	public void pCancleBtn(String ocode) {
-		bDao.setPCancle2(ocode);
 		bDao.setPCancle(ocode);
 	}
 }

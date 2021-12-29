@@ -16,5 +16,4 @@ public interface ButtonDao {
 	
 	// 주문취소 버튼
 	void setPCancle(String ocode);
-	void setPCancle2(String ocode);
 }
