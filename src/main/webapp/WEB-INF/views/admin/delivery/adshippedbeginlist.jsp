@@ -152,8 +152,8 @@
 
 				<div class="mCtrl typeHeader">
 					<div class="gLeft">
-						<a href="#eNaverCheckoutOrderStatus" data-status='eShipStartBtn'
-							id="eShipStartBtn" class="btnCtrl"><span>배송중 처리</span></a>
+						<button type="button" data-status='eShipStartBtn'
+							id="eShipStartBtn" class="btnCtrl"><span>배송중 처리</span></button>
 					</div>
 				</div>
 
@@ -239,4 +239,5 @@
 	<!-- Content End -->
 
 </body>
+<script src="js/button.js"></script>
 </html>

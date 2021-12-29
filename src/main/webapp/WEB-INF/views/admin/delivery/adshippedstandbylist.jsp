@@ -151,11 +151,10 @@
 					</div>
 					<div class="mCtrl typeHeader">
 						<div class="gLeft">
-							<a href="#eNaverCheckoutOrderStatus" data-status='eBeginShipBtn'
-								class="btnCtrl" id="eBeginShipBtn2"><span>배송중 처리</span></a> <a
-								href="#eNaverCheckoutOrderPrevStatus"
-								data-status='eMoveShipBegin' id="eMoveShipBegin2"
-								class="btnCtrl"><span>배송준비중 처리</span></a>
+							<button data-status='eBeginShipBtn'
+								class="btnCtrl" id="eShipStartBtn"><span>배송중 처리</span></button> <button
+								data-status='eMoveShipBegin' id="eMoveShipBegin"
+								class="btnCtrl"><span>배송준비중 처리</span></button>
 						</div>
 					</div>
 
@@ -241,4 +240,5 @@
 		</div>
 	</form>
 </body>
+<script src="js/button.js"></script>
 </html>

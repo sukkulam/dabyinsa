@@ -43,4 +43,32 @@ public class AdminApiController {
 		bs.pCancleBtn(ocode);
 		return new ResponseEntity<Integer>(HttpStatus.OK);
 	}
+	
+	// 배송중처리 버튼
+	@GetMapping("/api/sStart")
+	public ResponseEntity<Integer> sStart(String ocode) {
+		bs.sStartBtn(ocode);
+		return new ResponseEntity<Integer>(HttpStatus.OK);
+	}
+	
+	// 배송준비중처리 버튼
+	@GetMapping("/api/sBegin")
+	public ResponseEntity<Integer> sBegin(String ocode) {
+		bs.sBeginBtn(ocode);
+		return new ResponseEntity<Integer>(HttpStatus.OK);
+	}
+	
+	// 배송대기중처리 버튼
+	@GetMapping("/api/sStandBy")
+	public ResponseEntity<Integer> sStandBy(String ocode) {
+		bs.sStandByBtn(ocode);
+		return new ResponseEntity<Integer>(HttpStatus.OK);
+	}
+	
+	// 배송완료처리 버튼
+	@GetMapping("/api/sEnd")
+	public ResponseEntity<Integer> sEnd(String ocode) {
+		bs.sEndBtn(ocode);
+		return new ResponseEntity<Integer>(HttpStatus.OK);
+	}
 }

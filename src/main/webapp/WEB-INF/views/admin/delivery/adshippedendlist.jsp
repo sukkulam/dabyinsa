@@ -150,14 +150,18 @@
 					</div>
 					<div class="mCtrl typeHeader">
 						<div class="gLeft">
-							<a href="#eNaverCheckoutOrderPrevStatus"
-								data-status='eShippedEndBtn' class="btnCtrl" id="eShippedEndBtn"><span>배송완료
-									처리</span></a> <a href="#eNaverCheckoutOrderPrevStatus"
-								data-status='eShippedStandByBtn' class="btnCtrl"
-								id="eShippedStandByBtn"><span>배송대기 처리</span></a> <a
-								href="#eNaverCheckoutOrderPrevStatus"
-								data-status='eShippedReadyByBtn' id="eShippedReadyByBtn"
-								class="btnCtrl"><span>배송준비중 처리</span></a>
+							<button data-status='eShippedEndBtn' class="btnCtrl"
+								id="eShippedEndBtn">
+								<span>배송완료 처리</span>
+							</button>
+							<button data-status='eShippedStandByBtn' class="btnCtrl"
+								id="eShippedStandByBtn">
+								<span>배송대기 처리</span>
+							</button>
+							<button data-status='eShippedReadyByBtn' id="eMoveShipBegin"
+								class="btnCtrl">
+								<span>배송준비중 처리</span>
+							</button>
 						</div>
 					</div>
 					<div class="mCtrl typeSetting setting">
@@ -173,7 +177,8 @@
 								<tr>
 									<th scope="col" style="width: 24px;"><input
 										type="checkbox" id="allChk" /></th>
-									<th scope="col" style="width: 150px;">주문일/주문번호</th>
+									<th scope="col" style="width: 150px;">주문일</th>
+									<th scope="col" style="width: 150px;">주문번호</th>
 									<th scope="col" style="width: 85px;">주문자
 										<div class="cTip eSmartMode" code="OD.OF.DE.150" />
 									</th>
@@ -194,11 +199,12 @@
 											<tr>
 												<td scope="col" style="width: 24px;"><input
 													type="checkbox" id="allChk" /></td>
-												<td scope="col" style="width: 150px;">${seList.odate}<br/>${seList.ocode}</td>
+												<td scope="col" style="width: 150px;">${seList.odate}</td>
+												<td scope="col" style="width: 150px;">${seList.ocode}</td>
 												<td scope="col" style="width: 85px;">${seList.mid}
 													<div class="cTip eSmartMode" code="OD.OF.DE.150" />
 												</td>
-												<td scope="col" style="width: 160px;"> - </td>
+												<td scope="col" style="width: 160px;">-</td>
 												<td scope="col" style="width: 110px;">${seList.shipnum}
 												</td>
 												<td scope="col" style="width: 106px;">${seList.supplier}</td>
@@ -242,6 +248,6 @@
 
 	</form>
 
-
 </body>
+<script src="js/button.js"></script>
 </html>

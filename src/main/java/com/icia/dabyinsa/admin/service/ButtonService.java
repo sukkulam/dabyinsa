@@ -30,4 +30,24 @@ public class ButtonService {
 	public void pCancleBtn(String ocode) {
 		bDao.setPCancle(ocode);
 	}
+	
+	// 배송중처리 버튼
+	public void sStartBtn(String ocode) {
+		bDao.setSStart(ocode);
+	}
+	
+	// 배송준비중처리 버튼
+	public void sBeginBtn(String ocode) {
+		bDao.setSBegin(ocode);
+	}
+	
+	// 배송대기중처리 버튼
+	public void sStandByBtn(String ocode) {
+		bDao.setSStandBy(ocode);
+	}
+	
+	// 배송완료처리 버튼
+	public void sEndBtn(String ocode) {
+		bDao.setSEnd(ocode);
+	}
 }

@@ -150,8 +150,8 @@
 					</div>
 					<div class="mCtrl typeHeader">
 						<div class="gLeft">
-							<a href="#none" id="ePaymentOkBtn" class="btnCtrl"><span>입금확인</span></a>
-							<a href="#none" id="ePaymentCancelBtn" class="btnCtrl"><span>주문취소</span></a>
+							<button type="button" id="ePaymentOkBtn" class="btnCtrl"><span>입금확인</span></button>
+							<button type="button" id="ePaymentCancelBtn" class="btnCtrl"><span>주문취소</span></button>
 						</div>
 					</div>
 
@@ -232,8 +232,8 @@
 					</div>
 					<div class="mCtrl typeFooter">
 						<div class="gLeft">
-							<a href="#none" id="ePaymentOkBtn" class="btnCtrl"><span>입금확인</span></a>
-							<a href="#none" id="ePaymentCancelBtn" class="btnCtrl"><span>주문취소</span></a>
+							<button type="button" id="ePaymentOkBtn" class="btnCtrl"><span>입금확인</span></button>
+							<button type="button" id="ePaymentCancelBtn" class="btnCtrl"><span>주문취소</span></button>
 						</div>
 					</div>
 					<div class="mPaginate"></div>

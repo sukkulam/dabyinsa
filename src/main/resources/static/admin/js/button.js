@@ -15,6 +15,22 @@ let index = {
 		$("#ePaymentCancelBtn").on("click", () => {
 			this.pCancle();
 		});
+		
+		$("#eShipStartBtn").on("click", () => {
+			this.sStart();
+		});
+		
+		$("#eMoveShipBegin").on("click", () => {
+			this.sBegin();
+		});
+		
+		$("#eShippedStandByBtn").on("click", () => {
+			this.sStandBy();
+		});
+		
+		$("#eShippedEndBtn").on("click", () => {
+			this.sEnd();
+		});
 	},
 	
 	returns: function(){
@@ -108,6 +124,106 @@ let index = {
 		$.ajax({
 			type: "get",
 			url: "/admin/api/pCancle",
+			data: ocodeObj
+		}).done(function(resp) {
+			alert("성공");
+			location.reload();
+		}).fail(function(error) {
+			alert(error);
+		});
+	},
+	
+	sStart: function(){
+		console.log("sStart");
+		var checkbox = $("input[id=allChk]:checked");
+		var row = checkbox.parent().parent();
+		var colume = row.children();
+		
+		var ocode = colume.eq(2).text();
+		var ocodeObj = new Object;
+		ocodeObj.ocode = ocode;
+		
+		console.log("ocode : " + ocode);
+		console.log(ocodeObj);
+		
+		$.ajax({
+			type: "get",
+			url: "/admin/api/sStart",
+			data: ocodeObj
+		}).done(function(resp) {
+			alert("성공");
+			location.reload();
+		}).fail(function(error) {
+			alert(error);
+		});
+	},
+	
+	sBegin: function(){
+		console.log("sBegin");
+		var checkbox = $("input[id=allChk]:checked");
+		var row = checkbox.parent().parent();
+		var colume = row.children();
+		
+		var ocode = colume.eq(2).text();
+		var ocodeObj = new Object;
+		ocodeObj.ocode = ocode;
+		
+		console.log("ocode : " + ocode);
+		console.log(ocodeObj);
+		
+		$.ajax({
+			type: "get",
+			url: "/admin/api/sBegin",
+			data: ocodeObj
+		}).done(function(resp) {
+			alert("성공");
+			location.reload();
+		}).fail(function(error) {
+			alert(error);
+		});
+	},
+	
+	sStandBy: function(){
+		console.log("sStandBy");
+		var checkbox = $("input[id=allChk]:checked");
+		var row = checkbox.parent().parent();
+		var colume = row.children();
+		
+		var ocode = colume.eq(2).text();
+		var ocodeObj = new Object;
+		ocodeObj.ocode = ocode;
+		
+		console.log("ocode : " + ocode);
+		console.log(ocodeObj);
+		
+		$.ajax({
+			type: "get",
+			url: "/admin/api/sStandBy",
+			data: ocodeObj
+		}).done(function(resp) {
+			alert("성공");
+			location.reload();
+		}).fail(function(error) {
+			alert(error);
+		});
+	},
+	
+	sEnd: function(){
+		console.log("sEnd");
+		var checkbox = $("input[id=allChk]:checked");
+		var row = checkbox.parent().parent();
+		var colume = row.children();
+		
+		var ocode = colume.eq(2).text();
+		var ocodeObj = new Object;
+		ocodeObj.ocode = ocode;
+		
+		console.log("ocode : " + ocode);
+		console.log(ocodeObj);
+		
+		$.ajax({
+			type: "get",
+			url: "/admin/api/sEnd",
 			data: ocodeObj
 		}).done(function(resp) {
 			alert("성공");

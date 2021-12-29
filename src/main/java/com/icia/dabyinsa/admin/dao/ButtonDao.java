@@ -16,4 +16,16 @@ public interface ButtonDao {
 	
 	// 주문취소 버튼
 	void setPCancle(String ocode);
+	
+	// 배송중처리 버튼
+	void setSStart(String ocode);
+	
+	// 배송준비중처리 버튼
+	void setSBegin(String ocode);
+	
+	// 배송대기처리 버튼
+	void setSStandBy(String ocode);
+	
+	// 배송완료처리 버튼
+	void setSEnd(String ocode);
 }
