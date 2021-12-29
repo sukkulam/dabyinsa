@@ -23,7 +23,7 @@
 				this.reset();
 			});
 		});
-
+		
 	});
 </script>
 </head>
@@ -196,6 +196,9 @@
 												<td scope="col" style="width: 70px;">-</td>
 												<td scope="col" style="width: 90px;">-</td>
 												<c:choose>
+													<c:when test="${pList.pbank == 0}">
+														<td scope="col" style="width: 80px;">카드결제</td>
+													</c:when>
 													<c:when test="${pList.pbank == 1}">
 														<td scope="col" style="width: 80px;">농협</td>
 													</c:when>
@@ -203,7 +206,14 @@
 														<td scope="col" style="width: 80px;">신한</td>
 													</c:when>
 												</c:choose>
-												<td scope="col" style="width: 75px;">입금전</td>
+												<c:choose>
+													<c:when test="${pList.pstatus == 0}">
+														<td scope="col" style="width: 75px;">입금전</td>
+													</c:when>
+													<c:when test="${pList.pstatus == 1}">
+														<td scope="col" style="width: 75px;">입금확인</td>
+													</c:when>
+												</c:choose>
 												<td scope="col" style="width: 75px;">-</td>
 												<td scope="col" style="width: 45px;">${pList.memocontent}</td>
 											</tr>
@@ -222,8 +232,8 @@
 					</div>
 					<div class="mCtrl typeFooter">
 						<div class="gLeft">
-							<a href="#none" id="ePaymentOkBtn2" class="btnCtrl"><span>입금확인</span></a>
-							<a href="#none" id="ePaymentCancelBtn2" class="btnCtrl"><span>주문취소</span></a>
+							<a href="#none" id="ePaymentOkBtn" class="btnCtrl"><span>입금확인</span></a>
+							<a href="#none" id="ePaymentCancelBtn" class="btnCtrl"><span>주문취소</span></a>
 						</div>
 					</div>
 					<div class="mPaginate"></div>
@@ -232,4 +242,5 @@
 		</form>
 	</div>
 </body>
+<script src="js/button.js"></script>
 </html>

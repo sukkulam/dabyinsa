@@ -9,7 +9,21 @@
 	UPDATE O SET PROC_STATUS = 6 WHERE O_CODE = #{ocode}
 	</update>
 	
+	<!-- 환불 버튼 -->
 	<update id="setRefund" parameterType="String">
 	UPDATE O SET PROC_STATUS = 7 WHERE O_CODE = #{ocode}
 	</update>
+	
+	<!-- 입금확인 버튼 -->
+	<update id="setPOk" parameterType="String">
+	UPDATE O SET P_STATUS = 1 WHERE O_CODE = #{ocode}
+	</update>
+	
+	<!-- 주문취소 버튼 -->
+	<delete id="setPCancle" parameterType="String">
+	DELETE FROM O WHERE O_CODE = #{ocode}
+	</delete>
+	<delete id="setPCancle2" parameterType="String">
+	DELETE FROM A WHERE O_CODE = #{ocode}
+	</delete>
 </mapper>

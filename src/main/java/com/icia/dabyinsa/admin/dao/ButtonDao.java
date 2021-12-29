@@ -10,4 +10,11 @@ public interface ButtonDao {
 	
 	// 환불 버튼
 	void setRefund(String ocode);
+	
+	// 입금확인 버튼
+	void setPOk(String ocode);
+	
+	// 주문취소 버튼
+	void setPCancle(String ocode);
+	void setPCancle2(String ocode);
 }

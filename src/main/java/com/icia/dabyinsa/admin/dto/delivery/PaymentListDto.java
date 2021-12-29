@@ -13,4 +13,5 @@ public class PaymentListDto {
 	int procstatus;
 	String memocontent;
 	String odate;
+	String pstatus;
 }
