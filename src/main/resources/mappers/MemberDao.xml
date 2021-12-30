@@ -63,6 +63,13 @@
     	DELETE FROM M WHERE m_id=#{id}
     </delete>
     
+<select id="findMemberId" resultType="String" parameterType="String">
+	SELECT m_id FROM M
+	WHERE m_id = #{m_id} and m_email = #{m_email}
+
+</select>
+    
+    
     
     
     </mapper>

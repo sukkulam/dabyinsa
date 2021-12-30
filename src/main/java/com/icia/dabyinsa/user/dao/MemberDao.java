@@ -24,5 +24,10 @@ public interface MemberDao {
 	public void passUpdate(MemberDto member);
 	
 	public void memberDelete(String id);
+	
+	public String SearchId(String m_email);
+	
+	public String findMemberId(String m_id, String m_email);
+	
 
 }
