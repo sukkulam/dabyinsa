@@ -169,9 +169,9 @@
 								<th scope="col" style="width: 40px;">메모</th>
 							</tr>
 						</thead>
-						<c:forEach items="${map.orList}" var="orList">
 							<c:choose>
-								<c:when test="${orList != null}">
+								<c:when test="${map.count != 0}">
+								<c:forEach items="${map.orList}" var="orList">
 									<tbody>
 										<tr>
 											<td scope="col" style="width: 24px"><input
@@ -204,16 +204,16 @@
 											<td scope="col" style="width: 40px;">${orList.memocontent}</td>
 										</tr>
 									</tbody>
-								</c:when>
+								</c:forEach>
+							</c:when>
 								<c:otherwise>
 									<tbody class="empty">
 										<tr>
-											<td colspan="15">검색된 주문내역이 없습니다.</td>
+											<td colspan="8">검색된 주문내역이 없습니다.</td>
 										</tr>
 									</tbody>
 								</c:otherwise>
 							</c:choose>
-						</c:forEach>
 					</table>
 				</div>
 				<div class="mCtrl typeFooter">
@@ -227,22 +227,6 @@
 		<!-- //content -->
 
 	</form>
-<script>
-	$('#eRefundComplete').on('click', function(){
-		var chk = [];
-		
-		$('#allChk:checked').each(function(){
-			chk.push($(this).val());
-		});
-		console.log(chk);
-		$.ajax({
-			
-		
-		});
-		
-	});
-	
-</script>
 </body>
 <script src="js/button.js"></script>
 </html>

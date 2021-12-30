@@ -170,9 +170,9 @@
 								<th scope="col" style="width: 40px;">메모</th>
 							</tr>
 						</thead>
-						<c:forEach items="${map.ortList}" var="ortList">
 							<c:choose>
-								<c:when test="${ortList != null}">
+								<c:when test="${map.count != 0}">
+								<c:forEach items="${map.ortList}" var="ortList">
 									<tbody>
 										<tr>
 											<td scope="col" style="width: 24px"><input
@@ -198,16 +198,16 @@
 											<td scope="col" style="width: 40px;">${ortList.memocontent}</td>
 										</tr>
 									</tbody>
-								</c:when>
+								</c:forEach>
+							</c:when>
 								<c:otherwise>
 									<tbody class="empty">
 										<tr>
-											<td colspan="10">검색된 주문내역이 없습니다.</td>
+											<td colspan="8">검색된 주문내역이 없습니다.</td>
 										</tr>
 									</tbody>
 								</c:otherwise>
 							</c:choose>
-						</c:forEach>
 					</table>
 				</div>
 				<div class="mCtrl typeFooter">

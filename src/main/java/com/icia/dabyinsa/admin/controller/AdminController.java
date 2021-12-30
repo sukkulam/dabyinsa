@@ -52,7 +52,11 @@ public class AdminController {
 			@RequestParam(defaultValue = "") String searchOption2) {
 		List<OrderListDto> oList = as.getOrderList(keyword, keyword2, searchOption, searchOption2);
 		int count = as.getOrderListCount(keyword, keyword2, searchOption, searchOption2);
-		log.info("asdasdasdasdasdasd");
+		log.info(keyword);
+		log.info(keyword2);
+		log.info(searchOption);
+		log.info(searchOption2);
+		System.out.println(oList);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchOption", searchOption);
 		map.put("searchOption2", searchOption2);

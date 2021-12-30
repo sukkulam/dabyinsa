@@ -161,9 +161,9 @@
 								<th scope="col" style="width: 35px;">메모</th>
 							</tr>
 						</thead>
-						<c:forEach items="${map.ocgList}" var="ocgList">
 							<c:choose>
-								<c:when test="${ocgList != null}">
+								<c:when test="${map.count != 0}">
+								<c:forEach items="${map.ocgList}" var="ocgList">
 									<tbody>
 										<tr>
 											<td scope="col" style="width: 24px; display: none;"><input
@@ -188,17 +188,17 @@
 											<td scope="col" style="width: 35px;">${ocgList.memocontent}</td>
 										</tr>
 									</tbody>
-								</c:when>
+								</c:forEach>
+							</c:when>
 								<c:otherwise>
 									<tbody class="empty">
 										<tr>
-											<td colspan="8">검색된 주문내역이 없습니다.</td>
+											<td colspan="7">검색된 주문내역이 없습니다.</td>
 										</tr>
 
 									</tbody>
 								</c:otherwise>
 							</c:choose>
-						</c:forEach>
 					</table>
 				</div>
 				<div class="mCtrl typeFooter"></div>

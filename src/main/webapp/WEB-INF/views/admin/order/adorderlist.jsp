@@ -169,9 +169,9 @@
 									<th scope="col" class="w60" style="">배송완료</th>
 								</tr>
 							</thead>
-							<c:forEach items="${map.oList}" var="oList">
-								<c:choose>
-									<c:when test="${oList != null}">
+							<c:choose>
+								<c:when test="${map.count != 0}">
+									<c:forEach items="${map.oList}" var="oList">
 										<tbody>
 											<tr>
 												<td scope="col" class="w120" style="">${oList.odate}</td>
@@ -207,13 +207,13 @@
 														<td scope="col" class="w60" style="">-</td>
 													</c:when>
 
-													<c:when test="${oList.dstatus == 2}">
+													<c:when test="${oList.dstatus == 3}">
 														<td scope="col" class="w45" style="">-</td>
 														<td scope="col" class="w45" style="">배송중</td>
 														<td scope="col" class="w60" style="">-</td>
 													</c:when>
 
-													<c:when test="${oList.dstatus == 3}">
+													<c:when test="${oList.dstatus == 4}">
 														<td scope="col" class="w45" style="">-</td>
 														<td scope="col" class="w45" style="">-</td>
 														<td scope="col" class="w60" style="">배송완료</td>
@@ -227,17 +227,16 @@
 												</c:choose>
 											</tr>
 										</tbody>
-									</c:when>
-									<c:otherwise>
-										<tbody class="empty">
-											<tr>
-												<td colspan="15">검색된 주문내역이 없습니다.</td>
-											</tr>
-										</tbody>
-									</c:otherwise>
-								</c:choose>
-
-							</c:forEach>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<tbody class="empty">
+										<tr>
+											<td colspan="10">검색된 주문내역이 없습니다.</td>
+										</tr>
+									</tbody>
+								</c:otherwise>
+							</c:choose>
 						</table>
 
 					</div>

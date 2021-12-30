@@ -28,8 +28,7 @@
 </script>
 </head>
 <body>
-	<form name="frm" id="script_reset"
-		action="adordercancel" method='get'>
+	<form name="frm" id="script_reset" action="adordercancel" method='get'>
 		<!-- content -->
 		<div id="content">
 			<!-- 참고 : Frame 구분 시 컨텐츠 시작 -->
@@ -143,7 +142,8 @@
 					</div>
 				</div>
 
-				<div class="mBoard typeOrder gScroll gCellSingle typeList" style="text-align: center;">
+				<div class="mBoard typeOrder gScroll gCellSingle typeList"
+					style="text-align: center;">
 					<table id="searchResultList" border="1" summary="" class="eChkBody">
 						<caption>취소 관리 목록</caption>
 						<thead>
@@ -164,9 +164,9 @@
 								<th scope="col" style="width: 35px;">메모</th>
 							</tr>
 						</thead>
-						<c:forEach items="${map.ocList}" var="ocList">
-							<c:choose>
-								<c:when test="${ocList != null}">
+						<c:choose>
+							<c:when test="${map.count != 0}">
+								<c:forEach items="${map.ocList}" var="ocList">
 									<tbody>
 										<tr>
 											<td scope="col" style="width: 24px; display: none;"><input
@@ -180,13 +180,13 @@
 											<td scope="col" style="width: 170px;">${ocList.prodname}</td>
 											<td scope="col" class="w40" style="">${ocList.oiamount}</td>
 											<c:choose>
-													<c:when test="${ocList.ppay == 0}">
-														<td scope="col" class="w60" style="">무통장입금</td>
-													</c:when>
-													<c:otherwise>
-														<td scope="col" class="w60" style="">카드결제</td>
-													</c:otherwise>
-												</c:choose>
+												<c:when test="${ocList.ppay == 0}">
+													<td scope="col" class="w60" style="">무통장입금</td>
+												</c:when>
+												<c:otherwise>
+													<td scope="col" class="w60" style="">카드결제</td>
+												</c:otherwise>
+											</c:choose>
 											<c:choose>
 												<c:when test="${ocList.procstatus == 0}">
 													<td scope="col" style="width: 65px;">처리전</td>
@@ -195,19 +195,20 @@
 													<td scope="col" style="width: 65px;">처리완료</td>
 												</c:otherwise>
 											</c:choose>
-											<td scope="col" style="width: 35px;">${ocList.memocontent}</th>
+											<td scope="col" style="width: 35px;">${ocList.memocontent}
+											</th>
 										</tr>
 									</tbody>
-								</c:when>
-								<c:otherwise>
-									<tbody class="empty">
-										<tr>
-											<td colspan="10">검색된 주문내역이 없습니다.</td>
-										</tr>
-									</tbody>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<tbody class="empty">
+									<tr>
+										<td colspan="8">검색된 주문내역이 없습니다.</td>
+									</tr>
+								</tbody>
+							</c:otherwise>
+						</c:choose>
 					</table>
 				</div>
 				<div class="mCtrl typeFooter"></div>

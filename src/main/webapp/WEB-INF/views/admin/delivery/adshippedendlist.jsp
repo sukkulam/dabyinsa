@@ -192,9 +192,9 @@
 									<th scope="col" style="width: 45px;">메모</th>
 								</tr>
 							</thead>
-							<c:forEach items="${map.seList}" var="seList">
-								<c:choose>
-									<c:when test="${seList != null}">
+							<c:choose>
+								<c:when test="${map.count != 0}">
+									<c:forEach items="${map.seList}" var="seList">
 										<tbody>
 											<tr>
 												<td scope="col" style="width: 24px;"><input
@@ -214,16 +214,16 @@
 												<td scope="col" style="width: 45px;">${seList.memocontent}</td>
 											</tr>
 										</tbody>
-									</c:when>
-									<c:otherwise>
-										<tbody class="empty">
-											<tr>
-												<td colspan="10">검색된 주문내역이 없습니다.</td>
-											</tr>
-										</tbody>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<tbody class="empty">
+										<tr>
+											<td colspan="10">검색된 주문내역이 없습니다.</td>
+										</tr>
+									</tbody>
+								</c:otherwise>
+							</c:choose>
 						</table>
 					</div>
 					<div class="mCtrl typeFooter">

@@ -178,9 +178,9 @@
 									<th scope="col" style="width: 45px;">메모</th>
 								</tr>
 							</thead>
-							<c:forEach items="${map.pList}" var="pList">
 								<c:choose>
-									<c:when test="${pList != null}">
+									<c:when test="${map.count != 0}">
+									<c:forEach items="${map.pList}" var="pList">
 										<tbody>
 											<tr>
 												<td scope="col" style="width: 30px;"><input
@@ -218,7 +218,8 @@
 												<td scope="col" style="width: 45px;">${pList.memocontent}</td>
 											</tr>
 										</tbody>
-									</c:when>
+									</c:forEach>
+								</c:when>
 									<c:otherwise>
 										<tbody class="empty">
 											<tr>
@@ -227,7 +228,6 @@
 										</tbody>
 									</c:otherwise>
 								</c:choose>
-							</c:forEach>
 						</table>
 					</div>
 					<div class="mCtrl typeFooter">

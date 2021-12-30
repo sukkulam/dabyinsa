@@ -151,10 +151,14 @@
 					</div>
 					<div class="mCtrl typeHeader">
 						<div class="gLeft">
-							<button data-status='eBeginShipBtn'
-								class="btnCtrl" id="eShipStartBtn"><span>배송중 처리</span></button> <button
-								data-status='eMoveShipBegin' id="eMoveShipBegin"
-								class="btnCtrl"><span>배송준비중 처리</span></button>
+							<button data-status='eBeginShipBtn' class="btnCtrl"
+								id="eShipStartBtn">
+								<span>배송중 처리</span>
+							</button>
+							<button data-status='eMoveShipBegin' id="eMoveShipBegin"
+								class="btnCtrl">
+								<span>배송준비중 처리</span>
+							</button>
 						</div>
 					</div>
 
@@ -184,20 +188,19 @@
 									<th scope="col" style="width: 45px;">메모</th>
 								</tr>
 							</thead>
-							<c:forEach items="${map.ssList}" var="ssList">
-								<c:choose>
-									<c:when test="${ssList != null}">
+							<c:choose>
+								<c:when test="${map.count != 0}">
+									<c:forEach items="${map.ssList}" var="ssList">
 										<tbody>
 											<tr>
 												<td scope="col" style="width: 24px;"><input
 													type="checkbox" id="allChk" /></td>
-												<td scope="col" style="width: 120px;">${ssList.odate}
-												</td>
+												<td scope="col" style="width: 120px;">${ssList.odate}</td>
 												<td scope="col" style="width: 150px;">${ssList.ocode}</td>
 												<td scope="col" style="width: 85px;">${ssList.mid}
 													<div class="cTip eSmartMode" code="OD.OF.DS.150" />
 												</td>
-												<td scope="col" style="width: 160px;"> - </td>
+												<td scope="col" style="width: 160px;">-</td>
 												<td scope="col" style="width: 115px;">${ssList.shipnum}
 												</td>
 												<td scope="col" style="width: 105px;">${ssList.supplier}</td>
@@ -208,16 +211,16 @@
 												<td scope="col" style="width: 45px;">${ssList.memocontent}</td>
 											</tr>
 										</tbody>
-									</c:when>
-									<c:otherwise>
-										<tbody class="empty">
-											<tr>
-												<td colspan="14">검색된 주문내역이 없습니다.</td>
-											</tr>
-										</tbody>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<tbody class="empty">
+										<tr>
+											<td colspan="12">검색된 주문내역이 없습니다.</td>
+										</tr>
+									</tbody>
+								</c:otherwise>
+							</c:choose>
 						</table>
 					</div>
 					<div class="mCtrl typeFooter">

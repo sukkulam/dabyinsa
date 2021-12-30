@@ -153,12 +153,15 @@
 				<div class="mCtrl typeHeader">
 					<div class="gLeft">
 						<button type="button" data-status='eShipStartBtn'
-							id="eShipStartBtn" class="btnCtrl"><span>배송중 처리</span></button>
+							id="eShipStartBtn" class="btnCtrl">
+							<span>배송중 처리</span>
+						</button>
 					</div>
 				</div>
 
 				<div id="shipedReadyList"
-					class="mBoard typeOrder gScroll gCellSingle typeList" style="text-align: center;">
+					class="mBoard typeOrder gScroll gCellSingle typeList"
+					style="text-align: center;">
 					<table border="1" summary="" class="thead">
 						<caption>배송준비중 관리 목록</caption>
 						<thead>
@@ -181,15 +184,14 @@
 								<th scope="col" class="w40" style="">메모</th>
 							</tr>
 						</thead>
-						<c:forEach items="${map.sbList }" var="sbList">
-							<c:choose>
-								<c:when test="${sbList != null}">
+						<c:choose>
+							<c:when test="${map.count != 0}">
+								<c:forEach items="${map.sbList }" var="sbList">
 									<tbody>
 										<tr>
 											<td scope="col" class="w35"><input type="checkbox"
 												id="allChk" /></td>
-											<td scope="col" class="w85" style="">${sbList.odate}
-											</td>
+											<td scope="col" class="w85" style="">${sbList.odate}</td>
 											<td scope="col" class="w150" style="">${sbList.ocode}</td>
 											<td scope="col" class="w80" style="">${sbList.mid}
 												<div class="cTip eSmartMode" code="OD.OF.DD.200" />
@@ -201,26 +203,26 @@
 											<td scope="col" class="w80" style="">${sbList.retailprice}</td>
 											<td scope="col" class="w110" style="">${sbList.oitotalprice}</td>
 											<c:choose>
-											<c:when test="${sbList.ppay == 0}">
+												<c:when test="${sbList.ppay == 0}">
 													<td scope="col" class="w60" style="">무통장입금</td>
 												</c:when>
-											<c:when test="${sbList.ppay == 1}">
+												<c:when test="${sbList.ppay == 1}">
 													<td scope="col" class="w60" style="">카드결제</td>
-											</c:when>
+												</c:when>
 											</c:choose>
 											<td scope="col" class="w40" style="">${sbList.memocontent}</td>
 										</tr>
 									</tbody>
-								</c:when>
-								<c:otherwise>
-									<tbody class="empty">
-										<tr>
-											<td colspan="16">검색된 주문내역이 없습니다.</td>
-										</tr>
-									</tbody>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<tbody class="empty">
+									<tr>
+										<td colspan="11">검색된 주문내역이 없습니다.</td>
+									</tr>
+								</tbody>
+							</c:otherwise>
+						</c:choose>
 					</table>
 				</div>
 				<div class="mCtrl typeFooter">
