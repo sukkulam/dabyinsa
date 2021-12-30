@@ -178,6 +178,8 @@ public class MemberService {
 		
 		
 	}
+	
+	//회원탈퇴
 	@Transactional
 	public String memberDelete(RedirectAttributes rttr, String id) {
 		String view = null;
@@ -201,6 +203,13 @@ public class MemberService {
 		return view;
 	}
 	
+
+	public String findMemberId(String m_id, String m_email
+			) {
+
+		 	
+		return mDao.findMemberId(m_id, m_email);
+	}
 	
 	
 

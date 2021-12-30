@@ -8,42 +8,10 @@
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="user/css/infoUpdate.css" rel="stylesheet" type="text/css">
 <jsp:include page="header.jsp"></jsp:include>
 <title>답인사 | 기본회원정보</title>
-<style>
-.profile_info {
-	text-align: center;
-}
 
-.user-delete {
-	margin-top: 100px;
-	font-size: 20px;
-	margin-bottom: 20px;
-}
-
-.input_txt {
-	width: 250px;
-	border: 0;
-	border-bottom: 1px solid #606060;
-}
-
-#user-title {
-	padding-bottom: 30px;
-}
-
-.input_title {
-	color: gray;
-}
-
-button {
-	border: 0px;
-	background-color: #D5D5D5;
-	
-	
-}
-
-
-</style>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#change-btn").click(function(){
@@ -59,6 +27,9 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+<span class="back-button"><a href="#none"
+			onclick="history.go(-1);return false;" class="btnBack"><Strong>BACK</Strong></a>
+		</span>
 
 	<div class="profile_info">
 		<h2 id="user-title">회원 정보</h2>
