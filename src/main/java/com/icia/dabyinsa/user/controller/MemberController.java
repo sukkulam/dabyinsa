@@ -20,7 +20,7 @@ import com.icia.dabyinsa.user.service.MemberService;
 
 @Controller
 public class MemberController {
-
+    //.
 	@Autowired
 	private MemberService mServ;
 
@@ -64,7 +64,7 @@ public class MemberController {
 
 		return "user/findId";
 	}
-
+ 
 	@GetMapping("findPw")
 	public String findPw() {
 
