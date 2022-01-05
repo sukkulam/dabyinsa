@@ -20,7 +20,7 @@ import com.icia.dabyinsa.user.service.MemberService;
 
 @Controller
 public class MemberController {
-    //.
+
 	@Autowired
 	private MemberService mServ;
 

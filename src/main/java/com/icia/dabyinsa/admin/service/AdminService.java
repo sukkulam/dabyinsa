@@ -4,8 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.icia.dabyinsa.admin.dao.NewProductDao;
 import com.icia.dabyinsa.admin.dao.OrderSearchDao;
+import com.icia.dabyinsa.admin.dao.ProductSearchDao;
 import com.icia.dabyinsa.admin.dto.delivery.PaymentListDto;
 import com.icia.dabyinsa.admin.dto.delivery.ShippedBeginListDto;
 import com.icia.dabyinsa.admin.dto.delivery.ShippedCompleteListDto;
@@ -16,13 +21,25 @@ import com.icia.dabyinsa.admin.dto.order.OrderChangeDto;
 import com.icia.dabyinsa.admin.dto.order.OrderListDto;
 import com.icia.dabyinsa.admin.dto.order.OrderRefundDto;
 import com.icia.dabyinsa.admin.dto.order.OrderReturnsDto;
+import com.icia.dabyinsa.admin.dto.product.prodinfoDto;
+import com.icia.dabyinsa.admin.dto.product.productlistDto;
 
+import lombok.extern.java.Log;
+
+@Log
 @Service
 public class AdminService {
 
 	@Autowired
 	private OrderSearchDao osDao;
 	
+	@Autowired
+	private ProductSearchDao psDao;
+	
+	@Autowired
+	private NewProductDao npDao;
+
+	ModelAndView mv;
 
 	// 전체 주문 목록
 	public List<OrderListDto> getOrderList(String keyword, String keyword2, String searchOption, String searchOption2) {
@@ -142,5 +159,56 @@ public class AdminService {
 
 		return osDao.getSCListCount(keyword, keyword2, searchOption, searchOption2);
 	}
+	
+	//상품 목록
+	public List<productlistDto> getPLList(String plkeyword, String plkeyword2, String plsearchOption, String plsearchOption2) {
+
+		return psDao.getPLList(plkeyword, plkeyword2, plsearchOption, plsearchOption2);
+	}
+	public int getPLListCount(String plkeyword, String plkeyword2, String plsearchOption, String plsearchOption2) {
+		return psDao.getPLListCount(plkeyword, plkeyword2, plsearchOption, plsearchOption2);
+	}
+	//상품 등록
+
+	@Transactional
+	public String NewProduct(prodinfoDto pi, 
+			RedirectAttributes rttr) {
+		log.info("NewProduct()");
+		String view = null;
+		String msg = null;
+
+		
+		try {
+			npDao.NewProduct(pi);	
+			view = "redirect:/";
+			msg = "등록 성공 ";
+		} catch (Exception e) {
+			e.printStackTrace();
+			view = "redirect:newproduct";
+			msg = "등록 실패";
+		}
+		
+		rttr.addFlashAttribute("msg", msg);
+		
+		return view;
+	}
+	public String Check(String ck) {
+		String res = null;
+		
+		//코드를 검색하여 중복된 코드가 있으면 1,
+		//없으면 0이 넘어옴.
+		int cnt = npDao.Check(ck);
+		if(cnt == 0) {
+			res = "ok";
+		}
+		else {
+			res = "fail";
+		}
+		
+		return res;
+	}
+	
+
+	
 	
 }

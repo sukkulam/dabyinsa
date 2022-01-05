@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.icia.dabyinsa.admin.dto.delivery.PaymentListDto;
 import com.icia.dabyinsa.admin.dto.delivery.ShippedBeginListDto;
@@ -26,6 +27,8 @@ import com.icia.dabyinsa.admin.dto.order.OrderChangeDto;
 import com.icia.dabyinsa.admin.dto.order.OrderListDto;
 import com.icia.dabyinsa.admin.dto.order.OrderRefundDto;
 import com.icia.dabyinsa.admin.dto.order.OrderReturnsDto;
+import com.icia.dabyinsa.admin.dto.product.prodinfoDto;
+import com.icia.dabyinsa.admin.dto.product.productlistDto;
 import com.icia.dabyinsa.admin.service.AdminService;
 
 import lombok.extern.java.Log;
@@ -266,6 +269,72 @@ public class AdminController {
 		
 		model.addAttribute("map", map);
 		return "admin/delivery/adshippedcompletelist";
+	}
+	
+
+	// 상품 등록 페이지
+	@PostMapping("/setnewproduct")
+	public String setNewProduct(prodinfoDto pi,
+			RedirectAttributes rttr) {
+
+				System.out.println(pi);
+		String view = as.NewProduct(pi, rttr);
+		
+		//return view;
+		return "admin/product/newproduct";
+	}
+
+	@GetMapping("/newproduct")
+	public String newproduct() {
+		
+		return "admin/product/newproduct";
+	}
+
+	// 상품목록 페이지
+	@GetMapping("/productlist")
+	public String productlist(Model model,
+			@RequestParam(defaultValue = "") String plkeyword,
+			@RequestParam(defaultValue = "") String plkeyword2,
+			@RequestParam(defaultValue = "all") String plsearchOption,
+			@RequestParam(defaultValue = "") String plsearchOption2) {
+		List<productlistDto> plList = as.getPLList(plkeyword, plkeyword2, plsearchOption, plsearchOption2);
+
+		int count = as.getPLListCount(plkeyword, plkeyword2, plsearchOption, plsearchOption2);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchOption", plsearchOption);
+		map.put("plList", plList);
+		map.put("count", count);
+		map.put("keyword", plkeyword);
+		map.put("keywor2", plkeyword2);
+
+		model.addAttribute("map", map);
+		return "admin/product/productlist";
+
+	}
+
+	// 미리보기 페이지
+	@GetMapping("/preview")
+	public String preview() {
+		return "admin/product/preview";
+
+	}
+
+	// 상품 불러오기 페이지
+	@GetMapping("/productload")
+	public String productload() {
+		return "admin/product/productload";
+	}
+	//중복체크
+	@PostMapping(value = "Check",
+			produces = "application/text; charset=utf-8")
+	@ResponseBody
+	public String Check(String admin_prod_code) {
+		
+		//이후 해당 아이디로 DB를 검색하는 서비스와 Dao를 활용.
+		String res = as.Check(admin_prod_code);
+		
+		return res;
 	}
 	
 }
