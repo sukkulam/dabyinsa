@@ -8,17 +8,12 @@ server:
       force: true
     
 
-spring:    
-  mvc:
-    view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
-      
+spring:
   mail:
     host: smtp.naver.com
     port: 465
-    username: 
-    password: 
+    username: high4__@naver.com
+    password: zwqx1023
     properties:
       mail:
         smtp:
@@ -26,6 +21,10 @@ spring:
           ssl:
             enable: true
             trust : smtp.naver.com
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
       
   datasource:
     #driver-class-name: oracle.jdbc.driver.OracleDriver
