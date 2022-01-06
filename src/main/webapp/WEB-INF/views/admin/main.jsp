@@ -16,6 +16,17 @@
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  <script type="text/javascript">
+  document.onkeydown = trapRefresh;
+  function trapRefresh(){
+	  if(event.keyCode == 116){
+		  event.keyCode = 0;
+		  event.cancleBubble = true;
+		  event.returnValue = true;
+		  document.main.location.reload();
+	  }
+  }
+  </script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed" data-panel-auto-height-mode="height">
 <div class="wrapper">
@@ -171,7 +182,7 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">???</a>
+          <a href="#" class="d-block">${mb.m_name}</a>
         </div>
       </div>
 

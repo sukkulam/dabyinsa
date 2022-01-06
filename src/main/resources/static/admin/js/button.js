@@ -47,7 +47,7 @@ let index = {
 		console.log(ocodeObj);
 		
 		$.ajax({
-			type: "get",
+			type: "put",
 			url: "/admin/api/returns",
 			data: ocodeObj
 		}).done(function(resp) {
@@ -72,7 +72,7 @@ let index = {
 		console.log(ocodeObj);
 		
 		$.ajax({
-			type: "get",
+			type: "put",
 			url: "/admin/api/refund",
 			data: ocodeObj
 		}).done(function(resp) {
@@ -97,7 +97,7 @@ let index = {
 		console.log(ocodeObj);
 		
 		$.ajax({
-			type: "get",
+			type: "put",
 			url: "/admin/api/pOk",
 			data: ocodeObj
 		}).done(function(resp) {
@@ -122,7 +122,7 @@ let index = {
 		console.log(ocodeObj);
 		
 		$.ajax({
-			type: "get",
+			type: "put",
 			url: "/admin/api/pCancle",
 			data: ocodeObj
 		}).done(function(resp) {
@@ -147,7 +147,7 @@ let index = {
 		console.log(ocodeObj);
 		
 		$.ajax({
-			type: "get",
+			type: "put",
 			url: "/admin/api/sStart",
 			data: ocodeObj
 		}).done(function(resp) {
@@ -172,7 +172,7 @@ let index = {
 		console.log(ocodeObj);
 		
 		$.ajax({
-			type: "get",
+			type: "put",
 			url: "/admin/api/sBegin",
 			data: ocodeObj
 		}).done(function(resp) {
@@ -197,7 +197,7 @@ let index = {
 		console.log(ocodeObj);
 		
 		$.ajax({
-			type: "get",
+			type: "put",
 			url: "/admin/api/sStandBy",
 			data: ocodeObj
 		}).done(function(resp) {
@@ -222,7 +222,7 @@ let index = {
 		console.log(ocodeObj);
 		
 		$.ajax({
-			type: "get",
+			type: "put",
 			url: "/admin/api/sEnd",
 			data: ocodeObj
 		}).done(function(resp) {
