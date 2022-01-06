@@ -1,4 +1,6 @@
 package com.icia.dabyinsa.admin.dto.product;
+
+
 import lombok.Data;
 
 @Data
@@ -10,7 +12,7 @@ public class productlistDto {
     String buyrightoff;
     String prodcategry;
     String registrationdate;
-    String prodid;
+    String pid;
     String adminprodcode;
 
 }

@@ -43,4 +43,10 @@
 	<update id="setSEnd" parameterType="String">
 	UPDATE O SET D_STATUS = 4 WHERE O_CODE = #{ocode}
 	</update>
+	
+	<!-- 상품리스트 삭제 버튼 -->
+	<delete id="pdelete" parameterType="String">
+	 DELETE FROM PRODUCTLIST WHERE PID = #{pid}
+	
+	</delete>
 </mapper>

@@ -50,4 +50,9 @@ public class ButtonService {
 	public void sEndBtn(String ocode) {
 		bDao.setSEnd(ocode);
 	}
+	// 상품목록삭제 버튼
+	public void pdelete(String pid) {
+		bDao.pdelete(pid);
+	}
+	
 }

@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+import javax.mail.Service;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +17,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.annotation.JacksonInject;
 import com.icia.dabyinsa.admin.dto.delivery.PaymentListDto;
 import com.icia.dabyinsa.admin.dto.delivery.ShippedBeginListDto;
 import com.icia.dabyinsa.admin.dto.delivery.ShippedCompleteListDto;
@@ -30,6 +36,7 @@ import com.icia.dabyinsa.admin.dto.order.OrderReturnsDto;
 import com.icia.dabyinsa.admin.dto.product.prodinfoDto;
 import com.icia.dabyinsa.admin.dto.product.productlistDto;
 import com.icia.dabyinsa.admin.service.AdminService;
+import com.icia.dabyinsa.admin.service.ButtonService;
 
 import lombok.extern.java.Log;
 
@@ -40,6 +47,11 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService as;
+	
+	@Autowired
+	private ButtonService bs;
+
+
 	
 	@GetMapping("/main")
 	public String main() {
@@ -336,5 +348,31 @@ public class AdminController {
 		
 		return res;
 	}
+
+
+	//게시물 삭제
+	@GetMapping("/pdelete")
+	public String postdelete(String pid) throws Exception {
+		bs.pdelete(pid);
+		
+		return "redirect:productlist";
+	}
+	
+	
+	//상품 선택 삭제
+	@PostMapping("/pdelete")
+	public String delete(HttpServletRequest request) throws Exception{
+		
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		System.out.println("ajaxMsg : " + ajaxMsg[0]);
+		int size = ajaxMsg.length;
+		for(int i=0; i<size; i++ ) {
+			System.out.println(ajaxMsg[i]);
+		bs.pdelete(ajaxMsg[i]);
+		}
+		return "redirect:productlist";		
+}
+	
 	
 }
+

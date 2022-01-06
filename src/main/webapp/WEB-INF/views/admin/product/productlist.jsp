@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
     
@@ -20,6 +21,7 @@
   <script type="text/javascript" src="/admin/js/smarthelper-ui.js" charset="utf-8"></script>
   <script
   src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ 
   <style type="text/css">
         .icoShop {
             display: none
@@ -39,7 +41,10 @@
                 
             });
         });
+        
     </script>
+    <!-- 체크박스 클릭, 전체클릭, 삭제버튼 -->
+    
 </head>
 <body class="">
   
@@ -173,7 +178,8 @@
                                 <span class="txtLess">
                                     <blank></blank>
                                 </span>
-                                <a href="#none" class="btnNormal _manage_delete">삭제
+                                   <button type="button" id="deleteValue" class="btnNormal _manage_delete" onclick="pdeleteValue();"><span>삭제</span></button>
+                             
                                     <!--삭제 -->
                                 </a>
                                 <a href="#layerCopy" class="btnNormal _manage_copy">상품복사
@@ -214,40 +220,34 @@
                         
                            
                         </div>
-                        <div class="mBoard typeList gScroll gCell">
+                        <div id="shipedReadyList" 
+                        class="mBoard typeOrder gScroll gCellSingle typeList" 
+                        style="text-align: center;">
                             <!--
         항목 추가에따른 th, td 추가시 col도 같이 추가해주세요.
     -->
-                            <table border="1" summary="" class="eChkColor">
+                            <table border="1" summary="" class="thead">
                                 <caption>상품 목록</caption>
-                                <colgroup>
-                                    <col class="chk">
-                                    <!-- 기본 -->
-                                    <col style="width:250px">
-                                    <col style="width:200px">
-                                    <col style="width:200px">
-                                    <col style="width:200px">
-                                    <col style="width:450px">
-                                    <col style="width:165px">
-                                   
-                                </colgroup>
+                    
                                 <thead id="product-list-header">
                                     <tr>
-                                        <th scope="col"><input type="checkbox" class="allChk"></th>
+                                        <th scope="col" class="w35" ><input type="checkbox" class="chkall" onclick="allCheck(this);"></th>
                                         <!-- 기본 -->
-                                        <th scope="col" column-name="product_name" >
+                                        <th scope="col" style="width:200px"  >
                                             상품명 </th>
-                                        <th scope="col" column-name="retailprice">
+                                             <th scope="col" style="width:100px"  >
+                                            상품코드 </th>
+                                        <th scope="col" style="width:150px" >
                                             판매가 </th>
-                                        <th scope="col" column-name="display_status">
+                                        <th scope="col" style="width:180px">
                                             진열상태 </th>
-                                        <th scope="col" column-name="selling_status">
+                                        <th scope="col" style="width:180px">
                                             판매상태 </th>
-                                        <th scope="col" column-name="product_category">
+                                        <th scope="col" style="width:405px" >
                                             상품분류
                                         </th>
                                        
-                                        <th scope="col" column-name="ins_date">
+                                        <th scope="col" style="width:165px" >
                                             상품 등록일 </th>
                                     </tr>
                                 </thead>
@@ -256,16 +256,17 @@
 									<c:when test="${plList != null}">
 										<tbody>
 											<tr>
-												<td scope="col" ><input
-													type="checkbox" id="allChk" /></td>
+												<td scope="col" class="w35" ><input
+													type="checkbox"  name="RowCheck" id="RowCheck" value="${plList.pid}" /></td>
 												
-												<td scope="col" style="width: 250px;">${plList.prodname}</td>
-												<td scope="col" style="width: 200px;">${plList.retailprice}</td>
-												<td scope="col" style="width: 200px;">${plList.saledp}</td>
-												<td scope="col" style="width: 200px;">${plList.buyrightoff}</td>
-												<td scope="col" style="width: 450px;">${plList.prodcategry}</td>
+												<td scope="col" style="width: 200px;">${plList.prodname}</td>
+												<td scope="col" style="width: 100px;">${plList.pid}</td>
+												<td scope="col" style="width: 150px;">${plList.retailprice}</td>
+												<td scope="col" style="width: 180px;">${plList.saledp}</td>
+												<td scope="col" style="width: 180px;">${plList.buyrightoff}</td>
+												<td scope="col" style="width: 405px;">${plList.prodcategry}</td>
 												<td scope="col" style="width: 165px;">${plList.registrationdate}</td>
-                                                <fmt:formatDate var="date" value="${plList.registrationdate}" pattern="yyyy-MM-dd" scope="col" style="width:165px;" />
+                                               
                                                    
 												
                                                 
@@ -284,7 +285,7 @@
                                 </c:forEach>
                             </table>
                         </div>
-                        <div class="mCtrl typeFooter">
+                        <div class="mCtrl typeFooter" >
                             <!-- [Allinone mode] 유틸 버튼(진열함/판매함/복사/삭제/분류수정 등등) -->
 
 
@@ -293,7 +294,8 @@
                                 <span class="txtLess">
                                     <blank></blank>
                                 </span>
-                                <a href="#none" class="btnNormal _manage_delete">삭제
+                                <button type="button" id="plCancelBtn" class="btnNormal _manage_delete"><span>삭제</span></button>
+                             
                                     <!--삭제 -->
                                 </a>
                                 <a href="#layerCopy" class="btnNormal _manage_copy">상품복사
@@ -427,10 +429,69 @@
         charset="utf-8"></script>
     <script type="text/javascript" src="//img.echosting.cafe24.com/js/ec/mode/influencer_ui.js"
         charset="utf-8"></script>
-
+ <!--  <script src="js/del.js"></script>-->
         
     
            
 </body>
 
+<!-- 전체선택 가능 -->
+<script type="text/javascript">
+
+function allCheck(chkall)  {
+    const checkboxes 
+         = document.getElementsByName("RowCheck");
+    console.log("asdasdasdasdasdasd" + checkboxes);
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = chkall.checked;
+    })
+  };
+</script>
+
+<!-- 삭제 버튼 -->
+<script type="text/javascript">
+
+function pdeleteValue() {
+    var url = "/admin/pdelete";
+    var valueArr = new Array();
+    var list = $("input[name='RowCheck']");
+    
+    for (var i = 0; i < list.length; i++) {
+       if(list[i].checked){
+          console.log(valueArr);
+          valueArr.push(list[i].value);
+       }
+    }
+    if (valueArr.length == 0) {
+       alert("선택된 고객이 없습니다.");
+    }
+    else{
+       var check = confirm("정말 삭제하시겠습니까? 삭제된 고객은 다시 복구할 수 없습니다.");
+       $.ajax({
+          url : url,
+          type : 'post',
+          traditional : true,
+          data : {
+             valueArr : valueArr
+          },
+          success: function(jdata){
+             if(jdata = 1){
+                alert("삭제 성공");
+                location.replace("productlist")
+             }
+             else{
+                alert("삭제 실패");
+             }
+          },
+          
+          error: function(error){
+             alert(JSON.stringify(error));
+          }
+       });
+    }
+ 
+ };
+
+
+</script>
 </html>
