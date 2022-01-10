@@ -13,7 +13,7 @@ spring:
     host: smtp.naver.com
     port: 465
     username: high4__@naver.com
-    password: qzwx1023
+    password: 
     properties:
       mail:
         smtp:
