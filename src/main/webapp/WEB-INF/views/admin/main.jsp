@@ -86,7 +86,7 @@
 					<ul>
 						<li class="suc" id="grade"><b>${mb.m_grade}</b></li>
 						<li class="suc" id="mname">게스트님</li>
-						<li class="suc"><a href="./logout">로그아웃</a></li>
+						<li class="suc"><a href="/logout">로그아웃</a></li>
 						<li class="bef"><a href="./loginFrm">로그인</a></li>
 						<li class="bef"><a href="./joinFrm">회원가입</a></li>
 					</ul>
