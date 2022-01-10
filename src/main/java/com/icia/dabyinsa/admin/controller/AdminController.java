@@ -6,11 +6,16 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.icia.dabyinsa.admin.dto.delivery.PaymentListDto;
 import com.icia.dabyinsa.admin.dto.delivery.ShippedBeginListDto;
@@ -23,6 +28,8 @@ import com.icia.dabyinsa.admin.dto.order.OrderListDto;
 import com.icia.dabyinsa.admin.dto.order.OrderRefundDto;
 import com.icia.dabyinsa.admin.dto.order.OrderReturnsDto;
 import com.icia.dabyinsa.admin.service.AdminService;
+import com.icia.dabyinsa.user.dto.MemberDto;
+import com.icia.dabyinsa.user.service.MemberService;
 
 import lombok.extern.java.Log;
 
@@ -34,8 +41,13 @@ public class AdminController {
 	@Autowired
 	private AdminService as;
 	
+	@Autowired
+	private MemberService ms;
+	
 	@GetMapping("/main")
 	public String main(Model model, Principal p) {
+		MemberDto member = ms.login(p.getName());
+		model.addAttribute("mb", member);
 		return "admin/main";
 	}
 

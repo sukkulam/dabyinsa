@@ -43,7 +43,7 @@
     </div>
     <br>
     <div>
-    <a href="findId" class="findId">아이디 찾기</a> <a href="findPwPage" class="findPw">비밀번호 찾기</a>
+    <a href="findId" class="findId">아이디 찾기</a> <a href="findPw" class="findPw">비밀번호 찾기</a>
     </div>
     <br>
     <div class="social-login">

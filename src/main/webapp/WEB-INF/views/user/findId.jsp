@@ -34,7 +34,7 @@
             <input type="email" class="find_email" id="m_email" name="m_email" placeholder=" 예) dabyinsa@dabyinsa.com">
         </div>
         <div>
-        	<input type="text" class="find_name" id="m_name" name="m_name" placeholder="성함">
+        	<input type="text" class="find_name" id="m_id" name="m_id" placeholder="성함">
         </div>
 		<div id="findIdView" style="text-align: center;">회원님의 ID : ${id }</div>
         <div>

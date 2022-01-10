@@ -18,13 +18,7 @@
 
 </head>
 <script type="text/javascript">
-$(function() {
-    
-    var msg = "${msg}";
-    if (msg != "") {
-        alert(msg);
-    }
-});
+
 </script>
 
 

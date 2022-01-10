@@ -27,7 +27,10 @@ public interface MemberDao {
 	
 	public String SearchId(String m_email);
 	
-	public String findMemberId(String m_name, String m_email);
+	public String findMemberId(String m_id, String m_email);
 	
-    public int emailCheck(String m_email);
+	//회원 정보 구하기
+	public MemberDto memberSelect(String id);
+	
+
 }

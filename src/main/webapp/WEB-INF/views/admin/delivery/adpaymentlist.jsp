@@ -25,16 +25,6 @@
 		});
 		
 	});
-	
-	document.onkeydown = trapRefresh;
-	  function trapRefresh(){
-		  if(event.keyCode == 116){
-			  event.keyCode = 0;
-			  event.cancleBubble = true;
-			  event.returnValue = false;
-			  document.location.reload();
-		  }
-	  }
 </script>
 </head>
 <body>
