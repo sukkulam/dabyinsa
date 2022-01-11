@@ -47,10 +47,12 @@ let index = {
 		console.log(ocodeObj);
 		
 		$.ajax({
-			type: "get",
+			type: "put",
 			url: "/admin/api/returns",
+			dataType: "json",
 			data: ocodeObj
 		}).done(function(resp) {
+			console.log(resp);
 			alert("성공");
 			location.reload();
 		}).fail(function(error) {
@@ -72,10 +74,12 @@ let index = {
 		console.log(ocodeObj);
 		
 		$.ajax({
-			type: "get",
+			type: "put",
 			url: "/admin/api/refund",
+			dataType: "json",
 			data: ocodeObj
 		}).done(function(resp) {
+			console.log(resp);
 			alert("성공");
 			location.reload();
 		}).fail(function(error) {
@@ -97,10 +101,12 @@ let index = {
 		console.log(ocodeObj);
 		
 		$.ajax({
-			type: "get",
+			type: "put",
 			url: "/admin/api/pOk",
+			dataType: "json",
 			data: ocodeObj
 		}).done(function(resp) {
+			console.log(resp);
 			alert("성공");
 			location.reload();
 		}).fail(function(error) {
@@ -122,10 +128,12 @@ let index = {
 		console.log(ocodeObj);
 		
 		$.ajax({
-			type: "get",
+			type: "put",
 			url: "/admin/api/pCancle",
+			dataType: "json",
 			data: ocodeObj
 		}).done(function(resp) {
+			console.log(resp);
 			alert("성공");
 			location.reload();
 		}).fail(function(error) {
@@ -147,10 +155,12 @@ let index = {
 		console.log(ocodeObj);
 		
 		$.ajax({
-			type: "get",
+			type: "put",
 			url: "/admin/api/sStart",
+			dataType: "json",
 			data: ocodeObj
 		}).done(function(resp) {
+			console.log(resp);
 			alert("성공");
 			location.reload();
 		}).fail(function(error) {
@@ -172,10 +182,12 @@ let index = {
 		console.log(ocodeObj);
 		
 		$.ajax({
-			type: "get",
+			type: "put",
 			url: "/admin/api/sBegin",
+			dataType: "json",
 			data: ocodeObj
 		}).done(function(resp) {
+			console.log(resp);
 			alert("성공");
 			location.reload();
 		}).fail(function(error) {
@@ -197,10 +209,12 @@ let index = {
 		console.log(ocodeObj);
 		
 		$.ajax({
-			type: "get",
+			type: "put",
 			url: "/admin/api/sStandBy",
+			dataType: "json",
 			data: ocodeObj
 		}).done(function(resp) {
+			console.log(resp);
 			alert("성공");
 			location.reload();
 		}).fail(function(error) {
@@ -222,10 +236,12 @@ let index = {
 		console.log(ocodeObj);
 		
 		$.ajax({
-			type: "get",
+			type: "put",
 			url: "/admin/api/sEnd",
+			dataType: "json",
 			data: ocodeObj
 		}).done(function(resp) {
+			console.log(resp);
 			alert("성공");
 			location.reload();
 		}).fail(function(error) {
