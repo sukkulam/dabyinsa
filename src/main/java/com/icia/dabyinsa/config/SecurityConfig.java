@@ -22,6 +22,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private PrincipalDetailService principalDetailService;
 	
+	@Autowired
+	private CustomFailureHandler customFailureHandler;
+	
 	@Bean
 	@Override
 	protected AuthenticationManager authenticationManager() throws Exception {
@@ -60,6 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.failureForwardUrl("/loginForm")
 				.usernameParameter("m_id")
 				.passwordParameter("m_pass")
+				.failureHandler(customFailureHandler)
 				.and()
 				.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

@@ -29,7 +29,11 @@
 
 	</select>
 
-
+	<select id="opStatus" parameterType="String"
+		resultType="com.icia.dabyinsa.user.dto.OrderDto">
+		SELECT p_status, d_status FROM O WHERE m_id=#{id}
+	</select>
+	<!-- 
 	<select id="orderBefore" resultType="Integer">
 		SELECT COUNT(*) FROM O WHERE D_STATUS = #{number}
 	</select>
@@ -37,7 +41,8 @@
 	<select id="payment" resultType="Integer">
 		SELECT COUNT(*) FROM O WHERE P_STATUS = #{number}
 	</select>
-
+	 -->
+	 
 	<update id="memberUpdate"
 		parameterType="com.icia.dabyinsa.user.dto.MemberDto">
 		UPDATE M

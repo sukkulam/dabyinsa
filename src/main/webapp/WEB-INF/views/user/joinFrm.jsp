@@ -25,6 +25,25 @@ $(function() {
         alert(msg);
     }
 });
+
+	function CheckFrom(){
+		
+		var infochk = $("input:checkbox[id='info-agree-chk']").is(":checked");
+		var storechk = $("input:checkbox[id='store-agree-chk']").is(":checked");
+		
+		
+		if(!infochk){
+			alert("개인정보 약관동의를 해주세요");
+			return false;
+		}
+		
+		if(!storechk){
+			alert("스토어 이용 약관동의를 해주세요");
+			return false;
+		}
+		
+		
+	}
 </script>
 
 
@@ -32,7 +51,7 @@ $(function() {
 <span class="back-button"><a href="#none"
 			onclick="history.go(-1);return false;" class="btnBack"><Strong>BACK</Strong></a>
 		</span>
-	<form class="join-box" action="memInsert" method="post">
+	<form class="join-box" action="memInsert" method="post" onsubmit="return CheckFrom(this)">
 		<h3>회원가입</h3>
 		<br> <br> <a class="joinInfo">아이디<span id="star">*</span></a>
 		<div class="input-box">
@@ -70,7 +89,7 @@ $(function() {
 					<input type="checkbox" class="check_All" name="check_All">
 					<label for="check_All"> 약관 전체동의 </label>
 					<hr>
-					<br> <input type="checkbox" class="check_agree" name="chk">
+					<br> <input type="checkbox" class="check_agree" name="chk" id="info-agree-chk">
 					<label for="check_1"> 개인정보 수집 이용동의(필수) </label> <br>
 					&nbsp; <label id="info-agree">약관보기</label> <br> 
 					<div style="display: none; overflow: scroll; height: 150px; " id="info-agree-content">
@@ -88,7 +107,7 @@ $(function() {
 	통신비밀보호법 -보존기간 : 3개월 ※ 동의를 거부할 수 있으나 거부시 회원 가입이 불가능합니다.
 					</div>				
 					<input
-						type="checkbox" class="check_agree" name="chk"> <label
+						type="checkbox" class="check_agree" name="chk" id="store-agree-chk"> <label
 						for="check_2"> 답인사, 답인사스토어 이용약관(필수) </label> <br>
 						&nbsp;&nbsp;<label id="store-agree">약관보기</label>
 						<div style="display: none; overflow: scroll; height: 150px; " id="store-agree-content">

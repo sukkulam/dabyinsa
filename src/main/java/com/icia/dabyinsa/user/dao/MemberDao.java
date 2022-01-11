@@ -1,8 +1,11 @@
 package com.icia.dabyinsa.user.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.icia.dabyinsa.user.dto.MemberDto;
+import com.icia.dabyinsa.user.dto.OrderDto;
 
 @Mapper
 public interface MemberDao {
@@ -30,4 +33,8 @@ public interface MemberDao {
 	public String findMemberId(String m_name, String m_email);
 	
     public int emailCheck(String m_email);
+    
+    public List<OrderDto> opStatus(String id);
+    
+    
 }

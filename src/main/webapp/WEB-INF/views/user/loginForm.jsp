@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -27,9 +28,12 @@
 			onclick="history.go(-1);return false;" class="btnBack"><Strong>BACK</Strong></a>
 		</span>
     <form class="login-box" action="/loginProc" method="post">
-    <sec:csrfInput />
         <h3 class="login-logo">로그인</h3>
-        
+        <div>
+        <c:if test="${msg != null}">
+        	<p><c:out value="${msg}"></c:out></p>
+        </c:if>
+        </div>
         <div>
             <input type="text" id="m_id" name="m_id" class="inputId" placeholder="아이디">
         </div>

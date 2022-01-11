@@ -33,7 +33,7 @@ $(function(){
                 alert(result);
             },
             error : function(error){
-                alert(JSON.stringify(error));
+                alert(error);
             }
         })
     });

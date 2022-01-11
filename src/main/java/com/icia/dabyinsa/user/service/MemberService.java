@@ -1,5 +1,7 @@
 package com.icia.dabyinsa.user.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.icia.dabyinsa.user.dao.MemberDao;
 import com.icia.dabyinsa.user.dto.MemberDto;
+import com.icia.dabyinsa.user.dto.OrderDto;
 
 import lombok.extern.java.Log;
 
@@ -43,12 +46,12 @@ public class MemberService {
 
 		try {
 			mDao.memberInsert(member);	
-			view = "redirect:/";
+			view = "redirect:loginForm";
 			msg = "가입 성공";
 		} catch (Exception e) {
 			e.printStackTrace();
 			view = "redirect:joinFrm";
-			msg = "가입 실패";
+			msg = "가입 실패, 빈칸 없이 다 입력해주세요";
 		}
 
 		rttr.addFlashAttribute("msg", msg);
@@ -214,7 +217,11 @@ public class MemberService {
 
 
 
-
+	public List<OrderDto> odStatus(String m_id) {
+		return mDao.opStatus(m_id);		
+	}
+	
+	
 
 
 

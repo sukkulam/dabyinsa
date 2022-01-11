@@ -1,8 +1,9 @@
 package com.icia.dabyinsa.user.controller;
 
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
 
-import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.icia.dabyinsa.user.dao.MemberDao;
 import com.icia.dabyinsa.user.dto.MemberDto;
+import com.icia.dabyinsa.user.dto.OrderDto;
 import com.icia.dabyinsa.user.service.MemberService;
+
 
 @Controller
 public class MemberController {
@@ -31,6 +34,7 @@ public class MemberController {
 
 	@GetMapping("/loginForm")
 	public String loginForm() {
+		
 		return "user/loginForm";
 	}
 
@@ -72,7 +76,7 @@ public class MemberController {
 	}
 
 	@GetMapping("infoUpdatePage")
-	public String infoUpdatePage(Model model, HttpSession session, Principal p) {
+	public String infoUpdatePage(Model model, Principal p) {
 //		String m_id = (String) session.getAttribute("m_id");
 
 		String m_id = p.getName();
@@ -118,8 +122,11 @@ public class MemberController {
 	}
 
 	@GetMapping("myPage")
-	public String myPage(Model model) {
-
+	public String myPage(Model model, Principal p) {
+		
+		String m_id = p.getName();
+		
+		/*
 		int count = mServ.orderBefore(1);
 		int count1 = mServ.orderBefore(2);
 		int count2 = mServ.orderBefore(3);
@@ -145,6 +152,76 @@ public class MemberController {
 		model.addAttribute("payBefore", count6);
 		// 결제 완료
 		model.addAttribute("payAfter", count7);
+		*/
+		
+		
+		/////////////////////////////////////////////////////////
+		
+		java.util.List<OrderDto> odList = mServ.odStatus(m_id);
+		
+		int obSum = 0;//결제 전
+		int oaSum = 0; //결제 후
+		
+		int dbSum = 0;//배송전
+		int daSum = 0;//배송완료
+		int diSum = 0;//배송중
+		
+		int cancle = 0;//취소
+		int refund = 0;//반품
+		int ret = 0;//교환
+		
+		
+		for(OrderDto odDto : odList) {
+			if(odDto.getP_status() == 0) {
+				obSum++;
+			}
+				
+			if(odDto.getP_status() == 1) {
+				oaSum++;
+			}
+				
+			if(odDto.getD_status() == 1) {
+				dbSum++;
+			}
+				
+			if(odDto.getD_status() == 3) {
+				diSum++;
+			}
+				
+			if(odDto.getD_status() == 4) {
+				daSum++;
+			}
+				
+			if(odDto.getProc_status() == 4)
+				cancle++;
+			if(odDto.getProc_status() == 5)
+				ret++;
+			if(odDto.getProc_status() == 6)
+				refund++;
+				
+		}
+		
+		
+		Map<String, Integer> cntData = new HashMap<String, Integer>();
+		System.out.println(obSum);
+		System.out.println(oaSum);
+		System.out.println(dbSum);
+		System.out.println(daSum);
+		System.out.println(diSum);
+		cntData.put("obSum", obSum);
+		cntData.put("oaSum", oaSum);
+		cntData.put("dbSum", dbSum);
+		cntData.put("daSum", daSum);
+		cntData.put("diSum", diSum);
+		cntData.put("cancle", cancle);
+		cntData.put("ret", ret);
+		cntData.put("refund", refund);
+		
+		
+		
+		model.addAttribute("cntData", cntData);
+		
+		
 
 		return "user/myPage";
 	}

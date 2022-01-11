@@ -38,32 +38,32 @@
 					<div class="orderState">
 						<ul class="order">
 							<li class="situation"><a href="#"> <span
-									id="xans_myshop_orderstate_shppied_before_count">${payBefore }</span>
+									id="xans_myshop_orderstate_shppied_before_count">${cntData.obSum }</span>
 									<strong class="label1">입금전</strong>
 							</a></li>
 							<li class="situation"><a href="#"> <span
-									id="xans_myshop_orderstate_shppied_standby_count">${orderBefore}</span> <strong
+									id="xans_myshop_orderstate_shppied_standby_count">${cntData.dbSum}</span> <strong
 									class="label1">배송준비중</strong>
 							</a></li>
 							<li class="situation"><a href="#"> <span
-									id="xans_myshop_orderstate_shppied_begin_count">${ordering }</span> <strong
+									id="xans_myshop_orderstate_shppied_begin_count">${cntData.diSum }</span> <strong
 									class="label1">배송중</strong>
 							</a></li>
 							<li class="situation"><a href="#"> <span
-									id="xans_myshop_orderstate_shppied_complate_count">${orderComplete }</span> <strong
+									id="xans_myshop_orderstate_shppied_complate_count">${cntData.daSum }</span> <strong
 									class="label1">배송완료</strong>
 							</a></li>
 						</ul>
 						<br>
 						<ul class="cancle-menu">
 							<li class="cancel"><a href="#"> <strong class="label1">취소</strong><span
-									id="xans_myshop_orderstate_order_cancel_count">${ordercancle }</span>
+									id="xans_myshop_orderstate_order_cancel_count">${cntData.cancle }</span>
 							</a></li>
 							<li class="cancel"><a href="#"> <strong class="label1">교환</strong><span
-									id="xans_myshop_orderstate_order_exchange_count">${orderChange }</span>
+									id="xans_myshop_orderstate_order_exchange_count">${cntData.ret }</span>
 							</a></li>
 							<li class="cancel"><a href="#"> <strong class="label1">반품</strong><span
-									id="xans_myshop_orderstate_order_return_count">${ordereturn }</span>
+									id="xans_myshop_orderstate_order_return_count">${cntData.refund }</span>
 							</a></li>
 						</ul>
 					</div>

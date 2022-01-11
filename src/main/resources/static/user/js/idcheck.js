@@ -61,5 +61,5 @@ function check(){
 		}
 	}
 	//모든 입력칸이 다 채워졌고, 아이디 중복 체크도 한 상태
-	return true;//submit이 실행되도록 true를 반환
+	//return true;//submit이 실행되도록 true를 반환
 }

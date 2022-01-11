@@ -10,21 +10,24 @@ server:
 
 spring:
   mail:
-    host: smtp.naver.com
+    host: smtp.gmail.com
     port: 465
-    username: high4__@naver.com
-    password: zwqx1023
+    username: 
+    password: 
     properties:
       mail:
         smtp:
           auth: true
           ssl:
             enable: true
-            trust : smtp.naver.com
+            trust : smtp.gmail.com
   mvc:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
+      
+    
+    
       
   datasource:
     #driver-class-name: oracle.jdbc.driver.OracleDriver
