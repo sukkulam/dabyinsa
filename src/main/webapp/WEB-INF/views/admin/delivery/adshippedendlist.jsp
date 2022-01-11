@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,8 +29,8 @@
 </head>
 <body>
 
-	<form name="frm" method="post" id="script_reset"
-		action="shipped_end_list.php">
+	<form name="frm" method="get" id="script_reset"
+		action="adshippedendlist">
 		<!-- content -->
 		<div id="content">
 			<!-- 참고 : Frame 구분 시 컨텐츠 시작 -->
@@ -60,9 +61,10 @@
 								<td colspan="3">
 									<div id="mainSearch">
 										<div>
-											<select class="fSelect" name=MSK[] style="width: 163px;">
+											<select class="fSelect" name="searchOption"
+												style="width: 163px;">
 												<option value="choice">-검색항목선택-</option>
-												<option value="order_id" selected>주문번호</option>
+												<option value="ocode" selected>주문번호</option>
 												<option value="ord_item_code">품목별 주문번호</option>
 												<option value="invoice_no">운송장번호</option>
 												<option value="line1">-----------------</option>
@@ -72,8 +74,8 @@
 												<option value="o_email">주문서 이메일</option>
 												<option value="o_phone2">주문자 휴대전화</option>
 												<option value="o_phone1">주문자 일반전화</option>
-											</select> <input type="text" class="fText sBaseSearchBox" name=MSV[]
-												id="sBaseSearchBox" style="width: 400px;" />
+											</select> <input type="text" class="fText sBaseSearchBox"
+												name="keyword" id="sBaseSearchBox" style="width: 400px;" />
 										</div>
 									</div>
 								</td>
@@ -83,29 +85,26 @@
 									<div class="cTip" code="OR.SM.AO.50"></div>
 								</th>
 								<td colspan="3"><select class="fSelect"
-									id="eProductSearchType" name="product_search_type"
+									id="eProductSearchType" name="searchOption2"
 									style="width: 110px;">
-										<option value="product_name" selected="selected">상품명</option>
+										<option value="prodname" selected="selected">상품명</option>
 										<option value="product_code">상품코드</option>
 										<option value="item_code">품목코드</option>
 										<option value="product_tag">상품태그</option>
 										<option value="manufacturer_name">제조사</option>
 										<option value="supplier_name">공급사</option>
-								</select> <input type="text" id="eOrderProductText"
-									name="order_product_text" class="fText" style="width: 490px;"
-									value="" /> <input type="hidden" name="order_product_no"
-									id="eOrderProductNo" value=""> <input type="hidden"
-									name="find_option" value="product_no"></td>
+								</select> <input type="text" id="eOrderProductText" name="keyword2"
+									class="fText" style="width: 490px;" value="" /></td>
 							</tr>
 
 						</tbody>
 					</table>
 				</div>
 
-
 				<div class="mButton gCenter">
-					<a href="#none" id="search_button" class="btnSearch"><span>검색</span></a>
-					<a href="#none" id="eBtnInit" class="btnSearch reset"><span>초기화</span></a>
+					<input type="submit" id="search_button" class="btnSearch"
+						value="검색" /> <a href="#none" id="eBtnInit"
+						class="btnSearch reset"><span>초기화</span></a>
 					<div id="ordProgress" class="mLoading">
 						<p>처리중입니다. 잠시만 기다려 주세요.</p>
 						<img
@@ -118,17 +117,17 @@
 			</div>
 
 			<!--No delete -->
-				<div id="ordOption1" class="mLayer gMedium"></div>
-				<div id="ordOption2" class="mLayer gMedium"></div>
-				<div id="ordOption3" class="mLayer gMedium"></div>
-				<div id="layerOrderPath" class="mLayer gSmall"
-					style="opacity: 1; top: 590px; left: 532px; margin-left: 0px; display: none;">
-				</div>
-				<div id="layerCompany" class="mLayer gSmall"
-					style="display: none; opacity: 1;"></div>
-				<div id="layerMethod" class="mLayer gSmall"
-					style="display: none; opacity: 1;"></div>
-				<!--No delete -->
+			<div id="ordOption1" class="mLayer gMedium"></div>
+			<div id="ordOption2" class="mLayer gMedium"></div>
+			<div id="ordOption3" class="mLayer gMedium"></div>
+			<div id="layerOrderPath" class="mLayer gSmall"
+				style="opacity: 1; top: 590px; left: 532px; margin-left: 0px; display: none;">
+			</div>
+			<div id="layerCompany" class="mLayer gSmall"
+				style="display: none; opacity: 1;"></div>
+			<div id="layerMethod" class="mLayer gSmall"
+				style="display: none; opacity: 1;"></div>
+			<!--No delete -->
 
 			<div class="section" id="QA_delivery2">
 				<div class="mTitle" style="display: none;">
@@ -144,58 +143,87 @@
 					<div class="mState typeHeader">
 						<div class="gLeft">
 							<p class="total">
-								[검색결과 <strong>0</strong>건]
+								[검색결과 <strong>${map.count}</strong>건]
 							</p>
 						</div>
-						
+
 					</div>
 					<div class="mCtrl typeHeader">
 						<div class="gLeft">
-							<a href="#eNaverCheckoutOrderPrevStatus"
-								data-status='eShippedEndBtn' class="btnCtrl" id="eShippedEndBtn"><span>배송완료
-									처리</span></a> <a href="#eNaverCheckoutOrderPrevStatus"
-								data-status='eShippedStandByBtn' class="btnCtrl"
-								id="eShippedStandByBtn"><span>배송대기 처리</span></a> <a
-								href="#eNaverCheckoutOrderPrevStatus"
-								data-status='eShippedReadyByBtn' id="eShippedReadyByBtn"
-								class="btnCtrl"><span>배송준비중 처리</span></a> 
+							<button data-status='eShippedEndBtn' class="btnCtrl"
+								id="eShippedEndBtn">
+								<span>배송완료 처리</span>
+							</button>
+							<button data-status='eShippedStandByBtn' class="btnCtrl"
+								id="eShippedStandByBtn">
+								<span>배송대기 처리</span>
+							</button>
+							<button data-status='eShippedReadyByBtn' id="eMoveShipBegin"
+								class="btnCtrl">
+								<span>배송준비중 처리</span>
+							</button>
 						</div>
 					</div>
 					<div class="mCtrl typeSetting setting">
 						<div class="gLeft"></div>
 					</div>
-					
-					<div class="mBoard typeOrder gScroll gCellSingle typeList">
+
+					<div class="mBoard typeOrder gScroll gCellSingle typeList"
+						style="text-align: center;">
 						<table id="searchResultList" border="1" summary=""
 							class="eChkBody">
 							<caption>배송중 관리 목록</caption>
 							<thead>
 								<tr>
-									<th scope="col" style="width: 50px; display: none;">No</th>
-									<th scope="col" style="width: 150px;">주문일/주문번호</th>
+									<th scope="col" style="width: 24px;"><input
+										type="checkbox" id="allChk" /></th>
+									<th scope="col" style="width: 150px;">주문일</th>
+									<th scope="col" style="width: 150px;">주문번호</th>
 									<th scope="col" style="width: 85px;">주문자
 										<div class="cTip eSmartMode" code="OD.OF.DE.150" />
 									</th>
-									<th scope="col" style="width: 24px;"><input
-										type="checkbox" id="allChk" /></th>
 									<th scope="col" style="width: 160px;">배송일/배송번호</th>
 									<th scope="col" style="width: 110px;">운송장정보<br>(송장번호입력일)
 									</th>
 									<th scope="col" style="width: 106px;">공급사</th>
 									<th scope="col" style="width: 240px;">상품명/옵션</th>
 									<th scope="col" class="w40" style="">수량</th>
-									<th scope="col" class="w105" style="display: none;">총
-										상품구매금액</th>
-									<th scope="col" class="w100" style="display: none;">총 주문금액</th>
 									<th scope="col" class="w100" style="">총 실결제금액</th>
 									<th scope="col" style="width: 45px;">메모</th>
 								</tr>
 							</thead>
-							<tbody class="empty">
-								<tr>
-									<td colspan="10">검색된 주문내역이 없습니다.</td>
-								</tr>
-							</tbody>
+							<c:choose>
+								<c:when test="${map.count != 0}">
+									<c:forEach items="${map.seList}" var="seList">
+										<tbody>
+											<tr>
+												<td scope="col" style="width: 24px;"><input
+													type="checkbox" id="allChk" /></td>
+												<td scope="col" style="width: 150px;">${seList.odate}</td>
+												<td scope="col" style="width: 150px;">${seList.ocode}</td>
+												<td scope="col" style="width: 85px;">${seList.mid}
+													<div class="cTip eSmartMode" code="OD.OF.DE.150" />
+												</td>
+												<td scope="col" style="width: 160px;">-</td>
+												<td scope="col" style="width: 110px;">${seList.shipnum}
+												</td>
+												<td scope="col" style="width: 106px;">${seList.supplier}</td>
+												<td scope="col" style="width: 240px;">${seList.prodname}</td>
+												<td scope="col" class="w40" style="">${seList.oiamount}</td>
+												<td scope="col" class="w100" style="">${seList.oitotalprice}</td>
+												<td scope="col" style="width: 45px;">${seList.memocontent}</td>
+											</tr>
+										</tbody>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<tbody class="empty">
+										<tr>
+											<td colspan="10">검색된 주문내역이 없습니다.</td>
+										</tr>
+									</tbody>
+								</c:otherwise>
+							</c:choose>
 						</table>
 					</div>
 					<div class="mCtrl typeFooter">
@@ -208,7 +236,7 @@
 								id="eShippedStandByBtn2"><span>배송대기 처리</span></a> <a
 								href="#eNaverCheckoutOrderPrevStatus"
 								data-status='eShippedReadyByBtn' id="eShippedReadyByBtn2"
-								class="btnCtrl"><span>배송준비중 처리</span></a> 
+								class="btnCtrl"><span>배송준비중 처리</span></a>
 						</div>
 					</div>
 				</div>
@@ -220,6 +248,6 @@
 
 	</form>
 
-
 </body>
+<script src="js/button.js"></script>
 </html>

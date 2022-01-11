@@ -23,8 +23,6 @@
 				this.reset();
 			});
 		});
-		
-		
 
 	});
 </script>
@@ -62,7 +60,8 @@
 								<td colspan="3">
 									<div id="mainSearch">
 										<div>
-											<select class="fSelect" name="searchOption" style="width: 163px;">
+											<select class="fSelect" name="searchOption"
+												style="width: 163px;">
 												<option value="choice">-검색항목선택-</option>
 												<option value="ocode" selected>주문번호</option>
 												<option value="ord_item_code">품목별 주문번호</option>
@@ -74,8 +73,8 @@
 												<option value="o_email">주문서 이메일</option>
 												<option value="o_phone2">주문자 휴대전화</option>
 												<option value="o_phone1">주문자 일반전화</option>
-											</select> <input type="text" class="fText sBaseSearchBox" name="keyword"
-												id="sBaseSearchBox" style="width: 400px;" />
+											</select> <input type="text" class="fText sBaseSearchBox"
+												name="keyword" id="sBaseSearchBox" style="width: 400px;" />
 										</div>
 									</div>
 								</td>
@@ -93,9 +92,8 @@
 										<option value="product_tag">상품태그</option>
 										<option value="manufacturer_name">제조사</option>
 										<option value="supplier_name">공급사</option>
-								</select> <input type="text" id="eOrderProductText"
-									name="keyword2" class="fText" style="width: 490px;"
-									value="" /></td>
+								</select> <input type="text" id="eOrderProductText" name="keyword2"
+									class="fText" style="width: 490px;" value="" /></td>
 							</tr>
 
 						</tbody>
@@ -103,8 +101,9 @@
 				</div>
 
 				<div class="mButton gCenter">
-					<input type="submit" id="search_button" class="btnSearch" value="검색"/>
-					<a href="#none" id="eBtnInit" class="btnSearch reset"><span>초기화</span></a>
+					<input type="submit" id="search_button" class="btnSearch"
+						value="검색" /> <a href="#none" id="eBtnInit"
+						class="btnSearch reset"><span>초기화</span></a>
 					<div id="ordProgress" class="mLoading">
 						<p>처리중입니다. 잠시만 기다려 주세요.</p>
 						<img
@@ -113,7 +112,7 @@
 					</div>
 				</div>
 
-				
+
 			</div>
 
 			<!--No delete -->
@@ -150,14 +149,12 @@
 						</div>
 					</div>
 					<div id="searchResultList"
-						class="mBoard typeOrder typeList gScroll gCellSingle">
+						class="mBoard typeOrder typeList gScroll gCellSingle"
+						style="text-align: center;">
 						<table border="1" summary="" class="thead">
 							<caption>전체주문 조회 목록</caption>
 							<thead>
 								<tr>
-									<th scope="col" class="w24"><input type="checkbox"
-										id="allChk" /></th>
-									<th scope="col" class="w50" style="display: none;">No</th>
 									<th scope="col" class="w120" style="">주문일(결제일)</th>
 									<th scope="col" class="w150" style="">주문번호</th>
 									<th scope="col" class="w95" style="">주문자
@@ -170,19 +167,13 @@
 									<th scope="col" class="w45" style="">미배송</th>
 									<th scope="col" class="w45" style="">배송중</th>
 									<th scope="col" class="w60" style="">배송완료</th>
-									<th scope="col" class="w45" style="">취소</th>
-									<th scope="col" class="w45" style="">교환</th>
-									<th scope="col" class="w45" style="">반품</th>
 								</tr>
 							</thead>
-							<c:forEach items="${map.oList}" var="oList">
-								<c:choose>
-									<c:when test="${oList != null}">
+							<c:choose>
+								<c:when test="${map.count != 0}">
+									<c:forEach items="${map.oList}" var="oList">
 										<tbody>
 											<tr>
-												<td scope="col" class="w24"><input type="checkbox"
-													id="allChk" /></td>
-												<td scope="col" class="w50" style="display: none;">No</td>
 												<td scope="col" class="w120" style="">${oList.odate}</td>
 												<td scope="col" class="w150" style="">${oList.ocode}</td>
 												<td scope="col" class="w95" style="">${oList.mid}
@@ -214,69 +205,38 @@
 														<td scope="col" class="w45" style="">미배송</td>
 														<td scope="col" class="w45" style="">-</td>
 														<td scope="col" class="w60" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
-													</c:when>
-
-													<c:when test="${oList.dstatus == 2}">
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">배송중</td>
-														<td scope="col" class="w60" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
 													</c:when>
 
 													<c:when test="${oList.dstatus == 3}">
 														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w60" style="">배송완료</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
+														<td scope="col" class="w45" style="">배송중</td>
+														<td scope="col" class="w60" style="">-</td>
 													</c:when>
 
 													<c:when test="${oList.dstatus == 4}">
 														<td scope="col" class="w45" style="">-</td>
 														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w60" style="">-</td>
-														<td scope="col" class="w45" style="">취소</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
+														<td scope="col" class="w60" style="">배송완료</td>
 													</c:when>
-
-													<c:when test="${oList.dstatus == 5}">
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w60" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">교환</td>
-														<td scope="col" class="w45" style="">-</td>
-													</c:when>
-
 													<c:otherwise>
 														<td scope="col" class="w45" style="">-</td>
 														<td scope="col" class="w45" style="">-</td>
 														<td scope="col" class="w60" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">-</td>
-														<td scope="col" class="w45" style="">반품</td>
 													</c:otherwise>
+
 												</c:choose>
 											</tr>
 										</tbody>
-									</c:when>
-									<c:otherwise>
-										<tbody class="empty">
-											<tr>
-												<td colspan="15">검색된 주문내역이 없습니다.</td>
-											</tr>
-										</tbody>
-									</c:otherwise>
-								</c:choose>
-
-							</c:forEach>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<tbody class="empty">
+										<tr>
+											<td colspan="10">검색된 주문내역이 없습니다.</td>
+										</tr>
+									</tbody>
+								</c:otherwise>
+							</c:choose>
 						</table>
 
 					</div>

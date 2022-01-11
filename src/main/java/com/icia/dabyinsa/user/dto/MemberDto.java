@@ -25,6 +25,7 @@ public class MemberDto {
 		public String m_address;
 		public String m_addr;
 		public String m_role;
+		private String gr_name;
 		
 		public List<String> getRoleList(){
 	        if(this.m_role.length() > 0){

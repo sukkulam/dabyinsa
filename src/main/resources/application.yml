@@ -8,6 +8,7 @@ server:
       force: true
     
 
+
 spring:
   mail:
     host: smtp.gmail.com
@@ -21,11 +22,10 @@ spring:
           ssl:
             enable: true
             trust : smtp.gmail.com
-  mvc:
-    view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
+
+
       
+
     
     
       
@@ -34,8 +34,8 @@ spring:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     #url: jdbc:oracle:thin:@127.0.0.1:1521:XE
     #url: jdbc:oracle:thin:@192.168.0.235:1521:XE
-    url: jdbc:log4jdbc:oracle:thin:@192.168.0.235:1521:XE
-    #url: jdbc:log4jdbc:oracle:thin:@127.0.0.1:1521:XE
+    #url: jdbc:log4jdbc:oracle:thin:@192.168.0.235:1521:XE
+    url: jdbc:log4jdbc:oracle:thin:@127.0.0.1:1521:XE
     username: icia
     password: 1234
     
@@ -48,7 +48,6 @@ spring:
 mybatis:
   mapper-locations:
   - mappers/*.xml
-  
 
   
 

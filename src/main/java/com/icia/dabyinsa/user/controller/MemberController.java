@@ -59,17 +59,17 @@ public class MemberController {
 	}
 
 	@GetMapping("findMemberId")
-	public String findMemberId(@Param("m_name") String m_name,
+	public String findMemberId(@Param("m_id") String m_id,
 			@Param("m_email") String m_email, Model model) {
 
-		String id = mServ.findMemberId(m_name, m_email);
+		String id = mServ.findMemberId(m_id, m_email);
 
 		model.addAttribute("id", id);
 
 		return "user/findId";
 	}
 
-	@GetMapping("findPwPage")
+	@GetMapping("findPw")
 	public String findPw() {
 
 		return "user/findPw";
