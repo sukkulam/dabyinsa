@@ -80,37 +80,6 @@
 	</select>
 	 -->
 	 
-	<update id="memberUpdate"
-		parameterType="com.icia.dabyinsa.user.dto.MemberDto">
-		UPDATE M
-		SET
-		m_phone = #{phone}
-		WHERE
-		m_id = #{id}
-	</update>
-
-	<update id="emailUpdate"
-		parameterType="com.icia.dabyinsa.user.dto.MemberDto">
-
-		UPDATE M
-		SET
-		m_email = #{email}
-		WHERE
-		m_id = #{id}
-	</update>
-
-	<update id="passUpdate"
-		parameterType="com.icia.dabyinsa.user.dto.MemberDto">
-
-		UPDATE M
-		SET
-		m_pass = #{m_pass}
-		WHERE
-		m_id = #{m_id}
-	</update>
-
-
-
     
 <select id="findMemberId" resultType="String" parameterType="String">
 	SELECT m_id FROM M
