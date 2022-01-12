@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.mail.Service;
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.annotation.JacksonInject;
@@ -287,14 +289,19 @@ public class AdminController {
 	// 상품 등록 페이지
 	@PostMapping("/setnewproduct")
 	public String setNewProduct(prodinfoDto pi,
-			RedirectAttributes rttr) {
+			RedirectAttributes rttr, MultipartHttpServletRequest multi) throws Exception {
 
-				System.out.println(pi);
-		String view = as.NewProduct(pi, rttr);
+		
+			System.out.println(pi);
+			
+		String view = as.NewProduct(pi, rttr, multi);	//첫번째 메퍼쿼리가 실행되도록 pi를 윗 순서로 배치
+		as.fileUpload(multi, pi.getProd_id_seq());		//파일 업로드 까지 완료
 		
 		//return view;
 		return "admin/product/newproduct";
 	}
+
+	
 
 	@GetMapping("/newproduct")
 	public String newproduct() {

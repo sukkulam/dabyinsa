@@ -1,10 +1,18 @@
 package com.icia.dabyinsa.admin.service;
 
+import java.io.File;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -24,6 +32,7 @@ import com.icia.dabyinsa.admin.dto.order.OrderReturnsDto;
 import com.icia.dabyinsa.admin.dto.product.prodinfoDto;
 import com.icia.dabyinsa.admin.dto.product.productlistDto;
 
+
 import lombok.extern.java.Log;
 
 @Log
@@ -38,6 +47,9 @@ public class AdminService {
 	
 	@Autowired
 	private NewProductDao npDao;
+
+	@Autowired
+	private HttpSession session;
 
 	ModelAndView mv;
 
@@ -168,18 +180,26 @@ public class AdminService {
 	public int getPLListCount(String plkeyword, String plkeyword2, String plsearchOption, String plsearchOption2) {
 		return psDao.getPLListCount(plkeyword, plkeyword2, plsearchOption, plsearchOption2);
 	}
+	
 	//상품 등록
-
 	@Transactional
 	public String NewProduct(prodinfoDto pi, 
-			RedirectAttributes rttr) {
+			RedirectAttributes rttr, MultipartHttpServletRequest multi) {
 		log.info("NewProduct()");
 		String view = null;
 		String msg = null;
+		String check = multi.getParameter("fileCheck");
 
+		//내용을 dto 담아서 dao로 넘김
+		prodinfoDto board = new prodinfoDto();
 		
 		try {
-			npDao.NewProduct(pi);	
+		
+			if(check.equals("1")) {
+				fileUpload(multi, board.getProd_id_seq());
+			}
+			npDao.NewProduct(pi);
+				
 			view = "redirect:/";
 			msg = "등록 성공 ";
 		} catch (Exception e) {
@@ -187,11 +207,13 @@ public class AdminService {
 			view = "redirect:newproduct";
 			msg = "등록 실패";
 		}
-		
+
 		rttr.addFlashAttribute("msg", msg);
 		
 		return view;
 	}
+	
+	//중복체크 
 	public String Check(String ck) {
 		String res = null;
 		
@@ -207,6 +229,69 @@ public class AdminService {
 		
 		return res;
 	}
+	
+	
+	
+	
+	
+	
+	//상품 이미지등록
+	public void fileUpload(MultipartHttpServletRequest multi, 
+			String Prod_id_seq) throws Exception {
+		//multi는 업로드한 파일을 포함하고 있음.
+		//업로드한 파일과 게시물을 bnum으로 연결.
+		log.info("fileUpload()");
+		String realPath = session.getServletContext()
+				.getRealPath("/");
+		
+		//파일 저장 경로 추가
+		realPath = realPath.substring(0, realPath.lastIndexOf("webapp")) + "resources/static/product/";
+		log.info(realPath);
+		
+		//폴더가 존재하는 지 확인해서 없을 경우 생성.
+		File folder = new File(realPath);
+		if(folder.isDirectory() == false) {
+			folder.mkdir();
+		}
+		
+		//1. 파일 정보를 DB에 저장(bnum, oriname, sysname)
+		Map<String, String> fmap = new HashMap<String, String>();
+		fmap.put("Prod_id_seq", String.valueOf(Prod_id_seq));
+		
+		//원래 파일명 구하고, 각 파일별로 sysname을 만들어서 넣기
+		//multi에서 file 태그의 name 값 꺼내기
+		Iterator<String> files = multi.getFileNames();
+		
+		while(files.hasNext()) {
+			String fn = files.next();//file 태그의 name 값 꺼내기.
+			
+			//하나의 file input 태그에는 여러 파일이 업로드될 수 있다.
+			List<MultipartFile> fList = multi.getFiles(fn);
+			
+			//각각의 파일을 처리
+			for(int i = 0; i < fList.size(); i++) {
+				MultipartFile mf = fList.get(i);
+				//파일 이름 구하기
+				String orname = mf.getOriginalFilename();
+				
+				//변경할 이름 만들기
+				String syname = System.currentTimeMillis()
+						+ orname.substring(orname.lastIndexOf("."));
+				
+				//파일명들을 map에 저장
+				fmap.put("oriName", orname);
+				fmap.put("sysName", syname);
+				
+				//폴더에 파일 저장
+				File ff = new File(realPath + syname);
+				mf.transferTo(ff);
+				
+				//DB에 파일 정보 저장
+				npDao.fileInsert(fmap);
+			}
+		}
+		
+	}//method end
 	
 
 	

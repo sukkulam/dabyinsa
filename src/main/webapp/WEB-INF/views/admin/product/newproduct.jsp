@@ -32,21 +32,7 @@
 		<script type="text/javascript" src="dist/js/check.js"></script>
 		<script type="text/javascript" src=""></script>
 	
-		<!--  <script>
-			function newproduct() {
-				var PRODNAME = document.form1.PRODNAME.value;
-				var RETAILPRICE = document.form1.RETAILPRICE.value;
-				var TAXRATES = document.form1.TAXRATES.value;
-
-				if (PRODNAME == "") {//상품 이름이 입력 안되어있으면
-					alert("상품몀을 입력하세요");
-					document.form1.PRODNAME.focus();//form1페이지에 있는 "상품명을 입력하세요" 에 커서를 올려둠
-					return;
-				}
-				document.form1.action = "${path}/shop"
-			}
-
-		</script> -->
+	
 
 		<title>상품 등록</title>
 
@@ -167,17 +153,19 @@
 														</div>
 													</div>
 
-													<div class="row">
+													<div class="row filebox">
 														<label class="col-sm-2">상품 이미지</label>
 														<div class="com-sm-5 css-textarea">
-															<input type="radio" name="condition" value="Main"> 대표 이미지 등록
-															<input type="radio" name="condition" value="other"> 개별 이미지
-															등록
+														
 														</div>
 														
 														<div>
-															<input type="file" name="productImage" class="form-control">
+															<input type="file" name="files" id="file" class="upload-name" multiple>
 															
+				<!-- 업로드할 파일이 있으면 1, 없으면 0 -->
+				<input type="hidden" id="filecheck"
+					value="0" name="fileCheck">
+			</div>
 														</div>
 														
 													</div>
@@ -351,4 +339,35 @@
 
 	</body>
 
+<script type="text/javascript">
+//업로드할 파일을 선택하면 'upload-name' 요소에
+//파일 이름을 출력하고, 'fileCheck' 요소의 value를
+//1로 변경
+$("#file").on("change", function(){
+	//파일 입력창에서 선택한 파일 목록 가져오기
+	var files = $("#file")[0].files;
+	console.log(files);
+	
+	var fileName = "";
+	
+	if(files.length > 1){//하나 이상의 파일 선택 시
+		fileName = files[0].name + " 외 " 
+			+ (files.length - 1) + "개";
+	}
+	else if(files.length == 1){
+		fileName = files[0].name; 
+	}
+	
+	$(".upload-name").val(fileName);
+	
+	//fileCheck 부분 변경
+	if(fileName == ""){//파일 취소 시.
+		$("#filecheck").val(0);
+		$(".upload-name").val("파일선택");
+	}
+	else {//파일 선택 시.
+		$("#filecheck").val(1);
+	}
+});
+</script>
 	</html>
