@@ -44,9 +44,15 @@
 	UPDATE O SET D_STATUS = 4 WHERE O_CODE = #{ocode}
 	</update>
 	
+	<!-- 상품리스트 파일 삭제 버튼(삭제 쿼리 진행되기전에 선행되어야 함) -->
+	 <delete id="filedelete" parameterType="String">
+	DELETE FROM PROD_IMG WHERE pi_prod_id = #{pid}
+	 
+	
+	 </delete>
+		
 	<!-- 상품리스트 삭제 버튼 -->
 	<delete id="pdelete" parameterType="String">
 	 DELETE FROM PRODUCTLIST WHERE PID = #{pid}
-	
 	</delete>
 </mapper>
