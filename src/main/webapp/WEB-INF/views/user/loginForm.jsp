@@ -30,9 +30,6 @@
     <form class="login-box" action="/loginProc" method="post">
         <h3 class="login-logo">로그인</h3>
         <div>
-        <c:if test="${msg != null}">
-        	<p><c:out value="${msg}"></c:out></p>
-        </c:if>
         </div>
         <div>
             <input type="text" id="m_id" name="m_id" class="inputId" placeholder="아이디">
@@ -47,7 +44,7 @@
     </div>
     <br>
     <div>
-    <a href="findId" class="findId">아이디 찾기</a> <a href="findPw" class="findPw">비밀번호 찾기</a>
+    <a href="findId" class="findId">아이디 찾기</a> <a href="findPwPage" class="findPw">비밀번호 찾기</a>
     </div>
     <br>
     <div class="social-login">
@@ -55,15 +52,17 @@
         <a href="joinFrm">회원가입</a>
     </p>
     <p>
-        <img src="user/images/login/kakao_login.png"><a href="#"></a>
+       <a href="/oauth2/authorization/kakao">
+        <img src="user/images/login/kakao_login.png">
+        </a>
     </p>
 
     <p>
-        <img src="user/images/login/naver_login.png"> <a href="#"></a>
+       <a href="/oauth2/authorization/naver"> <img src="user/images/login/naver_login.png"> </a>
     </p>
 
     <p>
-        <img src="user/images/login/google_login.png"> <a href="#"></a>
+      <a href="/oauth2/authorization/google">  <img src="user/images/login/google_login.png" > </a>
     </p>
    	</div>
     </form>

@@ -208,11 +208,11 @@ public class MemberService {
 	}
 	
 
-	public String findMemberId(String m_id, String m_email
+	public String findMemberId(String m_name, String m_email
 			) {
 
 		 	
-		return mDao.findMemberId(m_id, m_email);
+		return mDao.findMemberId(m_name, m_email);
 	}
 	
 	
@@ -223,6 +223,7 @@ public class MemberService {
 		return mDao.opStatus(m_id);		
 	}
 	
+
 	
 
 

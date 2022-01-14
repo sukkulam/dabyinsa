@@ -13,11 +13,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.icia.dabyinsa.config.auth.PrincipalDetailService;
+import com.icia.dabyinsa.config.oauth.PrincipalOauth2Service;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	@Autowired
+	private PrincipalOauth2Service principalOauth2Service;
 	
 	@Autowired
 	private PrincipalDetailService principalDetailService;
@@ -68,6 +72,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				.logoutSuccessUrl("/loginForm")
-				.invalidateHttpSession(true);
+				.invalidateHttpSession(true)
+				.and()
+				.oauth2Login()
+				.loginPage("/loginForm")
+				.userInfoEndpoint()
+				.userService(principalOauth2Service);
+				
+				
 	}
 }
