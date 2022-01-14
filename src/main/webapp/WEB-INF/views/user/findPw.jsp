@@ -49,7 +49,7 @@
 			onclick="history.go(-1);return false;" class="btnBack"><Strong>BACK</Strong></a>
 		</span>
 
-    <form class="find_pw_form">
+    <form class="find_pw_form" action="findPw" method="get">
         <div>
             <h3>비밀번호 찾기</h3>
             <input type="radio" checked="checked" class="email_radio"><a>이메일 인증</a>
@@ -57,9 +57,7 @@
         <div>
             <input type="text" class="find_id" id="m_id" name="m_id" placeholder=" 아이디">
         </div>
-        <div>
-            <input type="text" class="find_name" name="m_name" placeholder=" 이름(실명)">
-        </div>
+
         <div>
             <input type="email" class="find_pw-email" id="m_email" name="m_email" placeholder=" 예) dabyinsa@dabyinsa.com">
         </div>

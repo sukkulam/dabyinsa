@@ -7,22 +7,25 @@ import java.util.Map;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import com.icia.dabyinsa.user.dto.MemberDto;
 
 import lombok.Data;
 
 @Data
-public class PrincipalDetail implements UserDetails{
+public class PrincipalDetail implements UserDetails, OAuth2User{
 
 	private static final long serialVersionUID = 1L;
 	private MemberDto user; // 콤포지션
 	private Map<String, Object> attributes;
 	
+	//일반 로그인
 	public PrincipalDetail(MemberDto user) {
 		this.user=user;
 	}
 	
+	// OAuth 로그인
 	public PrincipalDetail(MemberDto user, Map<String, Object> attributes) {
 		this.user=user;
 		this.attributes=attributes;
@@ -77,6 +80,18 @@ public class PrincipalDetail implements UserDetails{
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;
+	}
+	
+	@Override
+	public Map<String, Object> getAttributes() {
+		
+		return attributes;
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

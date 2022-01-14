@@ -30,12 +30,13 @@ public interface MemberDao {
 	
 	public String SearchId(String m_email);
 	
-	public String findMemberId(String m_id, String m_email);
+	public String findMemberId(String m_name, String m_email);
 	
 
     public int emailCheck(String m_email);
     
     public List<OrderDto> opStatus(String id);
+    
     
     
 

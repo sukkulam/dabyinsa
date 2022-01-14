@@ -5,7 +5,10 @@ import org.springframework.stereotype.Service;
 
 import com.icia.dabyinsa.admin.dao.ButtonDao;
 
+import lombok.extern.java.Log;
+
 @Service
+@Log
 public class ButtonService {
 	
 	@Autowired
@@ -50,4 +53,15 @@ public class ButtonService {
 	public void sEndBtn(String ocode) {
 		bDao.setSEnd(ocode);
 	}
+	//상품목록파일삭제 버튼
+	public void filedelete(String pid) {
+	bDao.filedelete(pid);
+	}
+	// 상품목록삭제 버튼
+	public void pdelete(String pid) {
+		log.info("delete()");
+		bDao.pdelete(pid);
+	}
+	
+	
 }
