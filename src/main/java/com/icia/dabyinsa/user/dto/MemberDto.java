@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 @Data
+@NoArgsConstructor
 public class MemberDto {
 		public String m_id;
 		public String m_pass;
@@ -33,5 +37,31 @@ public class MemberDto {
 	        }
 	        return new ArrayList<>();
 	    }
+
+		@Builder
+		public MemberDto(String m_id, String m_pass, String m_name, String m_phone, String m_email, String enrolldate,
+				String deletedate, int m_point, String m_grade, String m_provider, String m_providerId, int m_message,
+				String m_memo, int m_postal, String m_address, String m_addr, String m_role, String gr_name) {
+			this.m_id = m_id;
+			this.m_pass = m_pass;
+			this.m_name = m_name;
+			this.m_phone = m_phone;
+			this.m_email = m_email;
+			this.enrolldate = enrolldate;
+			this.deletedate = deletedate;
+			this.m_point = m_point;
+			this.m_grade = m_grade;
+			this.m_provider = m_provider;
+			this.m_providerId = m_providerId;
+			this.m_message = m_message;
+			this.m_memo = m_memo;
+			this.m_postal = m_postal;
+			this.m_address = m_address;
+			this.m_addr = m_addr;
+			this.m_role = m_role;
+			this.gr_name = gr_name;
+		}
+
+		
 }
 

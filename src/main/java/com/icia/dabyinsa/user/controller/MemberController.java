@@ -2,11 +2,15 @@ package com.icia.dabyinsa.user.controller;
 
 import java.security.Principal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.icia.dabyinsa.config.auth.PrincipalDetail;
 import com.icia.dabyinsa.user.dao.MemberDao;
 import com.icia.dabyinsa.user.dto.MemberDto;
 import com.icia.dabyinsa.user.dto.OrderDto;
@@ -59,17 +64,17 @@ public class MemberController {
 	}
 
 	@GetMapping("findMemberId")
-	public String findMemberId(@Param("m_id") String m_id,
+	public String findMemberId(@Param("m_name") String m_name,
 			@Param("m_email") String m_email, Model model) {
 
-		String id = mServ.findMemberId(m_id, m_email);
+		String id = mServ.findMemberId(m_name, m_email);
 
 		model.addAttribute("id", id);
 
 		return "user/findId";
 	}
 
-	@GetMapping("findPw")
+	@GetMapping("findPwPage")
 	public String findPw() {
 
 		return "user/findPw";
@@ -244,5 +249,37 @@ public class MemberController {
 
 		return view;
 	}
+	
+	@GetMapping("/test/oauth/login")
+	public @ResponseBody String testOauthLogin(
+			Authentication authentication,
+			@AuthenticationPrincipal OAuth2User oauth
+			) {
+		
+		System.out.println("/test/login =============");
+		OAuth2User oauth2User = (OAuth2User) authentication.getPrincipal();
+		System.out.println("authentication: " + oauth2User.getAttributes());
+		System.out.println("oauth2User: " + oauth.getAttributes());
+		
+		return "OAuth 세션 정보 확인하기";
+	}
+	
+	@GetMapping("/test/login")
+	public @ResponseBody String testLogin(Authentication authentication,
+			@AuthenticationPrincipal PrincipalDetail userDetails) {
+		
+		System.out.println("/test/login =============");
+		PrincipalDetail principalDetail = (PrincipalDetail) authentication.getPrincipal();
+		System.out.println("authentication: " + principalDetail.getUser());
+		
+		System.out.println("userDetails: " + userDetails.getUser());
+		return "세션 정보 확인하기";
+	}
+	
+	
+	
+	
+
+
 
 }

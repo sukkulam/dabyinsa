@@ -11,7 +11,7 @@
 		parameterType="com.icia.dabyinsa.user.dto.MemberDto">
 		INSERT INTO MEMBER(m_id, m_pass, m_name, m_phone, m_email, m_role, m_grade)
 		VALUES (#{m_id},#{m_pass},#{m_name},#{m_phone},
-				#{m_email}, 'ROLE_USER', 'test')
+				#{m_email}, 'ROLE_USER', '개인회원')
 	</insert>
 
     <select id="idCheck" parameterType="String"
@@ -83,7 +83,15 @@
     
 <select id="findMemberId" resultType="String" parameterType="String">
 	SELECT m_id FROM M
-	WHERE m_id = #{m_id} and m_email = #{m_email}
+	WHERE m_name = #{m_name} and m_email = #{m_email}
+
+</select>
+
+<select id="borderManager" parameterType="String" 
+resultType="com.icia.dabyinsa.user.dto.OrderDto">
+
+SELECT * FROM b_review 
+WHERE m_id = #{id}
 
 </select>
     
