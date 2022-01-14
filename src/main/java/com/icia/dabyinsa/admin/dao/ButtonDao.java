@@ -29,6 +29,9 @@ public interface ButtonDao {
 	// 배송완료처리 버튼
 	void setSEnd(String ocode);
 	
+	//상품목록파일삭제 버튼
+	void filedelete(String pid);
+	
 	//상품목록삭제 버튼
 	void pdelete(String pid); //삭제하기
 	
