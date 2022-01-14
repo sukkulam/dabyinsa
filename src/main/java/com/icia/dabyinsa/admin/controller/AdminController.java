@@ -5,18 +5,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.icia.dabyinsa.admin.dto.delivery.PaymentListDto;
 import com.icia.dabyinsa.admin.dto.delivery.ShippedBeginListDto;
@@ -28,7 +28,10 @@ import com.icia.dabyinsa.admin.dto.order.OrderChangeDto;
 import com.icia.dabyinsa.admin.dto.order.OrderListDto;
 import com.icia.dabyinsa.admin.dto.order.OrderRefundDto;
 import com.icia.dabyinsa.admin.dto.order.OrderReturnsDto;
+import com.icia.dabyinsa.admin.dto.product.prodinfoDto;
+import com.icia.dabyinsa.admin.dto.product.productlistDto;
 import com.icia.dabyinsa.admin.service.AdminService;
+import com.icia.dabyinsa.admin.service.ButtonService;
 import com.icia.dabyinsa.user.dto.MemberDto;
 import com.icia.dabyinsa.user.service.MemberService;
 
@@ -45,6 +48,10 @@ public class AdminController {
 	@Autowired
 	private MemberService ms;
 	
+	@Autowired
+	private ButtonService bs;
+
+
 	@GetMapping("/main")
 	public String main(Model model, Principal p) {
 		MemberDto member = ms.login(p.getName());
@@ -277,4 +284,101 @@ public class AdminController {
 		return "admin/delivery/adshippedcompletelist";
 	}
 	
+
+	// 상품 등록 페이지
+	@PostMapping("/setnewproduct")
+	public String setNewProduct(prodinfoDto pi,
+			RedirectAttributes rttr, MultipartHttpServletRequest multi) throws Exception {
+
+		
+			System.out.println(pi);
+			
+		String view = as.NewProduct(pi, rttr, multi);	//첫번째 메퍼쿼리가 실행되도록 pi를 윗 순서로 배치
+		as.fileUpload(multi, pi.getProd_id_seq());		//파일 업로드 까지 완료
+		
+		//return view;
+		return "admin/product/newproduct";
+	}
+
+	
+
+	@GetMapping("/newproduct")
+	public String newproduct() {
+		
+		return "admin/product/newproduct";
+	}
+
+	// 상품목록 페이지
+	@GetMapping("/productlist")
+	public String productlist(Model model,
+			@RequestParam(defaultValue = "") String plkeyword,
+			@RequestParam(defaultValue = "") String plkeyword2,
+			@RequestParam(defaultValue = "all") String plsearchOption,
+			@RequestParam(defaultValue = "") String plsearchOption2) {
+		List<productlistDto> plList = as.getPLList(plkeyword, plkeyword2, plsearchOption, plsearchOption2);
+
+		int count = as.getPLListCount(plkeyword, plkeyword2, plsearchOption, plsearchOption2);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchOption", plsearchOption);
+		map.put("plList", plList);
+		map.put("count", count);
+		map.put("keyword", plkeyword);
+		map.put("keywor2", plkeyword2);
+
+		model.addAttribute("map", map);
+		return "admin/product/productlist";
+
+	}
+
+	// 미리보기 페이지
+	@GetMapping("/preview")
+	public String preview() {
+		return "admin/product/preview";
+
+	}
+
+	// 상품 불러오기 페이지
+	@GetMapping("/productload")
+	public String productload() {
+		return "admin/product/productload";
+	}
+	//중복체크
+	@PostMapping(value = "Check",
+			produces = "application/text; charset=utf-8")
+	@ResponseBody
+	public String Check(String admin_prod_code) {
+		
+		//이후 해당 아이디로 DB를 검색하는 서비스와 Dao를 활용.
+		String res = as.Check(admin_prod_code);
+		
+		return res;
+	}
+
+
+	//게시물 삭제
+	@GetMapping("/pdelete")
+	public String postdelete(String pid) throws Exception {
+		bs.pdelete(pid);
+		
+		return "redirect:productlist";
+	}
+	
+	
+	//상품 선택 삭제
+	@PostMapping("/pdelete")
+	public String delete(HttpServletRequest request) throws Exception{
+		
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		System.out.println("ajaxMsg : " + ajaxMsg[0]);
+		int size = ajaxMsg.length;
+		for(int i=0; i<size; i++ ) {
+			System.out.println(ajaxMsg[i]);
+		bs.pdelete(ajaxMsg[i]);
+		}
+		return "redirect:productlist";		
 }
+	
+	
+}
+

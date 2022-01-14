@@ -68,7 +68,7 @@ public class MemberController {
 
 		return "user/findId";
 	}
-
+ 
 	@GetMapping("findPw")
 	public String findPw() {
 
