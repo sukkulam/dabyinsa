@@ -9,6 +9,7 @@ import javax.mail.Service;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.annotation.JacksonInject;
@@ -40,18 +42,24 @@ import com.icia.dabyinsa.admin.dto.product.productlistDto;
 import com.icia.dabyinsa.admin.service.AdminService;
 import com.icia.dabyinsa.admin.service.ButtonService;
 
+
 import lombok.extern.java.Log;
 
 @Controller
 @RequestMapping("admin")
 @Log
 public class AdminController {
+	
+	private static final Logger LOGGER = 
+			LoggerFactory.getLogger(AdminController.class);
 
 	@Autowired
 	private AdminService as;
 
 	@Autowired
 	private ButtonService bs;
+	
+	private ModelAndView mv;
 
 
 
@@ -295,7 +303,7 @@ public class AdminController {
 		System.out.println(pi);
 
 		String view = as.NewProduct(pi, rttr, multi);	//첫번째 메퍼쿼리가 실행되도록 pi를 윗 순서로 배치
-		as.fileUpload(multi, pi.getProd_id_seq());		//파일 업로드 까지 완료
+		as.fileUpload(multi, pi.getProd_id());		//파일 업로드 까지 완료
 
 		//return view;
 		return "admin/product/newproduct";
@@ -331,6 +339,22 @@ public class AdminController {
 		return "admin/product/productlist";
 
 	}
+	
+	//상품 목록 리스트 페이징 처리
+//	@GetMapping("/productlist")
+//	public ModelAndView SearchList(Integer pageNum) {
+		//pageNum에 들어오는 데이터
+		// 1. null - url에 페이지번호를 작성하지 않을 때
+		//			첫번째 페이지가 보여지는 상황.(로그인한 직후)
+		// 2. 페이지 번호 숫자.
+//		LOGGER.info("productlist()");
+		
+		//DB에서 게시글을 가져와서 페이지로 전달.
+//		mv = as.getSearchList(pageNum);
+
+//		return mv;
+//	}
+
 
 	// 미리보기 페이지
 	@GetMapping("/preview")
@@ -370,8 +394,6 @@ public class AdminController {
 		}
 		return "redirect:productlist";		
 	}
-
-
 
 
 }

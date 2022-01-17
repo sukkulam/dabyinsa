@@ -18,7 +18,7 @@ public class prodinfoDto {
     SHIPPING_FEE, PROD_CATEGRY
 
     */
-    private String Prod_id_seq;
+    private String Prod_id;
     private String prod_name;
     private int price;
     private int retail_price;
