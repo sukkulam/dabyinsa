@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.icia.dabyinsa.admin.dto.delivery.PaymentListDto;
@@ -33,6 +36,10 @@ import com.icia.dabyinsa.admin.dto.product.prodinfoDto;
 import com.icia.dabyinsa.admin.dto.product.productlistDto;
 import com.icia.dabyinsa.admin.service.AdminService;
 import com.icia.dabyinsa.admin.service.ButtonService;
+import com.icia.dabyinsa.admin.service.GuestAdminService;
+import com.icia.dabyinsa.admin.service.MemberAdminService;
+import com.icia.dabyinsa.admin.service.MemberInfoService;
+import com.icia.dabyinsa.user.dto.GuestDto;
 import com.icia.dabyinsa.user.dto.MemberDto;
 import com.icia.dabyinsa.user.service.MemberService;
 
@@ -43,6 +50,9 @@ import lombok.extern.java.Log;
 @Log
 @Secured("ROLE_ADMIN")
 public class AdminController {
+	
+	private static final Logger LOGGER = 
+			LoggerFactory.getLogger(AdminController.class);
 
 	@Autowired
 	private AdminService as;
@@ -52,6 +62,17 @@ public class AdminController {
 	
 	@Autowired
 	private ButtonService bs;
+	
+	private ModelAndView mv;
+	
+	@Autowired
+	private MemberAdminService mas;
+	
+	@Autowired
+	private GuestAdminService gs;
+	
+	@Autowired
+	private MemberInfoService mi;
 
 	@GetMapping("/main")
 	public String main(Model model, Principal p) {
@@ -296,7 +317,7 @@ public class AdminController {
 		System.out.println(pi);
 
 		String view = as.NewProduct(pi, rttr, multi);	//첫번째 메퍼쿼리가 실행되도록 pi를 윗 순서로 배치
-		as.fileUpload(multi, pi.getProd_id_seq());		//파일 업로드 까지 완료
+		as.fileUpload(multi, pi.getProd_id());		//파일 업로드 까지 완료
 
 		//return view;
 		return "admin/product/newproduct";
@@ -332,6 +353,22 @@ public class AdminController {
 		return "admin/product/productlist";
 
 	}
+	
+	//상품 목록 리스트 페이징 처리
+//	@GetMapping("/productlist")
+//	public ModelAndView SearchList(Integer pageNum) {
+		//pageNum에 들어오는 데이터
+		// 1. null - url에 페이지번호를 작성하지 않을 때
+		//			첫번째 페이지가 보여지는 상황.(로그인한 직후)
+		// 2. 페이지 번호 숫자.
+//		LOGGER.info("productlist()");
+		
+		//DB에서 게시글을 가져와서 페이지로 전달.
+//		mv = as.getSearchList(pageNum);
+
+//		return mv;
+//	}
+
 
 	// 미리보기 페이지
 	@GetMapping("/preview")
@@ -372,7 +409,98 @@ public class AdminController {
 		return "redirect:productlist";		
 	}
 
+	//전체 회원
+		@GetMapping("/memberadmin")
+		public String memberadmin(Model model,
+				@RequestParam(defaultValue = "") String mkeyword,
+				@RequestParam(defaultValue = "") String mkeyword2,
+				@RequestParam(defaultValue = "all") String msearchOption,
+				@RequestParam(defaultValue = "") String msearchOption2) {
+				List<MemberDto> mList = mas.getMemberList(mkeyword, mkeyword2, msearchOption, msearchOption2);
+				int count = mas.getMemberListCount(mkeyword, mkeyword2, msearchOption, msearchOption2);
+				int scount = mas.getMemberSeachListCount(mkeyword, mkeyword2, msearchOption, msearchOption2);
+				System.out.println(mkeyword);
+				System.out.println(mkeyword2);
+				System.out.println(msearchOption);
+				System.out.println(msearchOption2);
+				log.info("mList : " + mList);
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("msearchOption", msearchOption);
+				map.put("msearchOption2", msearchOption2);
+				map.put("mList", mList);
+				map.put("count", count);
+				map.put("scount", scount);
+				map.put("mkeyword", mkeyword);
+				map.put("mkeywor2", mkeyword2);
+				
+				model.addAttribute("map", map);
+				return "admin/member/memberadmin";
+		}
+		
+		//고객 선택 삭제
+		@RequestMapping(value = "/delete")
+		public String ajaxTest(HttpServletRequest request) {
+			
+			String[] ajaxMsg = request.getParameterValues("valueArr");
+			int size = ajaxMsg.length;
+			for(int i=0; i<size; i++) {
+				mas.delete(ajaxMsg[i]);
+			}
+			return "redirect:/admin/memberadmin";
+		}
+		
+		
+	//하객 관리
+	@GetMapping("/guestadmin")
+	public String guestadmin(Model model, 
+			@RequestParam(defaultValue = "") String gkeyword,
+			@RequestParam(defaultValue = "") String gkeyword2,
+			@RequestParam(defaultValue = "all") String gsearchOption,
+			@RequestParam(defaultValue = "") String gsearchOption2) {
+			System.out.println(gkeyword);
+			System.out.println(gkeyword2);
+			System.out.println(gsearchOption);
+			System.out.println(gsearchOption2);
+			List<GuestDto> gList = gs.getGuestList(gkeyword, gkeyword2, gsearchOption, gsearchOption2);
+			int count = gs.getGListCount(gkeyword, gkeyword2, gsearchOption, gsearchOption2);
+			int scount = gs.getGSearchListCount(gkeyword, gkeyword2, gsearchOption, gsearchOption2);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("gsearchOption", gsearchOption);
+			map.put("gsearchOption2", gsearchOption2);
+			map.put("gList", gList);
+			map.put("count", count);
+			map.put("scount", scount);
+			map.put("gkeyword", gkeyword);
+			map.put("gkeyword2", gkeyword2);
+			
+			model.addAttribute("map", map);
+			return "admin/member/guestadmin";
+	}
+	
+	//하객 선택 삭제
+	@RequestMapping(value = "/guestDelete")
+	public String ajaxGTest(HttpServletRequest request) {
+		log.info("ajaxGTest()");
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		int size = ajaxMsg.length;
+		for(int i=0; i<size; i++) {
+			gs.delete(ajaxMsg[i]);
+		}
+		return "redirect:/admin/guestadmin";
+	}
 
+	
+	//고객 상세보기 팝업
+	@RequestMapping("memberinfo")
+	public String memberinfo(String m_id, Model model) {
+		model.addAttribute("mList", mi.memInfo(m_id));
+		System.out.println("회원 상세 정보 진입");
+		System.out.println(mi.memInfo(m_id));
+		return "admin/member/memberinfo";	
+	}
+		
+	
+	
 
 
 }

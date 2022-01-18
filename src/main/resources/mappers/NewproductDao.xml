@@ -6,15 +6,15 @@
 
 <!-- 상품 등록 -->
 <insert id="NewProduct" parameterType="com.icia.dabyinsa.admin.dto.product.prodinfoDto" useGeneratedKeys="true" 
-	keyProperty="Prod_id_seq">
-	<selectKey keyProperty="Prod_id_seq" resultType="String" order="BEFORE">
+	keyProperty="Prod_id">
+	<selectKey keyProperty="Prod_id" resultType="String" order="BEFORE">
 		select prod_id_seq.nextval from dual
 	</selectKey>
-	insert into PROD_INFO (Prod_id_seq, prod_name, retail_price, special_member_price, taxrates, 
+	insert into PROD_INFO (Prod_id, prod_name, retail_price, special_member_price, taxrates, 
     admin_prod_code, prod_summary_ex, prod_briefly_ex, prod_detail_ex, sale_dp, buy_rightoff, 
     prod_meterial, supplier, making_company, making_date, making_contry, registration_date, 
     fix_date, shipping_fee, prod_categry, price) 
-    VALUES (#{Prod_id_seq}, #{prod_name}, #{retail_price}, #{special_member_price}, #{taxrates}, 
+    VALUES (#{Prod_id}, #{prod_name}, #{retail_price}, #{special_member_price}, #{taxrates}, 
     #{admin_prod_code}, #{prod_summary_ex}, #{prod_briefly_ex}, #{prod_detail_ex}, #{sale_dp}, #{buy_rightoff}, 
     #{prod_meterial}, #{supplier}, #{making_company}, #{making_date}, #{making_contry}, sysdate, 
     sysdate, #{shipping_fee}, #{prod_categry}, #{price})
@@ -22,7 +22,7 @@
 
     <insert id="fileInsert" parameterType="HashMap">
 		INSERT INTO PROD_IMG 
-		VALUES (img_no_SEQ.NEXTVAL,#{Prod_id_seq},#{oriName},#{sysName})
+		VALUES (img_no_SEQ.NEXTVAL,#{Prod_id},#{oriName},#{sysName})
 	</insert> 
 
 

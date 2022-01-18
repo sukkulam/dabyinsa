@@ -31,7 +31,7 @@ import com.icia.dabyinsa.admin.dto.order.OrderRefundDto;
 import com.icia.dabyinsa.admin.dto.order.OrderReturnsDto;
 import com.icia.dabyinsa.admin.dto.product.prodinfoDto;
 import com.icia.dabyinsa.admin.dto.product.productlistDto;
-
+import com.icia.dabyinsa.admin.util.PagingUtil;
 
 import lombok.extern.java.Log;
 
@@ -52,6 +52,8 @@ public class AdminService {
 	private HttpSession session;
 
 	ModelAndView mv;
+	
+	private int plistCnt = 2;//페이지 당 게시글 개수
 
 	// 전체 주문 목록
 	public List<OrderListDto> getOrderList(String keyword, String keyword2, String searchOption, String searchOption2) {
@@ -196,7 +198,7 @@ public class AdminService {
 		try {
 		
 			if(check.equals("1")) {
-				fileUpload(multi, board.getProd_id_seq());
+				fileUpload(multi, board.getProd_id());
 			}
 			npDao.NewProduct(pi);
 				
@@ -237,7 +239,7 @@ public class AdminService {
 	
 	//상품 이미지등록
 	public void fileUpload(MultipartHttpServletRequest multi, 
-			String Prod_id_seq) throws Exception {
+			String Prod_id) throws Exception {
 		//multi는 업로드한 파일을 포함하고 있음.
 		//업로드한 파일과 게시물을 bnum으로 연결.
 		log.info("fileUpload()");
@@ -256,7 +258,7 @@ public class AdminService {
 		
 		//1. 파일 정보를 DB에 저장(bnum, oriname, sysname)
 		Map<String, String> fmap = new HashMap<String, String>();
-		fmap.put("Prod_id_seq", String.valueOf(Prod_id_seq));
+		fmap.put("Prod_id", String.valueOf(Prod_id));
 		
 		//원래 파일명 구하고, 각 파일별로 sysname을 만들어서 넣기
 		//multi에서 file 태그의 name 값 꺼내기
@@ -293,6 +295,60 @@ public class AdminService {
 		
 	}//method end
 	
+	
+	//상품목록 페이징처리
+	public ModelAndView getSearchList(Integer pageNum) {
+		mv = new ModelAndView();
+		
+		//null 또는 페이지 번호가 pageNum으로 넘어옴.
+		int num = (pageNum == null)? 1 : pageNum;
+		//로그인 후에는 null이 넘어옴.
+		
+		//게시글 목록 가져오기
+		Map<String, Integer> plmap = 
+				new HashMap<String, Integer>();
+		plmap.put("num", num);
+		plmap.put("lcnt", plistCnt);
+		//차후 view(jsp)에서 페이지 당 글 개수를 입력받아서
+		//설정하는 부분을 처리하여 10 대신 사용.
+		
+		List<productlistDto> bList = psDao.getLLList(plmap);
+		
+		//화면에 전송.
+		mv.addObject("bList", bList);
+		
+		//페이징 처리
+		String pageHtml = getSearchListPaging(num);
+		mv.addObject("paging", pageHtml);
+		
+		//세션에 페이지번호 저장
+		//글작성 화면, 글내용 상세보기 화면 등에서 다시 목록으로
+		//돌아갈때 보고 있던 페이지가 나오도록 하기 위해.
+		session.setAttribute("pageNum", num);
+		
+		//jsp 파일 이름 지정
+		mv.setViewName("productList");
+		
+		return mv;
+	}
+	
+
+	private String getSearchListPaging(int num) {
+		String pageHtml = null;
+		
+		//전체 글 개수 구하기(DAO)
+		int maxNum = psDao.getpBoardCnt();
+		//한 페이지에 보여질 페이지 번호 개수
+		int pageCnt = 4;
+		String listName = "list";
+		
+		PagingUtil paging = new PagingUtil(maxNum, num, plistCnt, 
+				pageCnt, listName);
+		
+		pageHtml = paging.makePaging();
+		
+		return pageHtml;
+	}
 
 	
 	
