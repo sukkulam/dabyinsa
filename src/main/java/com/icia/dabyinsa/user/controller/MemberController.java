@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -77,15 +78,18 @@ public class MemberController {
 
 		return "user/findPw";
 	}
-
+	@Secured("ROLE_USER")
 	@GetMapping("infoUpdatePage")
 	public String infoUpdatePage(Model model, Principal p) {
 //		String m_id = (String) session.getAttribute("m_id");
 
 		String m_id = p.getName();
+		
 		MemberDto mDto = mServ.login(m_id);
 
 		model.addAttribute("mDto", mDto);
+		
+		
 
 		return "user/infoUpdatePage";
 	}
@@ -123,11 +127,16 @@ public class MemberController {
 
 		return view;
 	}
-
+	@Secured("ROLE_USER")
 	@GetMapping("myPage")
 	public String myPage(Model model, Principal p) {
 		
 		String m_id = p.getName();
+		
+		if(m_id == null) {
+			
+			return "user/loginForm";
+		}
 		
 		/*
 		int count = mServ.orderBefore(1);

@@ -44,6 +44,22 @@ $(function() {
 		
 		
 	}
+	
+	
+	function passCheck(){
+		var pass = document.getElementById("mPass"); //비밀번호
+		var passCk = document.getElementById("mPassCk"); //비밀번호 확인 값
+		
+		if(pass.value == passCk.value) {
+			$("#pwt").css("display", "block");
+			$("#pwf").css("display", "none");
+			$('#submit').attr("disabled", false);
+		} else {
+			$("#pwf").css("display", "block");
+			$("#pwt").css("display", "none");
+			$('#submit').attr("disabled", true);
+		}
+	}
 
 </script>
 
@@ -62,8 +78,15 @@ $(function() {
 		</div>
 		<a class="joinInfo">비밀번호<span id="star">*</span></a>
 		<div class="input-box">
-			<input onkeyup="chkword(this, 16)" type="password" class="joinInput"
+			<input  type="password" class="joinInput" id="mPass"
 				name="m_pass" placeholder=" 영어,숫자 혼합8~16자">
+		</div>
+		<p id="pwt"> 비밀번호가 일치 합니다. </p>
+			<p id="pwf"> 비밀번호가 일치하지 않습니다. </p>
+		<a class="joinInfo">비밀번호 확인<span id="star">*</span></a>
+		<div class="input-box">
+			<input type="password" class="joinInput" placeholder=" 비밀번호를 다시 입력해주세요." id="mPassCk"
+			onkeyup="passCheck()" onchange="passCheck()" required="required">
 		</div>
 
 		<a class="joinInfo">이름<span id="star">*</span></a>
@@ -253,7 +276,7 @@ $(function() {
 선택 약관에 동의하지 않으셔도 회원가입은 가능하며, 회원가입 후 회원정보수정 페이지에서 언제든지 수신여부를 변경하실 수 있습니다.
 					</div>
 					 <br> <input
-						type="submit" class="login-btn" value="가입">
+						type="submit" class="login-btn" id="submit" value="가입">
 				</div>
 			</div>
 		</div>
