@@ -1,18 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="org.springframework.security.core.context.SecurityContextHolder"%>
-<%@ page import="org.springframework.security.core.Authentication"%>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="org.springframework.security.core.Authentication" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <%
-Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-Object principal = auth.getPrincipal();
-
-String name = "";
-if (principal != null) {
-	name = auth.getName();
-}
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    Object principal = auth.getPrincipal();
+ 
+    String name = "";
+    if(principal != null) {
+        name = auth.getName();
+    }
 %>
 
 <!DOCTYPE html>
@@ -25,17 +25,19 @@ if (principal != null) {
 	<title>답인사</title>
 
 	<!-- favicon -->
-	<link rel="shortcut icon" href="../images/01.header/logo.png">
+	<link rel="shortcut icon" href="user/images/01.header/logo.png">
 	<!-- css -->
 	<link rel="stylesheet" type="text/css" href="user/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="user/css/materialdesignicons.min.css" />
 	<link rel="stylesheet" type="text/css" href="user/css/jquery.mCustomScrollbar.min.css" />
-	<link rel="stylesheet" type="text/css" href="user/css/00_common.css" />
+	<link rel="stylesheet" type="text/css" href="user/css/00_main.css" />
 </head>
 
-<body class="app" data-target="user/product_listnino-navbar" data-spy="scroll">
+ 
+
+<body class="app" data-target="#nino-navbar" data-spy="scroll">
 	<!-- 사이드 바-->
-`	<div class="side-bar" id="side-bar">
+	<div class="side-bar" id="side-bar">
 		<!--사이드 헤더-->
 		<div class="sign-processor">
 			<!-- 아이콘-->
@@ -46,11 +48,12 @@ if (principal != null) {
 					<i class="mdi mdi-close" id="close"></i>
 					
 					<c:choose>
-					<c:when test="${M_ROLE == 'ROLE_ADMIN'}">
+					<c:when test="${mmap.m_grade == 'ROLE_ADMIN'}">
 					<a href="../admin/main"><i class="mdi mdi-account-check" id="manager"></i>
 					</a>
 					</c:when>
 					<c:otherwise>
+					
 					</c:otherwise>
 					</c:choose>
 					
@@ -90,15 +93,15 @@ if (principal != null) {
 				</div>		
 				</sec:authorize>
 		</div>
-		
+
 		<!-- 검색바-->
+		
 		<form name="search" method="get">
 		<div class="search">
-		<input type="text" class="search-text" placeholder="Search..." name="keyword" >
-		<button class="search-btn" type="submit">검색</button>
+			<input type="text" class="search-text" placeholder="Search..." name="keyword" >
+			<button class="search-btn" type="submit">검색</button>
 		</div>
 		</form>
-		
 		<!--카테고리 부분-->
 		<!--대분류-->
 		<div class="category-menu">
@@ -139,7 +142,7 @@ if (principal != null) {
 						<span class="menu_selector-wrapper" id="6">
 							청첩장
 						</span></li>
-					<li><a href="../product_list" class="m-menu-all">
+					<li><a href="user/product_list" class="m-menu-all">
 							카테고리 전체보기
 							<i class="mdi mdi-chevron-right"></i>
 						</a></li>
@@ -216,24 +219,24 @@ if (principal != null) {
 
 				<ul class="cm-menu-list">
 					<li class="cmenu_selector">
-						<a href="user/product_list">공지사항
+						<a href="#">공지사항
 							<i class="mdi mdi-chevron-right"></i>
 						</a>
 					</li>
 					<li class="cmenu_selector">
-						<a href="user/product_list">
+						<a href="#">
 							상품 사용후기
 							<i class="mdi mdi-chevron-right"></i>
 						</a>
 					</li>
 					<li class="cmenu_selector">
-						<a href="user/product_list">
+						<a href="#">
 							상품 Q&A
 							<i class="mdi mdi-chevron-right"></i>
 						</a>
 					</li>
 					<li class="cmenu_selector">
-						<a href="user/product_list">
+						<a href="#">
 							이벤트
 							<i class="mdi mdi-chevron-right"></i>
 						</a>
@@ -250,6 +253,7 @@ if (principal != null) {
 				
 			</div>
 		</div>
+
 		<!--고객센터 -->
 		<div class="customer">
 			<header class="title">center</header>
@@ -280,17 +284,16 @@ if (principal != null) {
 		</div>
 	</div>
 
-
 	<!-- 헤더 -->
 	<header id="main-header">
-		<div id="main-headerInner">
+		<div id="main-headerInner" style="background-image: url('user/images/01.main/header00.jpg')">
 			<!-- 헤더 - 네비게이션 -->
 			<nav id="main-navbar" class="navbar navbar-default" role="navigation">
 				<div class="container">
 					<!-- 로고(이미지,글씨) -->
 					<div class="navbar-header">
 						<a class="navbar-brand" href="/">
-							<img class="main-logo-img" src="../images/logo.png" alt="web-logo">
+							<img class="main-logo-img" src="user/images/logo.png" alt="web-logo">
 							<span class="nino-subHeading main-logo"> DABYINSA</span>
 						</a>
 					</div>
@@ -298,34 +301,92 @@ if (principal != null) {
 					<!-- 메뉴바 옆 카테고리 -->
 					<div class="nino-menuItem pull-right">
 						<!-- 누르면 해당 메뉴가 있는 곳으로 이동함 -->
-						<div class="collapse navbar-collapse pull-left"
-							id="nino-navbar-collapse">
+						<div class="collapse navbar-collapse pull-left" id="nino-navbar-collapse">
 							<ul class="nav navbar-nav">
-								<li><a href="user/product_list">답례품</a></li>
-								<li><a href="user/product_list">답례품교환권</a></li>
-								<li><a href="user/product_list">드레스/한복</a></li>
-								<li><a href="user/product_list">헤어/메이크업</a></li>
-								<li><a href="user/product_list">스튜디오</a></li>
-								<li><a href="user/product_list">청첩장</a></li>
+								<li><a href="#new-items">NEW ITEMS</a></li>
+								<li><a href="#nino-latestBlog">BEST ITEMS</a></li>
+								<li><a href="#nino-portfolio">STORY</a></li>
 							</ul>
 						</div>
 
 						<!-- 장바구니 마이페이지-->
 						<ul class="nino-iconsGroup nav navbar-nav">
 							<!-- 사이드 메뉴 버튼 -->
-							<li><a href="myPage"><i class="mdi mdi-heart-outline"></i></a></li>
-							<li><a href="../cart/list"><i class="mdi mdi-cart-outline nino-icon"></i></a></li>
-							<li><a href="../wish/wishList"><i class="mdi mdi-account"></i></a></li>
-							<button id="sbtn" class="sbtn"><i class="mdi mdi-menu"></i></button>
-							
-								
+								<li><a href=""><i class="mdi mdi-heart-outline"></i></a></li>
+							<li><a href=""><i class="mdi mdi-cart-outline nino-icon"></i></a></li>
+							<li><a href="/myPage"><i class="mdi mdi-account"></i></a></li>
+								<button id="sbtn" class="sbtn">
+								<i class="mdi mdi-menu"></i>
+							</button>
 						</ul>
 					</div>
 				</div>
 			</nav>
 
+			<!-- 메인 슬라이더 -->
+			<section id="nino-slider" class="carousel slide container" data-ride="carousel">
+				<!-- 메인 슬라이더 -->
+				<div class="carousel-inner" role="listbox">
+					<!-- 슬라이드 1-->
+					<div class="item active">
+						<a href="#">
+							<img src="user/images/01.main/header01.png" alt="main-slider">
+						</a>
+					</div>
+					<!-- 슬라이드 2-->
+					<div class="item">
+						<a href="#">
+							<img src="user/images/01.main/header02.png" alt="main-slider">
+						</a>
+					</div>
+					<!-- 슬라이드 3-->
+					<div class="item">
+						<a href="#">
+							<img src="user/images/01.main/header03.png" alt="main-slider">
+						</a>
+					</div>
+					<!-- 슬라이드 4-->
+					<div class="item">
+						<h2 class="nino-sectionHeading">
+							<span class="nino-subHeading">슬라이드 이미지</span>
+						</h2>
+						<a href="#" class="nino-btn">이동버튼</a>
+					</div>
+				</div>
+
+				<!-- 슬라이더 버튼 -->
+				<ol class="carousel-indicators clearfix">
+					<li data-target="#nino-slider" data-slide-to="0" class="active">
+						<div class="inner">
+							<span class="number">01</span> 초성퀴즈 이벤트
+						</div>
+					</li>
+					<li data-target="#nino-slider" data-slide-to="1">
+						<div class="inner">
+							<span class="number">02</span> 가장 받고싶지 않은 답례품
+						</div>
+					</li>
+					<li data-target="#nino-slider" data-slide-to="2">
+						<div class="inner">
+							<span class="number">03</span> 답례품 mbti
+						</div>
+					</li>
+					<li data-target="#nino-slider" data-slide-to="3">
+						<div class="inner">
+							<span class="number">04</span> contacts
+						</div>
+					</li>
+				</ol>
+			</section>
 		</div>
 	</header>
+
+
+
+
+	
+	
+	
 
 	<script type="text/javascript" src="user/js/05_jquery.min.js"></script>
 	<script type="text/javascript" src="user/js/00_common.js"></script>
@@ -335,6 +396,7 @@ if (principal != null) {
 	<script type="text/javascript" src="user/js/03_jquery.hoverdir.js"></script>
 	<script type="text/javascript" src="user/js/04_jquery.mCustomScrollbar.concat.min.js"></script>
 	
+	<script type="text/javascript" src="user/js/06_jquery.prettyPhoto.js"></script>
 	<script type="text/javascript" src="user/js/07_modernizr.custom.97074.js"></script>
 	<script type="text/javascript" src="user/js/08_template.js"></script>
 	<script type="text/javascript" src="user/js/09_unslider-min.js"></script>
