@@ -100,7 +100,7 @@
 				</div>
 				<p class="title-text"><strong >기타</strong></p>
 				<ul class="consult-menu">
-					<li class=""><a href="/board/consult/list.html">1:1 맞춤상담</a></li>
+					<li class=""><a href="oneone_list">1:1 맞춤상담</a></li>
 				</ul>
 			</div>
 

@@ -11,7 +11,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link href="user/css/user.css" rel="stylesheet" type="text/css">
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="main_header.jsp"></jsp:include>
 <script type="text/javascript" src="user/js/idcheck.js"></script>
 <script type="text/javascript" src="user/js/checkbox.js"></script>
 

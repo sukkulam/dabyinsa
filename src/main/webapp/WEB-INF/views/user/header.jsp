@@ -216,24 +216,24 @@ if (principal != null) {
 
 				<ul class="cm-menu-list">
 					<li class="cmenu_selector">
-						<a href="user/product_list">공지사항
+						<a href="../../infuse_list">공지사항
 							<i class="mdi mdi-chevron-right"></i>
 						</a>
 					</li>
 					<li class="cmenu_selector">
-						<a href="user/product_list">
+						<a href="../../review_list">
 							상품 사용후기
 							<i class="mdi mdi-chevron-right"></i>
 						</a>
 					</li>
 					<li class="cmenu_selector">
-						<a href="user/product_list">
+						<a href="../../oneone_list">
 							상품 Q&A
 							<i class="mdi mdi-chevron-right"></i>
 						</a>
 					</li>
 					<li class="cmenu_selector">
-						<a href="user/product_list">
+						<a href="../../product_list">
 							이벤트
 							<i class="mdi mdi-chevron-right"></i>
 						</a>
@@ -290,7 +290,7 @@ if (principal != null) {
 					<!-- 로고(이미지,글씨) -->
 					<div class="navbar-header">
 						<a class="navbar-brand" href="/">
-							<img class="main-logo-img" src="../images/logo.png" alt="web-logo">
+							<img class="main-logo-img" src="user/images/logo.png" alt="web-logo">
 							<span class="nino-subHeading main-logo"> DABYINSA</span>
 						</a>
 					</div>
@@ -313,9 +313,9 @@ if (principal != null) {
 						<!-- 장바구니 마이페이지-->
 						<ul class="nino-iconsGroup nav navbar-nav">
 							<!-- 사이드 메뉴 버튼 -->
-							<li><a href="myPage"><i class="mdi mdi-heart-outline"></i></a></li>
-							<li><a href="../cart/list"><i class="mdi mdi-cart-outline nino-icon"></i></a></li>
-							<li><a href="../wish/wishList"><i class="mdi mdi-account"></i></a></li>
+							<button id="sbtn" class="sbtn" style="color: white;" ><a href="myPage"><i class="mdi mdi-heart-outline"></i></a></button>
+							<button id="sbtn" class="sbtn" style="color: white;" ><a href="user/cart/list"><i class="mdi mdi-cart-outline nino-icon"></i></a></button>
+							<button id="sbtn" class="sbtn" style="color: white;" ><a href="user/wish/wishList"><i class="mdi mdi-account"></i></a></button>
 							<button id="sbtn" class="sbtn"><i class="mdi mdi-menu"></i></button>
 							
 								

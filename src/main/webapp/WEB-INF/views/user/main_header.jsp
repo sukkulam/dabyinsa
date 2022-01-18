@@ -214,29 +214,29 @@
 				</div>
 			</div>
 
-			<!--커뮤니티 중분류-->
+						<!--커뮤니티 중분류-->
 			<div class="community-m-menu" id="community">
 
 				<ul class="cm-menu-list">
 					<li class="cmenu_selector">
-						<a href="#">공지사항
+						<a href="../infuse_list">공지사항
 							<i class="mdi mdi-chevron-right"></i>
 						</a>
 					</li>
 					<li class="cmenu_selector">
-						<a href="#">
+						<a href="../review_list">
 							상품 사용후기
 							<i class="mdi mdi-chevron-right"></i>
 						</a>
 					</li>
 					<li class="cmenu_selector">
-						<a href="#">
+						<a href="../oneone_list">
 							상품 Q&A
 							<i class="mdi mdi-chevron-right"></i>
 						</a>
 					</li>
 					<li class="cmenu_selector">
-						<a href="#">
+						<a href="user/product_list">
 							이벤트
 							<i class="mdi mdi-chevron-right"></i>
 						</a>
@@ -312,9 +312,10 @@
 						<!-- 장바구니 마이페이지-->
 						<ul class="nino-iconsGroup nav navbar-nav">
 							<!-- 사이드 메뉴 버튼 -->
-								<li><a href=""><i class="mdi mdi-heart-outline"></i></a></li>
-							<li><a href=""><i class="mdi mdi-cart-outline nino-icon"></i></a></li>
-							<li><a href="/myPage"><i class="mdi mdi-account"></i></a></li>
+								<button id="sbtn" class="sbtn" style="color: white;" >
+                     <a href="../myPage"><i class="mdi mdi-account"></i></a></button>
+							<button id="sbtn" class="sbtn" style="color: white;" ><a href="user/cart/list"><i class="mdi mdi-cart-outline nino-icon"></i></a></button>
+							<button id="sbtn" class="sbtn" style="color: white;" ><a href="user/wish/wishList"><i class="mdi mdi-account"></i></a></button>
 								<button id="sbtn" class="sbtn">
 								<i class="mdi mdi-menu"></i>
 							</button>

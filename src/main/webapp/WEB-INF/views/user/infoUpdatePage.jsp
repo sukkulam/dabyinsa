@@ -9,7 +9,7 @@
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="user/css/infoUpdate.css" rel="stylesheet" type="text/css">
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="main_header.jsp"></jsp:include>
 <title>답인사 | 기본회원정보</title>
 
 <script type="text/javascript">
