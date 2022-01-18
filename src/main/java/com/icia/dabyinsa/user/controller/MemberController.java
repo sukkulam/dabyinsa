@@ -78,7 +78,7 @@ public class MemberController {
 
 		return "user/findPw";
 	}
-	@Secured("ROLE_USER")
+	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@GetMapping("infoUpdatePage")
 	public String infoUpdatePage(Model model, Principal p) {
 //		String m_id = (String) session.getAttribute("m_id");
@@ -127,7 +127,7 @@ public class MemberController {
 
 		return view;
 	}
-	@Secured("ROLE_USER")
+	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@GetMapping("myPage")
 	public String myPage(Model model, Principal p) {
 		

@@ -20,7 +20,7 @@ public class CouponController {
 	@Autowired
 	CouponDao cpDao;
 	
-	@Secured("ROLE_USER")
+	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@RequestMapping("cpInsert")
 	public String cpInsert(CouponDto dto, Principal p) {
 		System.out.println(dto.getCp_num());
@@ -32,7 +32,7 @@ public class CouponController {
 		cpDao.cpInsert(dto);
 		return "redirect:/user/coupon/cpList";
 	}
-	@Secured("ROLE_USER")
+	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@RequestMapping("cpList")
 	public ModelAndView cpList(Principal p) {
 		Map<String, Object> map=new HashMap<>();

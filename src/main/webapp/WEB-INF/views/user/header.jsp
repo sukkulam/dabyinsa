@@ -48,8 +48,9 @@
             <div class="sign-icon-2">
                <i class="mdi mdi-close" id="close"></i>
                
+               
                <c:choose>
-               <c:when test="${mmap.m_grade == 'ROLE_ADMIN'}">
+               <c:when test="${mmap.member.m_role == 'ROLE_ADMIN'}">
                <a href="../admin/main"><i class="mdi mdi-account-check" id="manager"></i>
                </a>
                </c:when>

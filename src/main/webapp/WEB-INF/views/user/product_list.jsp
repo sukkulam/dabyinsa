@@ -67,7 +67,7 @@
 					<div class="product-card">
 					<a href="product/${pList.prod_id}">
 						<img alt="상품이미지" class="image product-up-on-scroll"
-							src="images/01.main/${pList.oriname}" />
+                     src="../pImg/${pList.sysname}" />
 						</a>
 							<div class="product-card-body">
 								<button class="title-btn">

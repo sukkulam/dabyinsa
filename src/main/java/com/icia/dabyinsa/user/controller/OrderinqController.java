@@ -23,7 +23,7 @@ public class OrderinqController {
 	@Autowired
 	OrderinqDao oDao;
 
-	@Secured("ROLE_USER")
+	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@RequestMapping("oiqList")
 	public ModelAndView oiqList(HttpSession session, ModelAndView mav, Principal p) {
 		Map<String, Object> map=new HashMap<>();

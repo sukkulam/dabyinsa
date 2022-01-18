@@ -23,13 +23,13 @@ public class CartController {
 	CartDao cartDao;
 	
 	
-	@Secured("ROLE_USER")
+	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@RequestMapping("delete")
 	public String delete(int cart_id) {
 		cartDao.delete(cart_id);
 		return "redirect:/user/cart/list";
 	}
-	@Secured("ROLE_USER")
+	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@RequestMapping("deleteAll")
 	public String deleteAll(HttpSession session, Principal p) {
 		//String m_id=(String)session.getAttribute("m_id");
@@ -39,7 +39,7 @@ public class CartController {
 		}
 		return "redirect:/user/cart/list";
 	}
-	@Secured("ROLE_USER")
+	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@RequestMapping("update")
 	public String update(int[] amount, int[] cart_id, HttpSession session, Principal p) {
 		//String m_id=(String)session.getAttribute("m_id");
@@ -58,7 +58,7 @@ public class CartController {
 		}
 		return "redirect:/user/cart/list";
 	}
-	@Secured("ROLE_USER")
+	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@RequestMapping("list")
 	public ModelAndView list(HttpSession session, ModelAndView mav, Principal p) {
 		Map<String, Object> map=new HashMap<>();
@@ -82,7 +82,7 @@ public class CartController {
 			return mav;
 		}
 	}
-	@Secured("ROLE_USER")
+	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@RequestMapping("cinsert")
 	public String insert(String[] chk, Principal p) {
 		System.out.println(chk);
@@ -101,7 +101,7 @@ public class CartController {
 //		cartDao.cinsert(dto);
 		return "redirect:/user/cart/list";
 	}
-	@Secured("ROLE_USER")
+	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@RequestMapping("cainsert")
 	public String cainsert(CartDto dto, HttpSession session, Principal p) {
 		//String m_id=(String)session.getAttribute("m_id");

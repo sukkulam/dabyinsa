@@ -34,7 +34,7 @@ public class OrderController {
 
 
 	// 주문 페이지 이동
-	@Secured("ROLE_USER")
+	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@GetMapping("order/{id}")
 	public String order(@PathVariable("id") String prod_id, Model model, Principal p, String p_num1, OrderDto odto) {
 		

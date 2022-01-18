@@ -247,7 +247,7 @@ public class AdminService {
 				.getRealPath("/");
 		
 		//파일 저장 경로 추가
-		realPath = realPath.substring(0, realPath.lastIndexOf("webapp")) + "resources/static/product/";
+		realPath = realPath.substring(0, realPath.lastIndexOf("webapp")) + "resources/static/pImg/";
 		log.info(realPath);
 		
 		//폴더가 존재하는 지 확인해서 없을 경우 생성.

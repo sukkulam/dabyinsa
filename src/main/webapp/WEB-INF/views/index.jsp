@@ -52,7 +52,7 @@
                                         	<h4>${MNPList.retail_price}</h4>
                                     	    <p>${MNPList.prod_summary_ex}</p>
                                 	    </span>
-									<img src="user/images/01.main/${MNPList.oriname}" alt="">
+									<p>${MNPList.oriname}</p>
                                 </a>
                             </div>
                         </div>
@@ -75,7 +75,8 @@
                             <article>
                                 <div class="articleThumb">
                                     <a href="user/product/${MBPList.prod_id}">
-                                        <img src="user/images/01.main/${MBPList.oriname}" alt="">
+                                        <!-- <img src="user/images/01.main/${MBPList.oriname}" alt=""> -->
+                                        <img src="product/${MBPList.sysname}" alt="">
                                     </a>
                                 </div>
                                 <div class="articleThumbs">

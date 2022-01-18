@@ -23,7 +23,7 @@ public class WishController {
 	@Autowired
 	WishDao wishDao;
 	
-	@Secured("ROLE_USER")
+	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@RequestMapping("wishInsert")
 	public String wishInsert(WishDto dto, HttpSession session) {
 		String m_id=(String)session.getAttribute("m_id");
@@ -35,14 +35,14 @@ public class WishController {
 		return "redirect:/user/wish/wishList";
 	}
 	
-	@Secured("ROLE_USER")
+	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@RequestMapping("wishDelete")
 	public String wishDelete(int w_id) {
 		wishDao.wishDelete(w_id);
 		return "redirect:/user/wish/wishList";
 	}
 	
-	@Secured("ROLE_USER")
+	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@RequestMapping("wishDeleteAll")
 	public String wishDeleteAll(HttpSession session, Principal p) {
 		String m_id= p.getName();
@@ -52,7 +52,7 @@ public class WishController {
 		return "redirect:/user/wish/wishList";
 	}
 	
-	@Secured("ROLE_USER")
+	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@RequestMapping("wishList")
 	public ModelAndView wishList(HttpSession session, ModelAndView mav, Principal p) {
 		Map<String, Object> map=new HashMap<>();

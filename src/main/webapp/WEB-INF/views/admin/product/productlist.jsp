@@ -183,7 +183,7 @@
 							</button>
 
 							<!--삭제 -->
-							<!--  </a> <a href="#layerCopy" class="btnNormal _manage_copy">상품복사 <!-- 상품복사-->-->
+							<!--  </a> <a href="#layerCopy" class="btnNormal _manage_copy">상품복사 <!-- 상품복사-->
 							</a> <span class="bar"></span>
 							<div class="mOpen eClick" bindstatus="true">
 

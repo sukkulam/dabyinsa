@@ -20,7 +20,7 @@ public class MiligeController {
 	@Autowired
 	MiligeDao miDao;
 	
-	@Secured("ROLE_USER")
+	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@RequestMapping("miList")
 	public ModelAndView miList(Principal p) {
 		Map<String, Object> map=new HashMap<>();

@@ -37,6 +37,7 @@ public class ProductController {
 	public String Product_list(Model model, 
 			@RequestParam(defaultValue = "") String keyword) {
 		
+		
 		List<ProductListDto> pList = pserv.getProductList(keyword);
 		
 		int count = pserv.getProductcnt(keyword);
@@ -45,14 +46,16 @@ public class ProductController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("keyword", keyword);
 		map.put("pList", pList); // 상품목록
-	
+		System.out.println("asduasuidiasjduiajsd" + pList);
 		map.put("count", count); // 상품개수
 
 		model.addAttribute("map", map);
 		return "user/product_list";
 	}
 
-
+	
+	
+	
 
 
 	   // 상품 상세 페이지 이동 + 상품 쿠키
