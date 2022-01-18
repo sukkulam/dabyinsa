@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,6 +23,7 @@ public class WishController {
 	@Autowired
 	WishDao wishDao;
 	
+	@Secured("ROLE_USER")
 	@RequestMapping("wishInsert")
 	public String wishInsert(WishDto dto, HttpSession session) {
 		String m_id=(String)session.getAttribute("m_id");
@@ -33,12 +35,14 @@ public class WishController {
 		return "redirect:/user/wish/wishList";
 	}
 	
+	@Secured("ROLE_USER")
 	@RequestMapping("wishDelete")
 	public String wishDelete(int w_id) {
 		wishDao.wishDelete(w_id);
 		return "redirect:/user/wish/wishList";
 	}
 	
+	@Secured("ROLE_USER")
 	@RequestMapping("wishDeleteAll")
 	public String wishDeleteAll(HttpSession session, Principal p) {
 		String m_id= p.getName();
@@ -48,6 +52,7 @@ public class WishController {
 		return "redirect:/user/wish/wishList";
 	}
 	
+	@Secured("ROLE_USER")
 	@RequestMapping("wishList")
 	public ModelAndView wishList(HttpSession session, ModelAndView mav, Principal p) {
 		Map<String, Object> map=new HashMap<>();
