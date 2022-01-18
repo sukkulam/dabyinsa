@@ -30,7 +30,7 @@ public class MailService {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, false, "UTF-8");
-            mimeMessageHelper.setFrom("rjsjdmlgla14@gmail.com");
+            mimeMessageHelper.setFrom("");
             mimeMessageHelper.setTo(mailDto.getTo()); //메일 수신자
             mimeMessageHelper.setSubject(mailDto.getSubject());
             mimeMessageHelper.setText(mailDto.getMessage(), true);
