@@ -14,7 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="user/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="user/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="user/css/materialdesignicons.min.css" />
-	<link rel="stylesheet" type="text/css" href="user/css/05.m_footer.css" />
+	<link rel="stylesheet" type="text/css" href="user/css/00_commom.css" />
 </head>
 
 
@@ -38,11 +38,9 @@
 						</p>
 					</div>
 				</div>
-
 				<div class="col-md-3 col-sm-6">
 					<div class="info">
 						<h3>BANK INFO</h3>
-
 						카카오뱅크 3333-03-7503011<br>
 						예금주 ㈜답인사 한별
 					</div>
@@ -54,7 +52,6 @@
 						<a href="" class="nino-icon"><i class="mdi mdi-tumblr"></i></a>
 					</div>
 				</div>
-
 				<div class="col-md-3 col-sm-6">
 					<div class="info">
 						<h3>CALL CENTER</h3>
@@ -73,11 +70,6 @@
 		</div>
 		</div>
 	</footer>
-
-
-
-	</div>
-	</div>
 </body>
 
 </html>

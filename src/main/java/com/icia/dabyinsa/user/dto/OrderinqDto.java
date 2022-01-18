@@ -9,13 +9,7 @@ public class OrderinqDto {
 	private String m_id;
 	private String o_code;
 	private Date o_date;
-	private String img_url;
-	public String getImg_url() {
-		return img_url;
-	}
-	public void setImg_url(String img_url) {
-		this.img_url = img_url;
-	}
+	private String oriname;
 	private String prod_name;
 	private String d_status;
 	public String getM_id() {

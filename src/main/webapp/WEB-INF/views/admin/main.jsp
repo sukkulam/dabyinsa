@@ -152,77 +152,140 @@
 								</a></li>
 							</ul></li>
 
-						<li class="nav-item"><a href="#" class="nav-link"> <i
-								class="nav-icon fas fa-chart-pie"></i>
-								<p>
-									주문관리 <i class="right fas fa-angle-left"></i>
-								</p>
-						</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="adorderlist" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>전체주문목록</p>
-								</a></li>
-								<li class="nav-item"><a href="adordercancel"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>취소</p>
-								</a></li>
-								<li class="nav-item"><a href="adorderchange"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>교환</p>
-								</a></li>
-								<li class="nav-item"><a href="adorderreturns"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>반품</p>
-								</a></li>
-								<li class="nav-item"><a href="adordercashrefund"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>환불</p>
-								</a></li>
-							</ul></li>
-						<li class="nav-item"><a href="#" class="nav-link"> <i
-								class="nav-icon fas fa-chart-pie"></i>
-								<p>
-									배송 관리 <i class="right fas fa-angle-left"></i>
-								</p>
-						</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="adpaymentlist"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>입금전</p>
-								</a></li>
-								<li class="nav-item"><a href="adshippedbeginlist"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>배송준비중</p>
-								</a></li>
-								<li class="nav-item"><a href="adshippedstandbylist"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>배송대기</p>
-								</a></li>
-								<li class="nav-item"><a href="adshippedendlist"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>배송중</p>
-								</a></li>
-								<li class="nav-item"><a href="adshippedcompletelist"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>배송완료</p>
-								</a></li>
-							</ul></li>
-						<li class="nav-item"><a href="#" class="nav-link"> <i
-								class="nav-icon fas fa-tree"></i>
-								<p>
-									고객/게스트관리 <i class="fas fa-angle-left right"></i>
-								</p>
-						</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="pages/UI/general.html"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>고객관리</p>
-								</a></li>
-								<li class="nav-item"><a href="pages/UI/icons.html"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>게스트관리</p>
-								</a></li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                주문관리
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="adorderlist" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>전체주문목록</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="adordercancel" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>취소</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="adorderchange" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>교환</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="adorderreturns" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>반품</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="adordercashrefund" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>환불</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                배송 관리
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="adpaymentlist" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>입금전</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="adshippedbeginlist" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>배송준비중</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="adshippedstandbylist" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>배송대기</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="adshippedendlist" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>배송중</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="adshippedcompletelist" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>배송완료</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tree"></i>
+              <p>
+                고객/게스트관리
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="memberadmin" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>고객관리</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="guestadmin" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>게스트관리</p>
+                </a>
+              </li>
+              
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                게시판관리
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="pages/forms/general.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>게시판 설정</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/forms/advanced.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>게시물 관리</p>
+                </a>
+              </li>
+              
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
 
 							</ul></li>
 						<li class="nav-item"><a href="#" class="nav-link"> <i

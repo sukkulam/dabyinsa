@@ -9,13 +9,8 @@ public class CartDto {
 	private String m_name;
 	private String prod_id;
 	private String prod_name;
-	private String img_url;
-	public String getImg_url() {
-		return img_url;
-	}
-	public void setImg_url(String img_url) {
-		this.img_url = img_url;
-	}
+	private int img_no_seq;
+	private String oriname;
 	private int price;
 	private int money;
 	private int amount;
@@ -70,6 +65,7 @@ public class CartDto {
 	@Override
 	public String toString() {
 		return "CartDto [cart_id=" + cart_id + ", m_id=" + m_id + ", m_name=" + m_name + ", prod_id=" + prod_id
-				+ ", prod_name=" + prod_name + ", price=" + price + ", money=" + money + ", amount=" + amount + "]";
+				+ ", prod_name=" + prod_name + ", img_no_seq=" + img_no_seq + ", oriname=" + oriname + ", price="
+				+ price + ", money=" + money + ", amount=" + amount + "]";
 	}
 }

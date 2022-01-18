@@ -8,6 +8,7 @@
 <link href="user/css/myPage.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.materialdesignicons.com/2.3.54/css/materialdesignicons.min.css" rel="stylesheet">
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <title>답인사 | 마이페이지</title>
@@ -75,18 +76,17 @@
 	<div>
 		<p class="title-text"><strong>주문</strong></p>
 		<ul class="cart-menu">
-			<li><a href="/order/basket.html">장바구니 </a></li>
-			<li><a href="/myshop/wish_list.html">관심상품 </a></li>
-			<li><a href="/myshop/order/list.html">주문조회</a></li>
+			<li><a href="/user/cart/list">장바구니 </a></li>
+			<li><a href="/user/wish/wishList">관심상품 </a></li>
+			<li><a href="/oiqList">주문조회</a></li>
 		</ul>
 	</div>
 
 	<p class="title-text"><strong>회원</strong></p>
 	<ul class="user-menu">
 		<li class="displaynone"><a href="infoUpdatePage">개인정보수정</a></li>
-		<li class=""><a href="#">쿠폰 </a></li>
-		<li><a href="#">적립금</a></li>
-		<li class=""><a href="#">게시물 관리</a></li>
+		<li class=""><a href="/user/coupon/cpList">쿠폰 </a></li>
+		<li><a href="/miList">적립금</a></li>
 
 	</ul>
 

@@ -9,13 +9,8 @@ public class WishDto {
 	private String m_name;
 	private String prod_id;
 	private String prod_name;
-	private String img_url;
-	public String getImg_url() {
-		return img_url;
-	}
-	public void setImg_url(String img_url) {
-		this.img_url = img_url;
-	}
+	private int img_no_seq;
+	private String oriname;
 	private int price;
 	public int getW_id() {
 		return w_id;

@@ -1420,7 +1420,7 @@ textarea {
 }
 
 a {
-    color: black;
+    color: #337ab7;
     text-decoration: none
 }
 
@@ -2000,11 +2000,12 @@ pre code {
     margin-left: auto
 }
 
-@media (min-width:768px) {
+/* @media (min-width:768px) {
     .container {
         width: 750px
     }
-}
+} 
+*/
 
 @media (min-width:992px) {
     .container {
@@ -5407,10 +5408,11 @@ textarea.input-group-sm>.input-group-btn>.btn {
     margin: 7.5px -15px
 }
 
-.navbar-nav>li>a {
-    padding-top: 10px;
+.navbar-nav>li>a,
+.sbtn {
+    /* padding-top: 10px; */
     padding-bottom: 10px;
-    line-height: 20px
+    /* line-height: 20px */
 }
 
 @media (max-width:767px) {
