@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,6 +20,7 @@ public class CouponController {
 	@Autowired
 	CouponDao cpDao;
 	
+	@Secured("ROLE_USER")
 	@RequestMapping("cpInsert")
 	public String cpInsert(CouponDto dto, Principal p) {
 		System.out.println(dto.getCp_num());
@@ -30,7 +32,7 @@ public class CouponController {
 		cpDao.cpInsert(dto);
 		return "redirect:/user/coupon/cpList";
 	}
-	
+	@Secured("ROLE_USER")
 	@RequestMapping("cpList")
 	public ModelAndView cpList(Principal p) {
 		Map<String, Object> map=new HashMap<>();
