@@ -87,13 +87,7 @@
 
 </select>
 
-<select id="borderManager" parameterType="String" 
-resultType="com.icia.dabyinsa.user.dto.OrderDto">
 
-SELECT * FROM b_review 
-WHERE m_id = #{id}
-
-</select>
     
     
     

@@ -37,6 +37,7 @@ import lombok.extern.java.Log;
 @Controller
 @RequestMapping("admin")
 @Log
+@Secured("ROLE_ADMIN")
 public class AdminController {
 	
 	@Autowired
