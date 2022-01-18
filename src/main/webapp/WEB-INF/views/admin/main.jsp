@@ -142,11 +142,11 @@
 								</p>
 						</a>
 							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="./index.html"
+								<li class="nav-item"><a href="newproduct"
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>상품 등록</p>
 								</a></li>
-								<li class="nav-item"><a href="./index2.html"
+								<li class="nav-item"><a href="productlist"
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>상품 목록</p>
 								</a></li>
