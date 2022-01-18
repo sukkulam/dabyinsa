@@ -52,7 +52,6 @@
 		if (msg != "") {
 			alert(msg);
 		}
-
 		//로그인한 회원 정보 및 로그아웃 출력
 		var lname = "${mb.m_name}";
 		$("#mname").html(lname + "님");
@@ -79,7 +78,6 @@
 					href="http://suynthe.cafe24.com/" class="nav-link">Dabyinsa
 						Mall</a></li>
 			</ul>
-
 			<!-- Right navbar links -->
 			<ul class="navbar-nav ml-auto">
 				<nav class="top-right">
@@ -93,7 +91,6 @@
 				</nav>
 			</ul>
 		</nav>
-
 		<!-- Messages Dropdown Menu -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
@@ -102,7 +99,6 @@
 				class="brand-image img-circle elevation-3" style="opacity: .8">
 				<span class="brand-text font-weight-light">DABYINSA</span>
 			</a>
-
 			<!-- Sidebar -->
 			<div class="sidebar">
 				<!-- Sidebar user panel (optional) -->
@@ -115,7 +111,6 @@
 						<a href="#" class="d-block">도움이 필요하신가요?</a>
 					</div>
 				</div>
-
 				<!-- SidebarSearch Form -->
 				<div class="form-inline">
 					<div class="input-group" data-widget="sidebar-search">
@@ -128,7 +123,6 @@
 						</div>
 					</div>
 				</div>
-
 				<!-- Sidebar Menu -->
 				<nav class="mt-2">
 					<ul class="nav nav-pills nav-sidebar flex-column"
@@ -142,151 +136,86 @@
 								</p>
 						</a>
 							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="./index.html"
+								<li class="nav-item"><a href="newproduct"
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>상품 등록</p>
 								</a></li>
-								<li class="nav-item"><a href="./index2.html"
+								<li class="nav-item"><a href="productlist"
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>상품 목록</p>
 								</a></li>
 							</ul></li>
-
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                주문관리
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="adorderlist" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>전체주문목록</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="adordercancel" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>취소</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="adorderchange" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>교환</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="adorderreturns" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>반품</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="adordercashrefund" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>환불</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                배송 관리
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="adpaymentlist" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>입금전</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="adshippedbeginlist" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>배송준비중</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="adshippedstandbylist" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>배송대기</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="adshippedendlist" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>배송중</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="adshippedcompletelist" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>배송완료</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tree"></i>
-              <p>
-                고객/게스트관리
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="memberadmin" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>고객관리</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="guestadmin" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>게스트관리</p>
-                </a>
-              </li>
-              
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                게시판관리
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>게시판 설정</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>게시물 관리</p>
-                </a>
-              </li>
-              
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
-
+						<li class="nav-item"><a href="#" class="nav-link"> <i
+								class="nav-icon fas fa-chart-pie"></i>
+								<p>
+									주문관리 <i class="right fas fa-angle-left"></i>
+								</p>
+						</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item"><a href="adorderlist" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>전체주문목록</p>
+								</a></li>
+								<li class="nav-item"><a href="adordercancel"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+										<p>취소</p>
+								</a></li>
+								<li class="nav-item"><a href="adorderchange"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+										<p>교환</p>
+								</a></li>
+								<li class="nav-item"><a href="adorderreturns"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+										<p>반품</p>
+								</a></li>
+								<li class="nav-item"><a href="adordercashrefund"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+										<p>환불</p>
+								</a></li>
+							</ul></li>
+						<li class="nav-item"><a href="#" class="nav-link"> <i
+								class="nav-icon fas fa-chart-pie"></i>
+								<p>
+									배송 관리 <i class="right fas fa-angle-left"></i>
+								</p>
+						</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item"><a href="adpaymentlist"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+										<p>입금전</p>
+								</a></li>
+								<li class="nav-item"><a href="adshippedbeginlist"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+										<p>배송준비중</p>
+								</a></li>
+								<li class="nav-item"><a href="adshippedstandbylist"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+										<p>배송대기</p>
+								</a></li>
+								<li class="nav-item"><a href="adshippedendlist"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+										<p>배송중</p>
+								</a></li>
+								<li class="nav-item"><a href="adshippedcompletelist"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+										<p>배송완료</p>
+								</a></li>
+							</ul></li>
+						<li class="nav-item"><a href="#" class="nav-link"> <i
+								class="nav-icon fas fa-tree"></i>
+								<p>
+									고객/게스트관리 <i class="fas fa-angle-left right"></i>
+								</p>
+						</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item"><a href="memberadmin"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+										<p>고객관리</p>
+								</a></li>
+								<li class="nav-item"><a href="guestadmin"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+										<p>게스트관리</p>
+								</a></li>
 							</ul></li>
 						<li class="nav-item"><a href="#" class="nav-link"> <i
 								class="nav-icon fas fa-edit"></i>
@@ -317,14 +246,12 @@
 								<i class="nav-icon far fa-envelope"></i>
 								<p>1:1문의</p>
 						</a></li>
-
 					</ul>
 				</nav>
 				<!-- /.sidebar-menu -->
 			</div>
 			<!-- /.sidebar -->
 		</aside>
-
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper iframe-mode" data-widget="iframe"
 			data-loading-screen="750">
@@ -377,7 +304,6 @@
 								<div class="small-box bg-success">
 									<div class="inner">
 										<h3>323</h3>
-
 										<p>생성 QR Code</p>
 									</div>
 									<div class="icon">
@@ -394,7 +320,6 @@
 								<div class="small-box bg-warning">
 									<div class="inner">
 										<h3>9343</h3>
-
 										<p>이용 하객</p>
 									</div>
 									<div class="icon">
@@ -410,7 +335,6 @@
 								<div class="small-box bg-danger">
 									<div class="inner">
 										<h3>265</h3>
-
 										<p>추천상품</p>
 									</div>
 									<div class="icon">
@@ -449,7 +373,6 @@
 		<footer>
 			<jsp:include page="footer.jsp" />
 		</footer>
-
 		<!-- /.content -->
 	</div>
 	<!-- Control Sidebar -->
@@ -459,7 +382,6 @@
 	<!-- /.control-sidebar -->
 	</div>
 	<!-- ./wrapper -->
-
 	<!-- jQuery -->
 	<script src="plugins/jquery/jquery.min.js"></script>
 	<!-- jQuery UI 1.11.4 -->
