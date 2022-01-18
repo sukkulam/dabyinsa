@@ -41,7 +41,11 @@ import com.icia.dabyinsa.admin.dto.product.prodinfoDto;
 import com.icia.dabyinsa.admin.dto.product.productlistDto;
 import com.icia.dabyinsa.admin.service.AdminService;
 import com.icia.dabyinsa.admin.service.ButtonService;
-
+import com.icia.dabyinsa.admin.service.GuestAdminService;
+import com.icia.dabyinsa.admin.service.MemberAdminService;
+import com.icia.dabyinsa.admin.service.MemberInfoService;
+import com.icia.dabyinsa.user.dto.GuestDto;
+import com.icia.dabyinsa.user.dto.MemberDto;
 
 import lombok.extern.java.Log;
 
@@ -60,6 +64,15 @@ public class AdminController {
 	private ButtonService bs;
 	
 	private ModelAndView mv;
+	
+	@Autowired
+	private MemberAdminService ms;
+	
+	@Autowired
+	private GuestAdminService gs;
+	
+	@Autowired
+	private MemberInfoService mi;
 
 
 
@@ -394,6 +407,99 @@ public class AdminController {
 		}
 		return "redirect:productlist";		
 	}
+
+	//전체 회원
+		@GetMapping("/memberadmin")
+		public String memberadmin(Model model,
+				@RequestParam(defaultValue = "") String mkeyword,
+				@RequestParam(defaultValue = "") String mkeyword2,
+				@RequestParam(defaultValue = "all") String msearchOption,
+				@RequestParam(defaultValue = "") String msearchOption2) {
+				List<MemberDto> mList = ms.getMemberList(mkeyword, mkeyword2, msearchOption, msearchOption2);
+				int count = ms.getMemberListCount(mkeyword, mkeyword2, msearchOption, msearchOption2);
+				int scount = ms.getMemberSeachListCount(mkeyword, mkeyword2, msearchOption, msearchOption2);
+				System.out.println(mkeyword);
+				System.out.println(mkeyword2);
+				System.out.println(msearchOption);
+				System.out.println(msearchOption2);
+				log.info("mList : " + mList);
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("msearchOption", msearchOption);
+				map.put("msearchOption2", msearchOption2);
+				map.put("mList", mList);
+				map.put("count", count);
+				map.put("scount", scount);
+				map.put("mkeyword", mkeyword);
+				map.put("mkeywor2", mkeyword2);
+				
+				model.addAttribute("map", map);
+				return "admin/member/memberadmin";
+		}
+		
+		//고객 선택 삭제
+		@RequestMapping(value = "/delete")
+		public String ajaxTest(HttpServletRequest request) {
+			
+			String[] ajaxMsg = request.getParameterValues("valueArr");
+			int size = ajaxMsg.length;
+			for(int i=0; i<size; i++) {
+				ms.delete(ajaxMsg[i]);
+			}
+			return "redirect:/admin/memberadmin";
+		}
+		
+		
+	//하객 관리
+	@GetMapping("/guestadmin")
+	public String guestadmin(Model model, 
+			@RequestParam(defaultValue = "") String gkeyword,
+			@RequestParam(defaultValue = "") String gkeyword2,
+			@RequestParam(defaultValue = "all") String gsearchOption,
+			@RequestParam(defaultValue = "") String gsearchOption2) {
+			System.out.println(gkeyword);
+			System.out.println(gkeyword2);
+			System.out.println(gsearchOption);
+			System.out.println(gsearchOption2);
+			List<GuestDto> gList = gs.getGuestList(gkeyword, gkeyword2, gsearchOption, gsearchOption2);
+			int count = gs.getGListCount(gkeyword, gkeyword2, gsearchOption, gsearchOption2);
+			int scount = gs.getGSearchListCount(gkeyword, gkeyword2, gsearchOption, gsearchOption2);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("gsearchOption", gsearchOption);
+			map.put("gsearchOption2", gsearchOption2);
+			map.put("gList", gList);
+			map.put("count", count);
+			map.put("scount", scount);
+			map.put("gkeyword", gkeyword);
+			map.put("gkeyword2", gkeyword2);
+			
+			model.addAttribute("map", map);
+			return "admin/member/guestadmin";
+	}
+	
+	//하객 선택 삭제
+	@RequestMapping(value = "/guestDelete")
+	public String ajaxGTest(HttpServletRequest request) {
+		log.info("ajaxGTest()");
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		int size = ajaxMsg.length;
+		for(int i=0; i<size; i++) {
+			gs.delete(ajaxMsg[i]);
+		}
+		return "redirect:/admin/guestadmin";
+	}
+
+	
+	//고객 상세보기 팝업
+	@RequestMapping("memberinfo")
+	public String memberinfo(String m_id, Model model) {
+		model.addAttribute("mList", mi.memInfo(m_id));
+		System.out.println("회원 상세 정보 진입");
+		System.out.println(mi.memInfo(m_id));
+		return "admin/member/memberinfo";	
+	}
+		
+	
+	
 
 
 }

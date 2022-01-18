@@ -320,12 +320,12 @@
 						<div class="btn-group btn-group-lg col-8" role="group" aria-label="Basic example">
 							<button type="submit" class="btn btn-primary" value="상품등록"
 								onclick="CheckAddProduct()">상품등록</button>
-								<button type="button" class="btn btn-primary" 
+								<!--  <button type="button" class="btn btn-primary" 
 							onClick="window.open('preview','미리보기페이지','width=900, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">
 							미리보기</button>
 							<button type="button" class="btn btn-primary" 
 							onClick="window.open('productload','상품불러오기페이지','width=900, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">
-							상품 불러오기</button>
+							상품 불러오기</button>-->
 							
 						</div>
 					</div>

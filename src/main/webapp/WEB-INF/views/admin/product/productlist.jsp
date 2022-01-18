@@ -152,7 +152,7 @@
 							</p>
 						</div>
 						<div class="gRight">
-							<select class="fSelect nob-sel" name="orderby">
+							<!--  <select class="fSelect nob-sel" name="orderby">
 								<option value="regist_d">등록일 역순</option>
 								<option value="regist_a">등록일 순</option>
 								<option value="empty2" disabled="disabled">---------------</option>
@@ -166,7 +166,7 @@
 								<option value="20" selected="selected">20개씩보기</option>
 								<option value="30">30개씩보기</option>
 								<option value="50">50개씩보기</option>
-								<option value="100">100개씩보기</option>
+								<option value="100">100개씩보기</option>-->
 							</select>
 						</div>
 					</div>
@@ -183,7 +183,7 @@
 							</button>
 
 							<!--삭제 -->
-							</a> <a href="#layerCopy" class="btnNormal _manage_copy">상품복사 <!-- 상품복사-->
+							<!--  </a> <a href="#layerCopy" class="btnNormal _manage_copy">상품복사 <!-- 상품복사-->-->
 							</a> <span class="bar"></span>
 							<div class="mOpen eClick" bindstatus="true">
 
