@@ -170,3 +170,21 @@ a {
 	color: red;
 }
 
+
+
+#pwf {
+	text-align: center;
+	font-size: 13px;
+	font-weight: 300px;
+	display: none;
+	color: red;
+}
+
+#pwt {
+	text-align: center;
+	font-size: 13px;
+	font-weight: 300px;
+	display: none;
+	color: green;
+}
+
